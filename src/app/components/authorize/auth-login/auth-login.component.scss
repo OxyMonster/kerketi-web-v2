@@ -1,0 +1,138 @@
+@import 'src/assets/variables'; 
+
+.header {
+    background-color: $dark-blue;
+}; 
+
+.auth {
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    
+    &__box {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+        &__container {
+            z-index: 2;
+            background-color: $white;
+            max-height: 427.61px;
+            width: 600.01px;
+            border: 8px;
+            box-shadow: #CCCCCC 0px 3px 6px;
+            border-radius: 50px;
+            padding: 30px;
+
+            @media (max-width: 500px) {
+                width: 100%;
+            };
+
+            &__title {
+                text-align: center;
+                
+                h3 { 
+                    font-size: 75px;
+                    font-family: 'GA Ristra';
+                    color: $light-blue;
+                    margin: 0;
+                }; 
+            }; 
+
+            &__form {
+
+                justify-content: center;
+                &__input {
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 25px;
+                    &__container {
+                        margin-top: 13px;
+                        width: 340px;
+                        height: 40px;
+
+                        label {
+                            color: $light-blue;
+                            font-size: 14px;
+                            text-align: left;
+                        }; 
+    
+                        input {
+                         width: 100%;
+                         height: 100%;
+
+                        }; 
+
+                        p {
+                            color: #758192;
+                            font-size: 14px;
+                            cursor: pointer;
+                            border-bottom: 1px solid #758192;
+                            display: inline;
+                            padding-bottom: 5px;
+
+                            &:hover {
+                                transition: .3s;
+                                color: $dark-blue;
+                                border-bottom: 1px solid $dark-blue;
+
+                            }
+                        }
+                    }
+                   
+
+                };
+
+
+                &__button {
+                    margin-top: 13px;
+                    display: flex;
+                    justify-content: center;  
+                    min-height: 55px;
+
+                    button {
+                        padding: 15px 42px 15px 42px;
+                    }
+                };
+
+            };
+        }; 
+
+
+    }; 
+
+};
+
+ 
+.left-circle {
+    background: url(../../../../assets/img/circle.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100px; 
+    position: absolute;
+    left: 30px;
+    // filter: grayscale(.2);
+    
+
+};
+
+.right-circle {
+    // filter: grayscale(.2);
+
+    background: url(../../../../assets/img/circle.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+    width: 100%;
+    height: 100px; 
+    position: absolute;
+    right: 30px;  
+
+} 

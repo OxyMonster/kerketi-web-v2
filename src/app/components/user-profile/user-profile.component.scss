@@ -1,0 +1,29 @@
+@import 'src/assets/variables';
+.profile {
+    background-color:$light-grey;
+    min-height: 100vh;
+    background-image: url(../../../assets/img/circle-bg.svg);
+    background-position-y: 60px;
+    background-size: contain;
+
+    &__header {
+      
+
+        &__head {
+            background-color: $primary;
+            height: 81px;
+
+        }
+
+    }; 
+
+
+
+    &__navigation {
+        background-color: #F9FAFC;
+        height: 58px;
+    }; 
+
+
+};
+

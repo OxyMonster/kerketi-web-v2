@@ -1,0 +1,23 @@
+{
+    "/api/*": {
+      "target": "http://188.129.255.187:2020/k-web-bridge/",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+          "^/api": ""
+      }
+    },
+  
+    "/payApi/*": {
+      "target": "https://pay.ge/pay",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug",
+      "pathRewrite": {
+          "^/payApi": ""
+      }
+    }
+  
+  
+  }  

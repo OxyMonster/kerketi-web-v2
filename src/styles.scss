@@ -1,1 +1,62 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import 'src/assets/variables'; 
+
+body,html {
+//    height: 100vh;
+   background-color: #E6EAEE !important;
+   padding: 0;
+   margin: 0;
+   scrollbar-width: none;
+   overflow-y: overlay;
+
+
+}; 
+   
+//  * * Fonts * * 
+
+@font-face {
+    font-family: "GA Ristra";
+    src: url(assets/fonts/tanamedrovea.ttf);
+  }
+  
+
+.btn--primary { 
+    background-color: $primary;
+    color: $white;
+    font-size: 14px; 
+    box-shadow: none !important;
+    font-weight: bold;
+}; 
+
+.btn--green { 
+    background-color: $green !important;
+    color: $white !important;
+    font-size: 14px !important; 
+    box-shadow: none !important;
+}; 
+ 
+ 
+input {
+    border: 1px solid $light-blue;
+    outline: none;
+
+    &:focus {
+        box-shadow: none;
+    }
+};
+
+.invalid {
+    border-color: $primary;
+}; 
+
+.box {
+    background-color: $white;
+    border-radius: 50px;
+    box-shadow: 0px 3px 6px#CCCCCC;
+    
+}
+
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

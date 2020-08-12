@@ -1,0 +1,50 @@
+<div class="home box row m-0 pb-5">
+    <div class="home__title col-12">
+        <h3>Wallets</h3>
+    </div>
+    <!-- <div class="home__img col-12">
+        <div class="home__img__container">
+            <img src="assets/img/wallet.svg" alt="">
+        </div>
+    </div> -->
+    <div class="row m-0 w-100 p-4"
+         *ngIf="userData.length > 0; else showLoading"
+         >
+        <div class="home__box box col-lg-4 p-4"
+             *ngFor="let item of walletsList">
+            <div class="home__box__line w-100 d-flex align-items-center justify-content-between">
+                <div class="home__box__line__bold col-6"> 
+                    <p>საფულის სახელი:</p>
+                </div>
+                <div class="home__box__line__norm col">
+                    <span> {{ item.walletName }} </span>
+                </div>
+            </div>
+            <div class="home__box__line w-100 d-flex align-items-center justify-content-between">
+                <div class="home__box__line__bold col-6"> 
+                    <p>საფულის ტიპი:</p>
+                </div>
+                <div class="home__box__line__norm col">
+                    <span> {{ item.walletTypeName }} </span>
+                </div>
+            </div>
+            <div class="home__box__line w-100 d-flex align-items-center justify-content-between">
+                <div class="home__box__line__bold col-6"> 
+                    <p>არსებული ბალანსი:</p>
+                </div>
+                <div class="home__box__line__norm col">
+                    <span  class="green"> {{ item.balanceCurrent + ' ' + item.walletCurrencySymbol }} </span>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+
+    <ng-template #showLoading >
+        <div class="col-12 d-flex justify-content-center mt-5" 
+             style="background-color: white;"> 
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </ng-template>
+   
+</div>

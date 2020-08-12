@@ -1,0 +1,66 @@
+<div class="row auth">
+<div class="left-circle col-3"></div>
+
+    <div class="col-12 auth__box">
+        <div class="auth__box__container">
+            <div class="col-12 auth__box__container__title">
+                <h3>ავტორიზაცია</h3>
+            </div>      
+            <form [formGroup]="userForm" 
+                  (ngSubmit)="onSubmit(userForm)" 
+                  class="auth__box__container__form">
+    
+                <div class="auth__box__container__form__input col-12">
+                    <div class="auth__box__container__form__input__container">
+                        <div class="">
+                            <label for="username">username</label>
+                        </div>
+                        <input type="text" 
+                               name="username" 
+                               id="username"
+                               formControlName="msisdn"
+                               [ngClass]="{ invalid: f.msisdn.errors && isSubmitted }">
+                    </div>
+                </div>
+    
+                <div class="auth__box__container__form__input col-12">
+                    <div class="auth__box__container__form__input__container">
+                        <div class="">
+                            <label for="password">password</label>
+                        </div>
+                        <input type="password" 
+                               name="password" 
+                               id="password"
+                               formControlName="pin"
+                               [ngClass]="{ invalid: f.pin.errors && isSubmitted }"
+                               >
+                               
+                    </div>
+                </div>
+
+                <div class="auth__box__container__form__input col-12">
+                    <div class="auth__box__container__form__input__container">
+                        <p>fogot password?</p>
+                    </div>
+                </div>
+                
+
+                <div class="auth__box__container__form__button col-12">
+                    <button *ngIf="!isLoading; else showLoading" 
+                            class="btn btn--green" 
+                            type="submit">Login</button>
+                    <ng-template #showLoading>
+                        <div class="spinner-border text-info" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>                        
+                    </ng-template>
+                </div>    
+
+            </form>  
+        </div>
+    </div>
+
+<div class="right-circle col-3"></div>
+ 
+
+</div>

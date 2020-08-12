@@ -1,0 +1,13 @@
+{
+    "authorize": {
+        "authorize": "Authorization",
+        "mobile": "Mobile",
+        "password": "Password",
+        "login": "Login",
+        "forgot-password": "Forgot password ?",
+        "news": "News",
+        "about-us": "About us",
+        "contact": "Contact us"
+    }
+
+}

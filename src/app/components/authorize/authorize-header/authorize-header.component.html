@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row header m-0">
+        <div class="header__logo col-3">
+            <div class="header__logo__container">
+                <img (click)="routeToHome()" src="assets/img/kerketi-logo.png" alt="">
+            </div>
+        </div>
+        <div class="header__nav col-9">
+            
+                <div class="header__nav__item col-2">
+                    <a [routerLink]="['/main/news']" 
+                       routerLinkActive="router-link-active" >News</a> 
+                </div>
+                <div class="header__nav__item col-2">
+                    <a [routerLink]="['/main/about-us']" 
+                       routerLinkActive="router-link-active" >About-us</a>  
+                </div>
+                <div class="header__nav__item col-2">
+                    <a [routerLink]="['/main/how-it-works']" 
+                       routerLinkActive="router-link-active" >How it works</a> 
+                </div>
+                <div class="header__nav__item col-2">
+                    <a [routerLink]="['/main/contact']"   
+                       routerLinkActive="router-link-active" >Contact</a> 
+                </div>
+                <div class="header__nav__item col-2">
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+        </div>
+        <div class="burger">
+           <app-burger></app-burger>
+        </div>
+    </div>
+</div>
