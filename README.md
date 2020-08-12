@@ -1,6 +1,11 @@
-# KerketiWeb
+# 🔥🔥KerketiWeb 🔥🔥
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.2.
+
+## ❤️❤️ Libraries ❤️❤️
+    "@nguniversal/express-engine": "^10.0.1",
+    "bootstrap": "^4.5.2",
+    "ngx-bootstrap": "^5.6.1",
 
 ## Development server
 
