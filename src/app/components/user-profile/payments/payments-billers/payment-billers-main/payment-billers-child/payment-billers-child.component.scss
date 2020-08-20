@@ -1,0 +1,40 @@
+@import 'src/assets/variables'; 
+
+.billers {
+
+    &__box {
+
+        // width: 95%;     
+        // padding-bottom: 20px;
+        padding: 20px;
+
+        &__name { 
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 80px;
+            
+        
+        }; 
+
+        &__img {
+            padding-top: 20px;
+            text-align: center;
+            font-size: 75px;
+            
+            // color: $primary; 
+        }
+        &__button {
+
+            display: flex;
+            justify-content: center;
+        }
+    };
+
+  
+}
+
+:host {
+
+}

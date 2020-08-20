@@ -1,0 +1,143 @@
+<div class="row drafts pb-4" >
+
+    <ng-container *ngIf="!isPayed; else showPayed">
+        <ng-container *ngIf="billerData.length > 0; else showLoading">
+            <ng-container *ngIf="!isBillerSelected; else showSelected">
+                <div class="drafts__box col-lg-3 mt-5" *ngFor="let item of billerData">
+                    <div class="drafts__box__img d-flex justify-content-center">
+                        <div class="drafts__box__img__content">
+                            <img [src]="'https://hierarchy-lable-logos.s3.eu-central-1.amazonaws.com/'+ item.name + '.png' "  alt>
+                        </div>
+                    </div>
+                    <div class="drafts__box__name mt-3" style="text-align: center;">
+                        <p> {{ item.title }} </p>
+                    </div>
+                    <div class="drafts__box__amount">
+                    
+                    </div>  
+                    <div class="drafts__box__button d-flex justify-content-center">
+                        <button class="btn btn--red" (click) = 'selectBiller(item)' >Select</button>
+                    </div>    
+                </div>
+            </ng-container>
+    
+            <ng-template #showSelected>
+                 <div class="d-flex justify-content-center col-12">
+                     <div class="drafts__box col-12 mt-5" *ngFor="let item of selectedBiller">
+                         <div class="drafts__box__img d-flex justify-content-center">
+                             <div class="drafts__box__img__content" style="width: 7rem; height: 5rem;">
+                                 <img [src]="'https://hierarchy-lable-logos.s3.eu-central-1.amazonaws.com/'+ item.name + '.png' " style="object-fit: contain;">
+                             </div>
+                         </div>
+                         <div class="drafts__box__name mt-3" style="text-align: center;">
+                             <p> {{ item.title }} </p>
+                         </div>
+                         <div class="drafts__box__amount">
+                             <div class="">
+                                 <label for="abonentCode">Abonent code</label>
+                             </div>
+                            <input type="text" 
+                                    id="abonentCode"
+                                    placeholder="" 
+                                    class="default-input"
+                                    [(ngModel)]="abonentCode"
+                                    (keyup.enter) = 'getDept(item)'>
+        
+                                <div class="drafts__box__amount__search mt-4">
+                                    <button class="btn btn--red" (click) = 'getDept(item)'> 
+                                        <img src="assets/img/search.svg" alt="">    
+                                        check
+                                    </button>
+        
+                                </div>
+                                  
+                         </div>  
+                         <div *ngIf="isErr" class="mt-5">
+                             <p > Not found </p>
+                         </div>
+    
+                         <ng-container *ngIf="isBillerDeptAcitve" class="mt-4">
+                            <div class="drafts__box__details col-12 mt-4" *ngFor="let biller of billerDebtData">
+                                <p> {{ biller.texts +  ': ' + biller.value }} </p>
+                            </div>
+                        </ng-container>
+                            <div *ngIf="isBillerDeptAcitve" class="drafts__box__amount-input col mt-4 d-flex justify-content-center">
+                                <input type="text"  
+                                       numberOnly
+                                       class="default-input" 
+                                       placeholder="Amount"
+                                       [(ngModel)]="billPayAmount"
+                                       (keyup.enter) = 'payBill()'>
+                            </div>
+                        
+                            <div class="drafts__box__err col-12 d-flex justify-content-center align-items-center mt-3">
+                                <p *ngIf="isBalanceEnoughErr"> Not enough Balance </p>
+                            </div>
+                         
+                        <div class="drafts__box__button d-flex justify-content-center mt-4">
+                        
+                            <button class="btn btn--red" 
+                                    *ngIf="isBillerDeptAcitve && !isLoading && !isPayLoading"
+                                    (click) = 'payBill()'
+                                    >
+                                Pay
+                            </button>
+    
+                            
+                            <!-- <app-templates-modal [billerData] = 'selectedBiller' 
+                                                 [serviceId] = 'selectedBiller[0]["service"]["id"]'
+                                              >
+                            </app-templates-modal> -->
+                            
+                            <div *ngIf="isPayLoading" 
+                                  class="drafts__loading col-12 d-flex justify-content-center align-items-center">
+                                <app-loading-spinner></app-loading-spinner>
+                            </div>
+                           
+                             <app-payments-billers-modal *ngIf="isLoading"></app-payments-billers-modal>
+                         </div>    
+                     </div>
+    
+                </div>
+            </ng-template>
+    
+        </ng-container>  
+    
+        <ng-template #showLoading>
+            <div class="drafts__loading col-12 d-flex justify-content-center align-items-center">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+        </ng-template>
+
+    </ng-container>
+
+    <ng-template #showPayed>
+        
+        <div class="pay col" *ngIf="!isPayErr">
+            <app-transaction-processing></app-transaction-processing>
+            <div class="mt-5 d-flex justify-content-center">
+                <ng-container *ngIf="isTemplate || isAddedToTemplates; else showBtn">
+                    <fa-icon [icon] = 'faStar'></fa-icon>
+
+                </ng-container>
+                
+                <ng-template #showBtn>
+                    <button class="main-button" 
+                            *ngIf="isBillerDeptAcitve && !isLoading && !isPayLoading"
+                            (click) = 'addToTemplates()'
+                            style="width: auto;"
+                    >
+                        Add Templates
+                    </button>
+                </ng-template>
+                
+            </div>
+        </div>
+        
+        <div class="pay col" *ngIf ='isPayErr'>
+            <app-transaction-fail></app-transaction-fail>
+        </div>
+
+    </ng-template>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="row billers box p-5" >
+
+    <ng-container *ngIf="billerList.length > 0; else showLoading">
+ 
+        <div class="billers__box col-lg-4 mt-5" *ngFor="let item of billerList">
+            <div class="box py-3">
+                <div class="billers__box__img">                
+                    <app-icons-fontaws-billers [category] = 'item.name'></app-icons-fontaws-billers>
+                </div>
+                <div class="billers__box__name">
+                    <p> {{ item.title }} </p>
+                </div>
+                <div class="billers__box__amount">
+    
+                </div>  
+                <div class="billers__box__button ">
+                    <button class="btn btn--green" 
+                            (click) = 'openModal(modalContent, item.title, item)'
+                            >
+                            <span> {{ 'payments.select' | translate }} </span>  
+                    </button>
+                </div>  
+            </div>
+              
+        </div>
+
+    </ng-container>
+
+    <ng-template #showLoading>
+        <div class="billers__loading col-12 d-flex justify-content-center align-items-center">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </ng-template>
+
+
+    <ng-template #modalContent>    
+        <app-modal-header [title] = 'modalTitle'></app-modal-header>
+        <div class="modal-body">
+
+            <app-payments-billers-modal [billerData] = 'selectedChildData'></app-payments-billers-modal>
+        
+        </div>
+
+    </ng-template>
+</div>
+

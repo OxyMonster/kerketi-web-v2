@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TransferFundsComponent } from './transfer-funds.component';
+import { P2pTemplatesModalComponent } from './p2p-templates-modal.component';
 
-describe('TransferFundsComponent', () => {
-  let component: TransferFundsComponent;
-  let fixture: ComponentFixture<TransferFundsComponent>;
+describe('P2pTemplatesModalComponent', () => {
+  let component: P2pTemplatesModalComponent;
+  let fixture: ComponentFixture<P2pTemplatesModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransferFundsComponent ]
+      declarations: [ P2pTemplatesModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TransferFundsComponent);
+    fixture = TestBed.createComponent(P2pTemplatesModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

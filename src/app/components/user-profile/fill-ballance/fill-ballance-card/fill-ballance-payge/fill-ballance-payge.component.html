@@ -1,0 +1,89 @@
+<div class="bank d-flex justify-content-center">
+
+    <form action="" 
+        [formGroup]="bankForm"
+        (ngSubmit)="getPayInfo(bankForm)"
+        class="col-6 p-4">
+        
+        <div class="bank__img">
+            <div class="bank__img__container">
+                <img src="assets/img/payge.jpg" alt="">
+            </div>
+        </div>
+        <ng-container *ngIf="!isChecked; else showDetails">
+            
+                    <div class="banks__iban col-12">
+                    <label for="amount">
+                        {{ 'fill_ballance.amount' | translate }}
+                    </label>
+                    <input type="text" 
+                            id="amount"
+                            placeholder=""
+                            class="default-input"
+                            formControlName="amount"
+                            [ngClass]="{ invalid: f.amount.errors && isSubmitted }"
+                            >
+                    </div>
+            
+                    <div class="banks__iban col-12  mt-4">
+                    <label for="description">
+                         {{ 'fill_ballance.description' | translate }}
+                    </label>
+                    <input type="text" 
+                            id="description"
+                            placeholder=""
+                            class="default-input"
+                            formControlName="description"
+                            [ngClass]="{ invalid: f.description.errors && isSubmitted }"
+                            >
+                    </div>
+
+        </ng-container>
+
+<ng-template #showDetails>
+    <div class="d-flex justify-content-center">
+        <div class="col-6">
+            <div class="d-flex">
+                <span>{{ 'fill_ballance.receiver' | translate }}: </span>
+                <p> {{ payParameters.merchant }} </p>
+            </div>
+            <div class="d-flex">
+                <span>{{ 'fill_ballance.description' | translate }}:</span>
+                <p> {{  payParameters.description }} </p>
+            </div>
+            <div class="d-flex">
+                <span>{{ 'fill_ballance.amount' | translate  }}:</span>
+                <p> {{ bankForm.value.amount + ' GEL' }} </p>
+            </div>
+        </div>
+    </div>
+   
+    
+</ng-template>
+
+
+        <div *ngIf="!isLoading; else showLoading" class="banks__button col-12 mt-4 d-flex justify-content-center">
+            <button *ngIf="!isChecked"
+                    class="btn btn--red" 
+                    type="submit">
+                {{ 'fill_ballance.check'  | translate }}
+            </button>
+
+            <button *ngIf="isChecked"
+                    class="btn btn--red" 
+                    type="button"
+                    (click) = 'sendToPay()'>
+                {{ 'fill_ballance.pay' | translate }}    
+            </button>
+            
+        </div>
+
+        <ng-template #showLoading>
+        <div class="col-12 d-flex justify-content-center mt-3">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+        </ng-template>
+
+    </form>
+
+</div>

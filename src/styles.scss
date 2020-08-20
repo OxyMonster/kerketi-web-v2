@@ -9,6 +9,7 @@ body,html {
    margin: 0;
    scrollbar-width: none;
    overflow-y: overlay;
+   font-family: 'BPG Mrgvlovani' !important;
 
 
 }; 
@@ -18,7 +19,14 @@ body,html {
 @font-face {
     font-family: "GA Ristra";
     src: url(assets/fonts/tanamedrovea.ttf);
-  }
+  };
+
+  @font-face {
+    font-family: "BPG Mrgvlovani";
+    src: url(assets/fonts/bpg-mrgvlovani-webfont.ttf);
+  };
+
+   
   
 
 .btn--primary { 
@@ -29,11 +37,33 @@ body,html {
     font-weight: bold;
 }; 
 
-.btn--green { 
+.btn--red {  
+    background-color: $primary !important;
+    color: $white !important;
+    font-size: 14px !important; 
+    box-shadow: none !important;
+    padding: 10px 25px !important;
+    border-radius: 100px !important;
+    font-family: 'BPG Mrgvlovani';
+    &:hover {
+        background-color: #e96770e0 !important;
+        transition: .4s;
+    }
+
+}; 
+
+.btn--green {  
     background-color: $green !important;
     color: $white !important;
     font-size: 14px !important; 
     box-shadow: none !important;
+    padding: 8px 20px !important;
+   
+    &:hover {
+        background-color: #14b1acd9 !important;
+        transition: .4s;
+    }
+
 }; 
  
  
@@ -46,13 +76,20 @@ input {
     }
 };
 
+h3 { 
+    font-size: 65px !important;
+    font-family: 'GA Ristra';
+    color: $light-blue;
+    margin: 0;
+}; 
+
 .invalid {
-    border-color: $primary;
+    border-color: $primary; 
 }; 
 
 .box {
     background-color: $white;
-    border-radius: 50px;
+    border-radius: 10px;
     box-shadow: 0px 3px 6px#CCCCCC;
 }
 

@@ -1,23 +1,35 @@
 <div class="nav col-12">
         <div class="nav__item col-2">
             <a [routerLink]="['/user-profile/home']" 
-                routerLinkActive="router-link-active" >Home</a> 
+                routerLinkActive="router-link-active" >
+                
+                {{ "navigation.Home" | translate }}
+            </a> 
         </div>
         <div class="nav__item col-2">
-            <a [routerLink]="['/user-profile/billing']" 
-                routerLinkActive="router-link-active" >Payments</a>  
+            <a [routerLink]="['/user-profile/payments']" 
+                routerLinkActive="router-link-active" >
+                {{ "navigation.Payments" | translate }}
+                </a>  
         </div>
         <div class="nav__item col-2">
             <a [routerLink]="['/user-profile/transfer-funds']" 
-                routerLinkActive="router-link-active" >Transfer funds</a> 
+                routerLinkActive="router-link-active" >
+                {{ "navigation.Transfer_funds" | translate }}
+            </a> 
         </div>
         <div class="nav__item col-2">
             <a [routerLink]="['/user-profile/fill-ballance']"   
-                routerLinkActive="router-link-active" >Fill ballance</a> 
+                routerLinkActive="router-link-active" >
+                {{ "navigation.Fill_ballance" | translate }}
+            </a> 
         </div>
         <div class="nav__item col-2">
             <a [routerLink]="['/user-profile/fund-cashing']"   
-                routerLinkActive="router-link-active" >Fund cashing</a> 
+                routerLinkActive="router-link-active" >
+                {{ "navigation.Fund_cashing" | translate }}
+                
+            </a> 
         </div>
 </div>
 

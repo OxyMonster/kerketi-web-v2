@@ -3,5 +3,12 @@
         img {
             cursor: pointer;
         }
-    }
+    };
+
+    &__user {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+    }  
 }

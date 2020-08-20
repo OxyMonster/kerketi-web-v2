@@ -1,6 +1,6 @@
 <div class="home box row m-0 pb-5">
     <div class="home__title col-12">
-        <h3>Wallets</h3>
+        <h3> {{ 'home.wallets' | translate }} </h3>
     </div>
     <!-- <div class="home__img col-12">
         <div class="home__img__container">
@@ -10,7 +10,7 @@
     <div class="row m-0 w-100 p-4"
          *ngIf="userData.length > 0; else showLoading"
          >
-        <div class="home__box box col-lg-4 p-4"
+        <div class="home__box box col-lg-4 p-3"
              *ngFor="let item of walletsList">
             <div class="home__box__line w-100 d-flex align-items-center justify-content-between">
                 <div class="home__box__line__bold col-6"> 
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="home__box__line w-100 d-flex align-items-center justify-content-between">
-                <div class="home__box__line__bold col-6"> 
+                <div class="home__box__line__bold col-5"> 
                     <p>საფულის ტიპი:</p>
                 </div>
                 <div class="home__box__line__norm col">
@@ -30,7 +30,7 @@
             </div>
             <div class="home__box__line w-100 d-flex align-items-center justify-content-between">
                 <div class="home__box__line__bold col-6"> 
-                    <p>არსებული ბალანსი:</p>
+                    <p>არსებული ბალანსი: </p>
                 </div>
                 <div class="home__box__line__norm col">
                     <span  class="green"> {{ item.balanceCurrent + ' ' + item.walletCurrencySymbol }} </span>

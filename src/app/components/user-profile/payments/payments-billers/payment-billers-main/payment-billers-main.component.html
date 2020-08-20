@@ -1,0 +1,45 @@
+<div class="row billers box p-5" >
+
+    <ng-container *ngIf="billersCategoryList.length > 0; else showLoading">
+
+        <div class="billers__box col-lg-4 mt-5 " *ngFor="let item of billersCategoryList">
+            <div class="billers__box box p-4">
+                <div class="billers__box__img">
+                    <div class="billers__box__img__container">
+                    <fa-icon *ngIf="item.name === 'b_utilities'" [icon]="faHome"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_telecoms'" [icon]="faPlug"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_finance'" [icon]="faWallet"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_entertainment'" [icon]="faGamepad"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_transportation'" [icon]="faGlobeAmericas"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_auto'" [icon]="faCar"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_education'" [icon]="faGraduationCap"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_donations'" [icon]="faDonate"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_other'" [icon]="faPuzzlePiece"></fa-icon> 
+                    
+                    </div>
+                    
+                </div>    
+                <div class="billers__box__name mt-3">
+                    <p> {{ item.title }} </p>
+                </div>
+                <div class="billers__box__amount">
+                    <!-- <span>- {{ item.logoIcon }} </span> -->
+                </div>  
+                <div class="billers__box__button">
+                    <button class="btn btn--green" (click) = 'routeToCategory(item.name)'>
+                      <span> {{ 'payments.select' | translate }} </span>  
+                    </button>
+                </div>   
+            </div>
+            
+        </div>
+
+    </ng-container>
+
+    <ng-template #showLoading>
+        <div class="billers__loading col-12 d-flex justify-content-center align-items-center">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </ng-template>
+
+</div>

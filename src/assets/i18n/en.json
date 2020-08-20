@@ -8,6 +8,53 @@
         "news": "News",
         "about-us": "About us",
         "contact": "Contact us"
+    },
+
+    "navigation": {
+        "Home": "Home",
+        "Payments": "Payments",
+        "Transfer_funds": "Transfer Funds",
+        "Fill_ballance": "Fill Ballance",
+        "Fund_cashing": "Fund Cashing"
+    },
+
+    "home" : {
+        "wallets": "Wallets"
+    },
+
+    "payments": {
+        "payments": "Payments",
+        "new_payment": "New payments",
+        "fill_mobile_ballance": "Fill mobile ballance",
+        "select": "Select",
+        "pay_with_templates": "Pay with Templates",
+        "abonent_code": "Abonent code",
+        "amount": "Amount",
+        "pay": "Pay",
+        "add_templates": "Add to Templates"
+
+    },
+
+    "fill_ballance": {
+        "select": "Select",
+        "amount": "Amount",
+        "description": "Description",
+        "pay": "Pay",
+        "check": "Check",
+        "receiver": "Receiver",
+        "fill_ballance_with_bank_card": "Fill ballance with bank card"
+
+    },
+
+    "fund_cashing": {
+        "select": "Select"
+    },
+
+    "transfer_funds": {
+        "tansfer_funds": "Transfer funds",
+        "p2p": "P2P",
+        "send_to_bank_account": "Send to bank account"
     }
+
 
 }

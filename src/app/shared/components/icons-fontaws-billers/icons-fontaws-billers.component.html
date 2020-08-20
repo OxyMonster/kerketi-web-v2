@@ -1,0 +1,52 @@
+<div class="utils">
+    <fa-icon *ngIf="category === 'bu_electricity'"  [icon] = 'faBolt'></fa-icon>
+    <fa-icon *ngIf="category === 'bu_water'" [icon] = 'faHandHoldingWater'></fa-icon>
+    <fa-icon *ngIf="category === 'bu_trash'"  [icon] = 'faTrash'></fa-icon>
+    <fa-icon *ngIf="category === 'bu_gas'"  [icon] = 'faBurn'></fa-icon>
+</div>
+
+<div class="auto" >
+    <fa-icon *ngIf="category === 'ba_parking'" [icon] = 'faParking'></fa-icon>
+    <fa-icon *ngIf="category === 'ba_fines'" [icon] = 'faGavel'></fa-icon>    
+</div>
+
+<div class="donations" >
+    <fa-icon *ngIf="category === 'bd_charity'" [icon] = 'faHandHoldingHeart'></fa-icon>
+    <fa-icon *ngIf="category === 'bd_religion'" [icon] = 'faPray'></fa-icon>
+    <fa-icon *ngIf="category === 'bd_ngo'" [icon] = 'faPeace'></fa-icon>
+</div>
+
+<div class="educations">
+    <fa-icon *ngIf="category === 'bed_university'" [icon] = 'faUniversity'></fa-icon>
+    <fa-icon *ngIf="category === 'bed_school'" [icon] = 'faSchool'></fa-icon>
+    <fa-icon *ngIf="category === 'bed_bed_kindergarten'" [icon] = 'faBaby'></fa-icon>
+    <fa-icon *ngIf="category === 'bed_other'" [icon] = 'faUsers'></fa-icon>    
+</div>
+
+<div class="entertaiment">
+    <fa-icon *ngIf="category === 'be_casino'" [icon] = 'faDice'></fa-icon>
+    <fa-icon *ngIf="category === 'be_games'" [icon] = 'faDiceD20'></fa-icon>
+
+</div>
+
+<div class="finance" >
+    <fa-icon *ngIf="category === 'bf_bank'" [icon] = 'faPiggyBank'></fa-icon>
+    <fa-icon *ngIf="category === 'bf_microfinance'" [icon] = 'faHandHoldingUsd'></fa-icon>
+    <fa-icon *ngIf="category === 'bf_insurance'" [icon] = 'faHandHoldingMedical'></fa-icon>
+    <fa-icon *ngIf="category === 'bf_emoney'" [icon] = 'faCoins'></fa-icon>
+    <fa-icon *ngIf="category === 'bf_ecommerce'" [icon] = 'faLaptopCode'></fa-icon>
+
+</div>
+
+<div class="telecoms">
+    <fa-icon *ngIf="category === 'bt_phone_fixed' " [icon] = 'faPhone'></fa-icon>
+    <fa-icon *ngIf="category === 'bt_phone_mobile' " [icon] = 'faMobile'></fa-icon>
+    <fa-icon *ngIf="category === 'bt_tv' " [icon] = 'faTv'></fa-icon>
+    <fa-icon *ngIf="category === 'bt_internet' " [icon] = 'faWifi'></fa-icon>
+    <fa-icon *ngIf="category === 'bt_companies' " [icon] = 'faBriefcase'></fa-icon>    
+</div>
+
+<div class="transportation" >
+    <fa-icon *ngIf="category === 'btr_shipment'" [icon] = 'faShippingFast'></fa-icon>
+    <fa-icon *ngIf="category === 'btr_travel'" [icon] = 'faPassport'></fa-icon>    
+</div>

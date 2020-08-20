@@ -8,6 +8,52 @@
         "news": "სიახლეები",
         "about-us": "ჩვენს შესახებ",
         "contact": "დაგვიკავშირდი"
+    },
+
+    "navigation": {
+        "Home": "Home",
+        "Payments": "გადახდები",
+        "Transfer_funds": "გადარიცხვები",
+        "Fill_ballance": "ბალანსის შევსება",
+        "Fund_cashing": "თანხის განაღდება"
+    },
+
+    "home" : {
+        "wallets": "საფულეები"
+    },
+
+    "payments": {
+        "payments": "გადახდები",
+        "new_payment": "ახალი გადახდა",
+        "fill_mobile_ballance": "მობილურის შევსება",
+        "select": "არჩევა",
+        "pay_with_templates": "გადაიხადე შაბლონებიდან",
+        "abonent_code": "აბონენტის ნომერი",
+        "amount": "თანხა",
+        "pay": "გადახდა",
+        "add_templates": "შაბლონებში დამატება"
+    },
+
+    "fill_ballance": {
+        "select": "არჩევა",
+        "amount": "თანხა",
+        "description": "აღწერა",
+        "pay": "გადახდა",
+        "check": "შემოწმება", 
+        "receiver": "მიმღები",
+        "fill_ballance_with_bank_card": "ბალანსის შევსება ბარათით"
+
+    },
+
+    "transfer_funds": {
+        "tansfer_funds": "გადარიცხვები",
+        "p2p": "შიდა გადარიცხვა",
+        "send_to_bank_account": "საბანკო ანგარიშზე"
+    },  
+ 
+    "fund_cashing": {
+        "select": "არჩევა"
     }
+
 
 }

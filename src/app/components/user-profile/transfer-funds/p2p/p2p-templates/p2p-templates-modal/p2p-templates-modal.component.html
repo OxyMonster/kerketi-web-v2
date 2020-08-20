@@ -1,0 +1,89 @@
+<ng-container *ngIf="!isSent; else showSent">
+  
+    <div class="transactions row justify-content-center mt-5 h-100 w-100 pb-4">
+    
+      <form class="col-6" 
+            [formGroup]="personForm"
+            (ngSubmit)="onSubmit(personForm)"
+            style="text-align: center;">
+      <!-- <div class="transactions__item col-12">
+          <label for="transferTo1"> Receiver phone </label>
+          <input  type="text" 
+                  id="transferTo1"
+                  [placeholder]="selectedTemplate.transferTo "
+                  class="default-input1"
+                  formControlName="transferTo"
+                  > 
+      </div> -->
+      <div class="transactions__item col-12 mt-3">
+          <label for="amount1">Amount</label>
+          <input type="text" 
+                 formControlName="amount"
+                 [ngClass]="{ invalid: f.amount.errors && isSubmitted }"
+                 class="default-input"
+                 id="amount1"
+                 >
+      </div>
+      <div class="transactions__item col-12 mt-3">
+          <label for="description1">Description</label>
+          <input type="text" 
+                 formControlName="description"
+                 class="default-input"
+                 id="description1">
+      </div>
+      
+      <div class="transactions__item col-12 mt-3">
+          <label for="sms1">SMS code</label>
+          <input type="text" 
+                 class="default-input" 
+                 formControlName="otp"
+                 [ngClass]="{ invalid: f.otp.errors && isSubmitted }"
+                 id="sms1"
+                 >
+          <div class="mt-3 pb-4">
+              <button class="right-button" 
+                      (click) = 'getOtp()' 
+                      *ngIf="!isTimerActive" 
+                      type="button">SMS code</button>
+              <button class="right-button" 
+                      *ngIf="isTimerActive" 
+                      type="button" 
+                      disabled
+                      style="background-color: #2ecc71;"
+                      >
+                      Code is sent
+              </button>
+          </div>
+  
+          <div class="mt-3" *ngIf="!isLoading; else showLoading">
+            <button type="submit" 
+                    class="btn btn--red"> Pay </button>
+          </div>
+  
+          <ng-template #showLoading>
+            <app-loading-spinner></app-loading-spinner>
+          </ng-template>
+          
+      </div>
+    
+      
+      </form> 
+    </div>   
+  
+  
+  </ng-container>
+  
+  
+  <ng-template #showSent>
+   
+    <div class="">
+      <ng-container *ngIf="!isError; else showErr">
+        <app-transaction-processing></app-transaction-processing>
+          
+      </ng-container>
+      <ng-template #showErr>
+          <app-transaction-fail></app-transaction-fail>
+      </ng-template>
+  
+    </div>
+  </ng-template>

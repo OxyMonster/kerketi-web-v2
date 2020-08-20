@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-authorize',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorizeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _translateService: TranslateService
+  ) { 
+
+    this._translateService.addLangs(['en','geo'])
+    this._translateService.setDefaultLang('geo');
+    this._translateService.use('geo');
+      
+  }
 
   ngOnInit(): void {
   }

@@ -1,0 +1,25 @@
+@import 'src/assets/variables'; 
+
+.transfer {
+
+    &__box {
+
+        &__item {
+
+            label { 
+                font-size: 14px;
+                color: $light-blue;
+            }; 
+
+            input {
+                padding-left: 10px;
+                width: 100%;
+                border: 2px solid $light-blue;
+                min-height: 40px;
+                -webkit-appearance: none; 
+
+            };
+
+        }
+    }
+}

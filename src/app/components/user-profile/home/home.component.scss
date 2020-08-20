@@ -2,15 +2,12 @@
 
 .home {
     background-color: $white;
-    border-radius: 50px;
+    // border-radius: 50px;
     
     &__title {
         text-align: center;
         margin-top: 30px;
 
-        h3 {
-            color: $dark-blue;
-        }
     }; 
 
     &__img {
@@ -30,6 +27,7 @@
 
     &__box {
         background-color: $dark-white !important;
+  
         &__line {   
             margin-bottom: 16px;
 

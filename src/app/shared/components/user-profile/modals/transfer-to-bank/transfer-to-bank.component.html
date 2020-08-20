@@ -1,0 +1,63 @@
+<div class="transfer row justify-content-center">
+    <div class="col-12 transfer__img">
+        <div class="transfer__img__content" *ngIf="bankType">
+            <img *ngIf="bankType === 'TBC'" 
+                  src="assets/img/TBC_Bank_logo.svg" 
+                  alt="TBC"
+                  >
+            <img *ngIf="bankType === 'Bank of Georgia'" 
+                  src="assets/img/Bank-of-Georgia-01.svg" 
+                  alt="Bank Of Georgia"
+                  class="bog"
+                  >
+        </div>  
+    </div>
+    <div class="transfer__box col-6 p-4" 
+         *ngIf="!isSendMoneyActive; else showSendMoney">
+        <form action="" 
+              [formGroup]="bankForm"
+              (ngSubmit)="getBankInfo(bankForm)"
+              >
+            <div class="col-12 transfer__box__item">
+                <label for="iban">IBAN</label>
+                <input type="text"
+                       name="iban" 
+                       id="iban"
+                       placeholder=""
+                       formControlName="iban"
+                       [ngClass]="{ invalid: f.iban.errors && isSubmitted }"
+                       >
+            </div>
+            
+            <div class="col-12 transfer__box__item mt-4">
+                <label for="pnumb">Private number</label>
+                <input type="number" 
+                       name="pnumb" 
+                       id="pnumb"
+                       formControlName="pid"
+                       [ngClass]="{ invalid: f.pid.errors && isSubmitted }"
+                       >
+            </div>
+    
+            <div *ngIf="!isLoading; else showLoading" class="transfer__box__button col-12 mt-4 d-flex justify-content-center">
+                <button class="btn btn--red" type="submit" >Check</button>
+            </div>
+    
+            <ng-template #showLoading>
+                <div class="col-12 d-flex justify-content-center mt-3">
+                    <app-loading-spinner></app-loading-spinner>
+                </div>
+            </ng-template>
+        </form>
+    </div>
+
+    <ng-template #showSendMoney>
+        <app-transfer-bank-pay-form class="col-6 d-flex justify-content-center" 
+                                    [bankData] = 'bankForm.value'
+                            >
+        </app-transfer-bank-pay-form>
+    </ng-template>
+   
+</div>
+
+

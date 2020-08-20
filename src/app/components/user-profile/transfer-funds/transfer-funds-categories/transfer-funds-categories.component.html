@@ -1,0 +1,40 @@
+<div class="transfer row box m-0 justify-content-center pb-5">
+    <div class="transfer__title col-12">
+        <h3> {{ 'transfer_funds.tansfer_funds' | translate }} </h3>
+    </div>
+    <div class="row col-9 justify-content-between m-0">
+        <div class="transfer__box col-lg-4 p-4 box">
+            <div class="transfer__box__img">
+                <div class="transfer__box__img__container">
+                    <img src="assets/img/money_transfer_.svg" alt="">
+                </div>
+            </div>
+            <div class="transfer__box__button d-flex justify-content-center mt-4">
+                <button class="btn btn--red" (click)="routeSendToPerson()">
+                    {{ 'transfer_funds.p2p' | translate }}
+                </button>
+            </div>
+        </div>
+    
+        <div class="transfer__box col-lg-4 box p-4">
+            <div class="transfer__box__img">
+                <div class="transfer__box__img__container">
+                    <img src="assets/img/banker.svg" alt="">
+                </div>
+            </div>
+            <div class="transfer__box__button d-flex justify-content-center mt-4">
+                <button class="btn btn--red"
+                        (click)="openModal(transferToBankModal)">
+                {{ 'transfer_funds.send_to_bank_account' | translate }}    
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #transferToBankModal>
+    <app-modal-header [title] = "'Transfer to bank'"></app-modal-header>
+    <app-transfer-to-bank></app-transfer-to-bank>
+</ng-template>
+
+<!-- <router-outlet></router-outlet> -->

@@ -18,14 +18,17 @@
             height: 100%;
             display: flex;
             align-items: center;
-            color: #758192;
+            color: #fffafa;
             text-decoration: none;
-            border-bottom: 3px solid transparent;
+            border-bottom: 4px solid transparent;
+            font-family: 'BPG Mrgvlovani';
+            font-size: 14px;
+
 
             &:hover {
-                 color: #071E3D ;
+                 color: white ;
                  transition: .3s;
-                border-bottom: 3px solid $primary;
+                border-bottom: 4px solid $primary;
 
             }
         
@@ -35,8 +38,8 @@
 
 
 .router-link-active {
-    color: #071E3D !important;
-    border-bottom: 3px solid $primary !important;
+    color: $primary !important;
+    border-bottom: 4px solid $primary !important;
 };
 
 
