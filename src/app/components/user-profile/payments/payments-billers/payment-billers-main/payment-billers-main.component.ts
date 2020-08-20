@@ -22,7 +22,7 @@ export class PaymentBillersMainComponent implements OnInit {
   languageId: string; 
 
     // * * * Icons * * * * 
-
+    billerIconLink = 'assets/img/biller-illustrations/item.name.svg'
     faHome = faHome;
     faPlug = faPlug; 
     faGamepad= faGamepad; 

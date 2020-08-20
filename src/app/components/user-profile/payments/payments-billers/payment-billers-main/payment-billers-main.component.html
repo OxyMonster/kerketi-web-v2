@@ -6,7 +6,7 @@
             <div class="billers__box box p-4">
                 <div class="billers__box__img">
                     <div class="billers__box__img__container">
-                    <fa-icon *ngIf="item.name === 'b_utilities'" [icon]="faHome"></fa-icon>
+                    <!-- <fa-icon *ngIf="item.name === 'b_utilities'" [icon]="faHome"></fa-icon>
                     <fa-icon *ngIf="item.name === 'b_telecoms'" [icon]="faPlug"></fa-icon>
                     <fa-icon *ngIf="item.name === 'b_finance'" [icon]="faWallet"></fa-icon>
                     <fa-icon *ngIf="item.name === 'b_entertainment'" [icon]="faGamepad"></fa-icon>
@@ -14,12 +14,12 @@
                     <fa-icon *ngIf="item.name === 'b_auto'" [icon]="faCar"></fa-icon>
                     <fa-icon *ngIf="item.name === 'b_education'" [icon]="faGraduationCap"></fa-icon>
                     <fa-icon *ngIf="item.name === 'b_donations'" [icon]="faDonate"></fa-icon>
-                    <fa-icon *ngIf="item.name === 'b_other'" [icon]="faPuzzlePiece"></fa-icon> 
-                    
+                    <fa-icon *ngIf="item.name === 'b_other'" [icon]="faPuzzlePiece"></fa-icon>  -->
+                    <img src="{{'assets/img/biller-illustrations/' + item.name + '.svg'}}" alt="">
                     </div>
                     
                 </div>    
-                <div class="billers__box__name mt-3">
+                <div class="billers__box__name mt-4">
                     <p> {{ item.title }} </p>
                 </div>
                 <div class="billers__box__amount">

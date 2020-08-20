@@ -4,8 +4,11 @@
  
         <div class="billers__box col-lg-4 mt-5" *ngFor="let item of billerList">
             <div class="box py-3">
-                <div class="billers__box__img">                
-                    <app-icons-fontaws-billers [category] = 'item.name'></app-icons-fontaws-billers>
+                <div class="billers__box__img">    
+                    <div class="billers__box__img__container">
+                        <img src="{{'assets/img/biller-illustrations/' + item.name + '.svg'}}" alt="">
+                    </div>            
+                    <!-- <app-icons-fontaws-billers [category] = 'item.name'></app-icons-fontaws-billers> -->
                 </div>
                 <div class="billers__box__name">
                     <p> {{ item.title }} </p>
