@@ -1,0 +1,42 @@
+@import 'src/assets/variables'; 
+
+.transactions {
+    background-color: white;
+    border-radius: 10px;
+
+    &__title {
+        background-color: #F4F4F4;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        padding: 15px;
+        
+        h4 {
+            font-size: 16px;
+            cursor: pointer;
+            height: 100%;
+            &:hover {
+                // color: $light-blue;
+                color: $primary;
+                transition: .4s;
+            }
+        }
+    }
+}
+
+
+table {
+    tr {
+        font-size: 14px;
+        border-top: 1px solid $light-grey;
+    }; 
+
+    td {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    .green {
+        color: $green;
+    };
+}
+

@@ -1,7 +1,13 @@
 .nav {
+    height: 100%;
     &__logo {
-        img {
-            cursor: pointer;
+        &__container {
+            height: 50px;
+            img {
+                height: 100%;
+                cursor: pointer;
+            }
+            
         }
     };
 

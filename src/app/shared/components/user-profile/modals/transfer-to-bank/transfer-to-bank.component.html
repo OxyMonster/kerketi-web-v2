@@ -30,7 +30,7 @@
             </div>
             
             <div class="col-12 transfer__box__item mt-4">
-                <label for="pnumb">Private number</label>
+                <label for="pnumb"> {{ 'transfer_funds.private_number' | translate }} </label>
                 <input type="number" 
                        name="pnumb" 
                        id="pnumb"
@@ -40,7 +40,9 @@
             </div>
     
             <div *ngIf="!isLoading; else showLoading" class="transfer__box__button col-12 mt-4 d-flex justify-content-center">
-                <button class="btn btn--red" type="submit" >Check</button>
+                <button class="btn btn--red" type="submit" >
+                    {{ 'payments.check' | translate}}
+                </button>
             </div>
     
             <ng-template #showLoading>
@@ -52,7 +54,7 @@
     </div>
 
     <ng-template #showSendMoney>
-        <app-transfer-bank-pay-form class="col-6 d-flex justify-content-center" 
+        <app-transfer-bank-pay-form class="col-8 d-flex justify-content-center" 
                                     [bankData] = 'bankForm.value'
                             >
         </app-transfer-bank-pay-form>

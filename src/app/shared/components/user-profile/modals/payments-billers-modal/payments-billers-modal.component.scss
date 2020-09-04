@@ -3,6 +3,12 @@
 
     &__box {
 
+        &__name {
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         &__details {
 
             display: flex;
@@ -48,4 +54,20 @@
             }
         }
     }
+}
+
+
+input {
+    width: 100%;
+    border: 1px solid $light-blue;
+    height: 40px;
+    outline: none;
+    padding-left: 10px;
+};
+
+label {
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: $light-blue;
 }

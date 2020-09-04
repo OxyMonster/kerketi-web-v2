@@ -1,36 +1,62 @@
-<div class="nav col-12">
-        <div class="nav__item col-2">
-            <a [routerLink]="['/user-profile/home']" 
-                routerLinkActive="router-link-active" >
-                
-                {{ "navigation.Home" | translate }}
-            </a> 
+<div class="container h-100 p-0">
+    <div class="nav col-12 row justify-content-between p-0">
+        <div class="nav__logo col-2">
+            <div class="nav__logo__container">
+                <img src="assets/img/kerketi.png" alt="">
+            </div>
         </div>
-        <div class="nav__item col-2">
-            <a [routerLink]="['/user-profile/payments']" 
-                routerLinkActive="router-link-active" >
-                {{ "navigation.Payments" | translate }}
+        <div class="col d-flex p-0">
+            <div class="nav__item home col-1">
+                <a [routerLink]="['/user-profile/home']" 
+                    routerLinkActive="router-link-active" 
+                    style="font-size: 25px;">
+                    <fa-icon [icon] = 'faHome'></fa-icon>
+                </a> 
+            </div>
+            <div class="nav__item col-2">
+                <a [routerLink]="['/user-profile/payments']" 
+                    routerLinkActive="router-link-active" >
+                    {{ "navigation.Payments" | translate }}
                 </a>  
-        </div>
-        <div class="nav__item col-2">
-            <a [routerLink]="['/user-profile/transfer-funds']" 
-                routerLinkActive="router-link-active" >
-                {{ "navigation.Transfer_funds" | translate }}
-            </a> 
-        </div>
-        <div class="nav__item col-2">
-            <a [routerLink]="['/user-profile/fill-ballance']"   
-                routerLinkActive="router-link-active" >
-                {{ "navigation.Fill_ballance" | translate }}
-            </a> 
-        </div>
-        <div class="nav__item col-2">
-            <a [routerLink]="['/user-profile/fund-cashing']"   
-                routerLinkActive="router-link-active" >
-                {{ "navigation.Fund_cashing" | translate }}
+                <fa-icon class="pl-2" 
+                         [icon] = 'faSortDown'
+                         style="cursor: pointer;"></fa-icon>
                 
-            </a> 
+            </div>
+        
+            <div class="nav__item col-2">
+                <a [routerLink]="['/user-profile/transfer-funds']" 
+                    routerLinkActive="router-link-active" >
+                    {{ "navigation.Transfer_funds" | translate }}
+                </a>   
+                <fa-icon class="pl-2" 
+                         [icon] = 'faSortDown'
+                         style="cursor: pointer;"></fa-icon>
+
+            </div>
+            <div class="nav__item col-3">
+                <a [routerLink]="['/user-profile/fill-ballance']"   
+                    routerLinkActive="router-link-active" >
+                    {{ "navigation.Fill_ballance" | translate }}
+                </a> 
+            </div>
+            <div class="nav__item col-2">
+                <a [routerLink]="['/user-profile/fund-cashing']"   
+                    routerLinkActive="router-link-active" >
+                    {{ "navigation.Fund_cashing" | translate }}
+                    
+                </a> 
+            </div>
+            <div class="nav__item col-2">
+                <a [routerLink]="['/user-profile/transactions']"   
+                    routerLinkActive="router-link-active" >
+                    <!-- {{ "navigation.Fund_cashing" | translate }} -->
+                    ტრანზაქციები
+                </a> 
+            </div>
         </div>
+          
+    </div>
 </div>
 
 <div class="burger">

@@ -7,28 +7,56 @@
       }; 
 
 
+    &__logo {
+       display: flex;
+       align-items: center;
+        &__container {
+            // height: 40px;
+            // width: 140px;
+            
+            img {
+                width: 100%;
+                height: 100%;
+               
+            }
+        }
+    }
+
+
     display: flex;
     justify-content: center;
     height: 100%;
+
+    .home {
+        border-right: 1px solid $light-grey; 
+    }
     &__item {
-       display: inherit;
+        display: inherit;
         height: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        display: flex;
+        align-items: center; 
+   
 
         a {
+            // font-family: 'BPG WEB 002 Caps' !important;
+            font-family: 'BPG WEB 001 Caps' !important;
             height: 100%;
             display: flex;
             align-items: center;
-            color: #fffafa;
+            text-align: center;
+            color: $dark-blue;
             text-decoration: none;
-            border-bottom: 4px solid transparent;
             font-family: 'BPG Mrgvlovani';
-            font-size: 14px;
-
+            font-size: 14px; 
+            font-weight: bolder;
 
             &:hover {
-                 color: white ;
+                 color: $primary ;
                  transition: .3s;
-                border-bottom: 4px solid $primary;
+                //  border-bottom: 4px solid $primary;
 
             }
         
@@ -39,7 +67,7 @@
 
 .router-link-active {
     color: $primary !important;
-    border-bottom: 4px solid $primary !important;
+    // border-bottom: 4px solid $primary !important;
 };
 
 

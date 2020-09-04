@@ -1,0 +1,17 @@
+@import 'src/assets/variables';
+
+
+
+input {
+    width: 100%;
+    border: 1px solid $light-blue;
+    height: 40px;
+    outline: none;
+};
+
+label {
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    color: $light-blue;
+}

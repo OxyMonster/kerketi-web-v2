@@ -7,23 +7,25 @@
         </div>
         <div class="header__nav col-9">
             
-                <div class="header__nav__item col-2">
-                    <a [routerLink]="['/main/news']" 
-                       routerLinkActive="router-link-active" >News</a> 
-                </div>
-                <div class="header__nav__item col-2">
+                <div class="header__nav__item col-3">
                     <a [routerLink]="['/main/about-us']" 
-                       routerLinkActive="router-link-active" >About-us</a>  
+                       routerLinkActive="router-link-active" >
+                        {{ 'login_header.about_us' | translate }}
+                    </a>  
                 </div>
-                <div class="header__nav__item col-2">
+                <div class="header__nav__item col-3">
                     <a [routerLink]="['/main/how-it-works']" 
-                       routerLinkActive="router-link-active" >How it works</a> 
+                       routerLinkActive="router-link-active" >
+                       {{ 'login_header.how_it_works' | translate }}
+                    </a> 
                 </div>
-                <div class="header__nav__item col-2">
+                <div class="header__nav__item col-3">
                     <a [routerLink]="['/main/contact']"   
-                       routerLinkActive="router-link-active" >Contact</a> 
+                       routerLinkActive="router-link-active" >
+                        {{ 'login_header.contact' | translate }}
+                    </a> 
                 </div>
-                <div class="header__nav__item col-2">
+                <div class="header__nav__item col-1 p-0 d-flex justify-content-end">
                     <label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider round"></span>

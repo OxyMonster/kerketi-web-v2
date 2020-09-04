@@ -13,10 +13,12 @@
                 <div class="auth__box__container__form__input col-12">
                     <div class="auth__box__container__form__input__container">
                         <div class="">
-                            <label for="username">username</label>
+                            <label for="username">
+                                {{ 'login.username' | translate }}
+                            </label>
                         </div>
                         <input type="text" 
-                               name="username" 
+                               name="tel" 
                                id="username"
                                formControlName="msisdn"
                                [ngClass]="{ invalid: f.msisdn.errors && isSubmitted }">
@@ -26,11 +28,14 @@
                 <div class="auth__box__container__form__input col-12">
                     <div class="auth__box__container__form__input__container">
                         <div class="">
-                            <label for="password">password</label>
+                            <label for="password">
+                                {{ 'login.password' | translate }}
+                            </label>
                         </div>
                         <input type="password" 
                                name="password" 
                                id="password"
+                               class="password"
                                formControlName="pin"
                                [ngClass]="{ invalid: f.pin.errors && isSubmitted }"
                                >
@@ -38,9 +43,11 @@
                     </div>
                 </div>
 
-                <div class="auth__box__container__form__input col-12">
+                <div class="auth__box__container__form__input col-12 mb-2">
                     <div class="auth__box__container__form__input__container">
-                        <p>fogot password?</p>
+                        <p>
+                            {{ 'login.forgot_password' | translate }}
+                        </p>
                     </div>
                 </div>
                 
@@ -48,7 +55,9 @@
                 <div class="auth__box__container__form__button col-12">
                     <button *ngIf="!isLoading; else showLoading" 
                             class="btn btn--green" 
-                            type="submit">Login</button>
+                            type="submit">
+                        {{ 'login.login' | translate }}    
+                    </button>
                     <ng-template #showLoading>
                         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                             <span class="sr-only">Loading...</span>

@@ -31,7 +31,9 @@
         "abonent_code": "Abonent code",
         "amount": "Amount",
         "pay": "Pay",
-        "add_templates": "Add to Templates"
+        "add_templates": "Add to Templates",
+        "check": "Check"
+
 
     },
 
@@ -53,7 +55,26 @@
     "transfer_funds": {
         "tansfer_funds": "Transfer funds",
         "p2p": "P2P",
-        "send_to_bank_account": "Send to bank account"
+        "send_to_bank_account": "Send to bank account",
+        "phone": "Phone",
+        "amount": "Amount",
+        "description": "Description",
+        "code_sent": "Code is sent",
+        "private_number": "Private number",
+        "fullname": "Full name"
+    },
+
+    "login_header": {
+        "about_us": "What is Kerketi",
+        "how_it_works": "How it works",
+        "contact": "Contact"
+    },
+
+    "login": {
+        "username": "phone",
+        "password": "password",
+        "forgot_password": "forgot password ?",
+        "login": "Login"
     }
 
 

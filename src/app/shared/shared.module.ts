@@ -19,7 +19,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IconsFontawsBillersComponent } from './components/icons-fontaws-billers/icons-fontaws-billers.component';
 import { PaymentsBillersModalComponent } from './components/user-profile/modals/payments-billers-modal/payments-billers-modal.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { UserLogoutComponent } from './components/user-profile/user-prof-header/user-logout/user-logout.component';
+import { UserInfoBallanceLogoutComponent } from './components/user-profile/user-prof-header/user-info-ballance-logout/user-info-ballance-logout.component';
 
 const COMPONENTS = [
   PageNotFoundComponent, 
@@ -33,12 +33,13 @@ const COMPONENTS = [
   TransferBankPayFormComponent,
   TransferToBankComponent,
   IconsFontawsBillersComponent, 
-  PaymentsBillersModalComponent
+  PaymentsBillersModalComponent,
+  UserInfoBallanceLogoutComponent
 ] 
 
 
 @NgModule({
-  declarations: [ COMPONENTS, UserLogoutComponent,  ],
+  declarations: [ COMPONENTS ],
   imports: [
     CommonModule,
     RouterModule,

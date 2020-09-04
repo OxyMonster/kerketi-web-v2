@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  faHouseUser, faSortDown } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-prof-navigation',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-prof-navigation.component.scss']
 })
 export class UserProfNavigationComponent implements OnInit {
+
+  
+  faHome = faHouseUser; 
+  faSortDown = faSortDown; 
 
   constructor() { }
 

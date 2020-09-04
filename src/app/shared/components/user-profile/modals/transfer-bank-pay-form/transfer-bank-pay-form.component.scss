@@ -6,20 +6,30 @@
 
         &__item {
 
-            label { 
-                font-size: 14px;
-                color: $light-blue;
-            }; 
-
             input {
-                padding-left: 10px;
                 width: 100%;
-                border: 2px solid $light-blue;
-                min-height: 40px;
-                -webkit-appearance: none; 
-
+                border: 1px solid $light-blue;
+                height: 40px;
+                outline: none;
+                padding-left: 10px;
             };
+            
+            label {
+                width: 100%;
+                text-align: left;
+                cursor: pointer;
+                color: $light-blue;
+            }
 
         }
     }
+}
+
+.sms {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    color: white;
+    font-size: 14px;
+
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-transfer-funds',
@@ -7,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransferFundsComponent implements OnInit {
 
-  constructor() { }
+  
+  constructor(
+    private _modalService: NgbModal,
+  ) { }
 
   ngOnInit(): void {
   }
+
+  openModal(modalContent) {
+    this._modalService.open(modalContent, { size: 'lg' }); 
+  };
 
 
 }

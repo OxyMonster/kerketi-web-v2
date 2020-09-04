@@ -27,11 +27,12 @@
         "new_payment": "ახალი გადახდა",
         "fill_mobile_ballance": "მობილურის შევსება",
         "select": "არჩევა",
-        "pay_with_templates": "გადაიხადე შაბლონებიდან",
+        "pay_with_templates": "აირჩიე გადასახდელები შაბლონებიდან, ან დაამატე ახალი გადახდა",
         "abonent_code": "აბონენტის ნომერი",
         "amount": "თანხა",
         "pay": "გადახდა",
-        "add_templates": "შაბლონებში დამატება"
+        "add_templates": "შაბლონებში დამატება",
+        "check": "შემოწმება"
     },
 
     "fill_ballance": {
@@ -48,11 +49,32 @@
     "transfer_funds": {
         "tansfer_funds": "გადარიცხვები",
         "p2p": "შიდა გადარიცხვა",
-        "send_to_bank_account": "საბანკო ანგარიშზე"
+        "send_to_bank_account": "საბანკო ანგარიშზე",
+        "pay_with_templates": "გადარიცხე კერკეტში, ან ნებისმიერ საბანკო ანგარიშზე",
+        "phone": "მობილური",
+        "amount": "თანხა",
+        "description": "აღწერა",
+        "code_sent": "სმს გამოგზავნილია",
+        "private_number": "პირადი ნომერი",
+        "fullname": "სრული სახელი"
     },  
  
     "fund_cashing": {
         "select": "არჩევა"
+    },
+
+    "login_header": {
+        "about_us": "რა არის კერკეტი",
+        "how_it_works": "როგორ მუშაობს",
+        "contact": "კონტაქტი"
+    },
+
+    "login": {
+        "username": "მობილური",
+        "password": "პაროლი",
+        "forgot_password": "დაგავიწყდა პაროლი ?",
+        "login": "შესვლა"
+
     }
 
 

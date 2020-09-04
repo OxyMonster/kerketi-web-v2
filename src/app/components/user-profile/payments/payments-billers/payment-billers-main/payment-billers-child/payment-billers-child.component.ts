@@ -12,6 +12,7 @@ import { PaymentsService } from 'src/app/services/payments.service';
 export class PaymentBillersChildComponent implements OnInit {
 
   billerList: any[] = []; 
+  billersTitle: string; 
   selectedBillerName: string; 
 
   languageId: string; 
@@ -47,6 +48,7 @@ export class PaymentBillersChildComponent implements OnInit {
         if ( item.name === this.selectedBillerName ) {
 
           this.billerList = item['children']; 
+          this.billersTitle = item['title'];
         }
         
       }); 

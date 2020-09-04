@@ -16,15 +16,30 @@ body,html {
    
 //  * * Fonts * * 
 
-@font-face {
-    font-family: "GA Ristra";
-    src: url(assets/fonts/tanamedrovea.ttf);
+    @font-face {
+        font-family: "GA Ristra";
+        src: url(assets/fonts/tanamedrovea.ttf);
+    };
+
+    @font-face {
+        font-family: "BPG Mrgvlovani";
+        src: url(assets/fonts/bpg-mrgvlovani-webfont.ttf);
+    };
+
+  @font-face {
+    font-family: "BPG WEB 002 Caps";
+    src: url(assets/fonts/bpg-web-002-caps-webfont.ttf);
   };
 
   @font-face {
-    font-family: "BPG Mrgvlovani";
-    src: url(assets/fonts/bpg-mrgvlovani-webfont.ttf);
+    font-family: "BPG WEB 001 Caps";
+    src: url(assets/fonts/bpg-web-001-caps-webfont.ttf);
   };
+
+  
+
+  
+
 
    
   
@@ -89,8 +104,9 @@ h3 {
 
 .box {
     background-color: $white;
-    border-radius: 10px;
+    border-radius: 10px;   
     box-shadow: 0px 3px 6px#CCCCCC;
+    background-color: #FAFAFA;
 }
 
 

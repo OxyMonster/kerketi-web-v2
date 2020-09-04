@@ -1,61 +1,17 @@
-@import 'src/assets/variables'; 
-
 .home {
-    background-color: $white;
-    // border-radius: 50px;
-    
-    &__title {
-        text-align: center;
-        margin-top: 30px;
-
-    }; 
-
-    &__img {
-        display: flex;
-        justify-content: center;
-        margin-top: 35px;
+    &__left {
         &__container {
-            width: 416.79px;
-            height: 285.59px;
-            img {
-                width: 100%;
-                height: 100%;
-            }
-        }
-    };
+            width: 95%;
 
-
-    &__box {
-        background-color: $dark-white !important;
-  
-        &__line {   
-            margin-bottom: 16px;
-
-            &__bold {
-
-                p {
-                    color: $light-blue;
-                    font-size: 14px;
-                    white-space: nowrap;
-                    margin: 0;; 
-
-                }; 
-            };
-            &__norm {
-                span {
-                    color: $light-blue;
-                    font-size: 14px;
-                    color: #758192;
-                    white-space: nowrap;
-                    padding: 0;
-                }; 
-
-                .green {
-                    color: $green;
-                    font-weight: bold;
+            &__wallets {
+                &__container {
+                    width: 95%; 
                 }
-            }
+        
+            }; 
+
+            
         }
     }
-
-} 
+  
+}

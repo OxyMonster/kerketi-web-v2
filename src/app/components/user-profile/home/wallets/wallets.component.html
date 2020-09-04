@@ -1,0 +1,63 @@
+<div class="home row m-0 w-100"
+    *ngIf="userData.length > 0; else showLoading">
+
+
+    <div class="home__left col-lg-3">
+        <div class="w-100 pt-3 pb-1">
+            <h4> ანგარიშები </h4>
+        </div>
+        <div class="pb-3">
+            <span>სულ ხელმისაწვდომი:</span>
+        </div>
+        <div class="">
+            <p>₾ 750.00</p>
+        </div>
+    </div> 
+
+    <div class="home__right col-lg m-0 h100">
+        <div class="home__right__container row">
+            <div class="home__right__container__img col-2">
+                <div class="home__right__container__img__content">
+                    <img src="assets/img/card.png" alt="">
+                </div>
+            </div>
+    
+            <div class="home__right__container__info col-7">
+                <p>ჩემი ანგარიშები</p>
+            </div>
+    
+            <div class="home__right__container__ballance col">
+                
+            </div>
+        </div>
+
+        <div class="home__right__container row"
+             *ngFor="let item of walletsList">
+            <div class="home__right__container__img col-2">
+                <div class="home__right__container__img__content">
+                    <img src="assets/img/card.png" alt="">
+                </div>
+            </div>
+    
+            <div class="home__right__container__info col-7">
+                <p>{{ item.walletTypeName }}</p>
+            </div>
+    
+            <div class="home__right__container__ballance col">
+                <p> {{ item.walletCurrencySymbol + ' ' + item.balanceCurrent }} </p>
+            </div>
+        </div>
+       
+    </div>
+
+
+
+
+</div>
+
+<ng-template #showLoading >
+<div class="col-12 d-flex justify-content-center mt-5"> 
+   <app-loading-spinner></app-loading-spinner>
+</div>
+</ng-template>
+

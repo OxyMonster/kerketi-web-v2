@@ -1,0 +1,38 @@
+<div class="box  transactions justify-content-center">
+    <div class="transactions__title col-12 d-flex justify-content-center py-4">
+        <h3>ტრანზაქციების ისტორია</h3>
+    </div>
+
+    <div class="transactions__table col-12 p-5">
+        <ng-container *ngIf="allTransactionsHistory.length > 0; else showLoading">
+
+        <table style="width:100%"
+                *ngIf="allTransactionsHistory.length > 0" >
+            <tr>
+              <th>გამგზავნი</th>   
+              <th>მიმღები</th>  
+              <th>ტიპი</th>
+              <th>თანხა</th>
+              <th>სტატუსი</th>
+            </tr>
+                <tr *ngFor="let item of allTransactionsHistory">
+                    <td> {{ item.sender }} </td>
+                    <td> {{ item.receiver }} </td>
+                    <td> {{ item.type }} </td>
+                    <td> {{ item.amount + ' ლ' }} </td>
+                    <td [ngClass]="{'green': item.status === 'დასრულებული'}"> 
+                        {{ item.status }} 
+                    </td>
+                </tr>
+          </table>
+        </ng-container>     
+
+        <ng-template #showLoading>
+            <div class="w-100 d-flex justify-content-center py-5">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+        </ng-template>
+    </div>
+        
+    
+</div>

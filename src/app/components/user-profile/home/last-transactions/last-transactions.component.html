@@ -1,0 +1,33 @@
+<ng-container *ngIf="allTransactionsHistory.length > 0; else showLoading">
+    <div class="row transactions m-0">
+        <div class="transactions__title col-12">
+            <h4>ბოლო ტრაზაქციები</h4>
+        </div>
+    
+        <div class="row m-0 w-100">
+            <table style="width:100%"
+                    *ngIf="allTransactionsHistory.length > 0" >
+                <tr>
+                  <!-- <th>მიმღები</th>   
+                  <th>ტიპი</th>
+                  <th>თანხა</th>
+                  <th>სტატუსი</th> -->
+                </tr>
+                    <tr *ngFor="let item of allTransactionsHistory">
+                        <td class="pl-3"> {{ item.receiver }} </td>
+                        <td> {{ item.type }} </td>
+                        <td> {{ '₾ ' + item.amount }} </td>
+                        <td [ngClass]="{'green': item.status === 'დასრულებული'}"> 
+                            {{ item.status }} 
+                        </td>
+                    </tr>
+              </table>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #showLoading>
+    <div class="w-100 d-flex justify-content-center mt-5">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+</ng-template>

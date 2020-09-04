@@ -1,0 +1,50 @@
+@import 'src/assets/variables'; 
+
+.info {
+
+    &__about {
+        &__name {
+            display: flex;
+            align-items: center;
+        };
+
+        &__ballance {
+            p {
+                color:$green;
+
+            }
+        }
+        p {
+            color: $dark-grey;
+            font-size: 12px;
+            white-space: nowrap;
+            margin: 0;
+        }
+    };
+
+    &__img {
+        &__circle {
+            padding: 10px;
+            border-radius: 50%;
+            background-color: white;
+            font-size: 12px;
+            user-select: none;
+            color: $dark-blue;
+        }
+    }
+
+    &__logout {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        &__container {
+            color: $primary;
+            font-size: 26px;
+            cursor: pointer;
+        }
+    }
+}
+
+.item {
+    border-right: 1px solid $light-grey;
+}

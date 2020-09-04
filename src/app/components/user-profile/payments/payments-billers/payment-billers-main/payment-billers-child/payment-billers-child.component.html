@@ -1,7 +1,9 @@
 <div class="row billers box p-5" >
 
     <ng-container *ngIf="billerList.length > 0; else showLoading">
- 
+        <div class="col-12 d-flex justify-content-center">
+            <h3> {{ billersTitle }} </h3>
+        </div> 
         <div class="billers__box col-lg-4 mt-5" *ngFor="let item of billerList">
             <div class="box py-3">
                 <div class="billers__box__img">    

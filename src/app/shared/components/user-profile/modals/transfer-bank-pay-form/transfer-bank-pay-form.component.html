@@ -1,11 +1,11 @@
-<div class="transfer__box w-100 d-flex justify-content-center" *ngIf="!isPayed; else showPayed">
+<div class="transfer__box w-100 d-flex justify-content-center py-4" *ngIf="!isPayed; else showPayed">
     <form action="" 
           [formGroup]="sendMoneyForm"
           class="w-100"
           (ngSubmit)="transferToBank(sendMoneyForm)">
     
         <div class="transfer__box__item col-12 mt-3 justify-content-center">
-            <label for="phone">Phone</label>
+            <label for="phone"> {{ 'transfer_funds.phone' | translate }} </label>
             <input type="text"  
                     class=""
                     id="phone"
@@ -15,7 +15,7 @@
         </div>
     
         <div class="transfer__box__item col-12 mt-3 justify-content-center">
-            <label for="amount">Amount</label>
+            <label for="amount"> {{ 'transfer_funds.amount' | translate }} </label>
             <input type="text" 
                     class=""
                     id="amount"
@@ -26,7 +26,7 @@
     
      
         <div class="transfer__box__item col-12 mt-3 justify-content-center">
-            <label for="description">Description</label>
+            <label for="description"> {{ 'transfer_funds.description' | translate }} </label>
             <input type="text" 
                     class=""
                     name="description"
@@ -37,40 +37,43 @@
     
      
         <div class="transfer__box__item col-12 mt-3 justify-content-center">
-            <label for="fullname">Fullname</label>
+            <label for="fullname"> {{ 'transfer_funds.fullname' | translate }} </label>
             <input type="text" 
                     class=""
                     id="fullname"
                     name="fullname"
                     placeholder=""
                     formControlName="fullName">
-        </div>
+        </div>  
     
     
      
         <div class="transfer__box__item col-12 mt-3 justify-content-center">
             <label for="sms">SMS code</label>
+            <div class=" d-flex justify-content-between">
             <input type="text" 
                     class=""
                     id="sms"
                     name="sms"
-                    placeholder="otp"
+                    placeholder=""
                     formControlName="otp">
-            <div class="">
-                <button class="right-button" 
-                        (click) = 'getOtp()' 
-                        *ngIf="!isTimerActive" 
-                        type="button"
-                        >
-                    SMS code
-                </button>
+                <div class="px-3" style="background-color: #758192; height: 40px;">
+                    <button class="sms" 
+                            (click) = 'getOtp()' 
+                            *ngIf="!isTimerActive" 
+                            type="button"
+                            >
+                        SMS
+                    </button>
+                </div>
     
-                <button class="right-button" 
+                <button class="right-button mt-3" 
                         *ngIf="isTimerActive" 
                         type="button" 
                         disabled
                         style="background-color: #2ecc71;"
-                        >Code is sent
+                        >
+                        {{ 'transfer_funds.code_sent' | translate }}
                 </button>
             </div>
             
@@ -79,7 +82,9 @@
         <div *ngIf="!isLoading;  else showLoading"
              class="transfer__box__item col-12 mt-3 justify-content-center d-flex justify-content-center" 
             >
-            <button class="main-button" type="submit">Send</button>
+            <button class="btn btn--green" type="submit">
+                {{ 'payments.pay' | translate }}
+            </button>
         </div>
      
         <ng-template #showLoading>

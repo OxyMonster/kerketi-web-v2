@@ -1,1 +1,36 @@
-<router-outlet></router-outlet>
+<div class="templates box mt-4 p-4">
+    <div class="drafts__title col-12 d-flex justify-content-center">
+        <h3> {{ 'transfer_funds.pay_with_templates' | translate }} </h3>
+    </div>
+    <div class="new-payment col-12 pt-4 pb-3 d-flex px-4 py-5">
+        <div class="row justify-content-between">
+            <div class="new-payment__button d-flex col-lg-6 d-flex justify-content-center pb-4">
+                <p (click)="openModal(transferPersonModal)">
+                    {{ 'transfer_funds.p2p' | translate }}
+                </p>
+
+            </div>
+    
+            <div class="new-payment__button col-lg-6 d-flex justify-content-center pb-4">
+             <p (click)="openModal(transferToBankModal)">
+                {{ 'transfer_funds.send_to_bank_account' | translate }}
+            </p>   
+            </div>
+        </div>
+        
+    </div>
+    <app-p2p-templates></app-p2p-templates>
+</div>
+
+<ng-template #transferToBankModal>
+    <app-modal-header [title] = "'Transfer to bank'"></app-modal-header>
+    <app-transfer-to-bank></app-transfer-to-bank>
+</ng-template>
+
+
+<ng-template #transferPersonModal>
+    <app-modal-header [title] = "'P2P'"></app-modal-header>
+    <app-p2p-transfer-new></app-p2p-transfer-new>
+</ng-template>
+
+<!-- <router-outlet></router-outlet> -->

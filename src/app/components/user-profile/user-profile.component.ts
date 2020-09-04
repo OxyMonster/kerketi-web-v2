@@ -1,18 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { slider, transformer, fader, stepper,fadeInAnimation } from "src/app/shared/animations/route-animations";
+// import { slider, transformer, fader, stepper,fadeInAnimation } from "src/app/shared/animations/route-animations";
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
   styleUrls: ['./user-profile.component.scss'],
-  animations: [ 
-    fader,
-    // fadeInAnimation, 
-    // slider, 
-    // transformer,
-    // stepper
-  ]
+ 
 
 })
 export class UserProfileComponent implements OnInit {

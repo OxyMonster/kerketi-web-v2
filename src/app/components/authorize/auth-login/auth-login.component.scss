@@ -54,13 +54,16 @@
                             color: $light-blue;
                             font-size: 14px;
                             text-align: left;
+                            cursor: pointer;
                         }; 
     
                         input {
                          width: 100%;
                          height: 100%;
-
+                         padding-left: 10px;
+                        font-size: 22px;
                         }; 
+
 
                         p {
                             color: #758192;
@@ -91,6 +94,7 @@
 
                     button {
                         padding: 15px 42px 15px 42px;
+                        border-radius: 100px;
                     }
                 };
 

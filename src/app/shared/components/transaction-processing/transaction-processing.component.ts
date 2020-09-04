@@ -23,7 +23,7 @@ export class TransactionProcessingComponent implements OnInit {
 
   routeToTransHistory() {
 
-    this.router.navigate(['/user-profile/transactions-history']); 
+    this.router.navigate(['/user-profile/transactions']); 
     this.modalService.dismissAll(); 
     
   }

@@ -1,0 +1,40 @@
+<ng-container *ngIf="userData.length > 0; else showLoading">
+    <div class="row info justify-content-between align-items-center"
+         *ngFor="let item of userData">
+            <div class="info__img co-lg-2">
+                <div class="info__img__circle d-flex justify-content-between">
+                    <p class="m-0"> 
+                        {{ item['firstName'][0]+ '.' + item['lastName'][0] }} 
+                    </p>
+                </div>
+            </div>
+            
+            <div class="info__about item col-lg-4">
+                <div class="info__about__ballance pt-2">
+                    <p>{{ item['firstName'] +  ' ' + item['lastName'] }}</p>
+                </div>
+            </div>
+            
+            <div class="info__about item col-lg-4">
+                <div class="info__about__ballance pt-2">
+                    <p>{{'ბალანსი: ' +  item.wallets[0]['balanceAvailable'] + 'ლ'}}</p>
+                </div>
+            </div>
+            
+        
+    
+            <div class="info__logout col-lg-2">
+                <div class="info__logout__container">
+                    <fa-icon (click)="logOut()" 
+                            [icon] = 'faSignOutAlt'></fa-icon>
+                </div>
+                <!-- <p (click)="logOut()">გამოსვლა</p> -->
+            </div>
+    </div>
+</ng-container>
+
+<ng-template #showLoading>
+    <div class="w-100 d-flex justify-content-center">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+</ng-template>
