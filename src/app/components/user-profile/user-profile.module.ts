@@ -5,7 +5,6 @@ import { FundCashingComponent } from './fund-cashing/fund-cashing.component';
 import { HomeModule } from "./home/home.module";
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TransferFundsModule } from "src/app/components/user-profile/transfer-funds/transfer-funds.module";
-import { PaymentsModule } from "src/app/components/user-profile/payments/payments.module";
 import { FillBallanceModule } from "./fill-ballance/fill-ballance.module";
 import { TransactionsModule } from "./transactions/transactions.module";
 
@@ -16,9 +15,8 @@ import { TransactionsModule } from "./transactions/transactions.module";
   ],
   imports: [
     CommonModule,
-    HomeModule, 
+    HomeModule,   
     TransferFundsModule,  
-    PaymentsModule,
     FillBallanceModule, 
     TransactionsModule,
     SharedModule,

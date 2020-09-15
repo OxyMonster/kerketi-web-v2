@@ -1,0 +1,199 @@
+<div class="row transfer justify-content-center">
+    
+    <div class="col-lg-3 transfer__from"
+        [ngClass]="{'active': selectedBox === 'from','col-lg-6': selectedBox === 'from'}">
+        <div class="transfer__from__title">
+            <h4 *ngIf="selectedBox === 'from'">რომელი ანგარიშიდან გსურთ გადარიცხვა?</h4>
+        </div>
+        <div class="transfer__from__img">
+            <div class="transfer__from__img__container">
+                <fa-icon [icon] = 'faWallet'></fa-icon>
+            </div>
+        </div>
+        <div class="transfer__from__btn pt-0">
+            
+            <div *ngIf="isWalletSelected" 
+                 class="d-flex justify-content-center align-items-center">
+                <div style="height: 70px;"   
+                    class="d-flex align-items-center" *ngFor="let wallet of selectedWallet">
+                    <div class="">
+                        <p  style="font-size: 14px;"> {{ wallet.walletTypeName }} </p>
+                    </div>
+                </div>
+            </div>
+            
+            <button (click)="onBoxSelect('from', 'from')"
+                    class="btn--dark py-1"
+                    *ngIf="selectedBox === 'to' || selectedBox === 'amount'; else showBtn"
+                    >
+                    შეცვლა
+            </button>
+
+            <ng-template #showBtn>
+                <div class="" style="position: relative;">
+                    <button *ngIf="allWallets.length > 0" (click)="onBoxSelect('from', 'from')" class="transparent"> 
+                        აირჩიე ანგარიში 
+                        <fa-icon [icon] = 'faChevronDown'></fa-icon>
+                    </button>
+      
+        
+                    <div class="templates w-100" *ngIf="selectedCategory === 'from'">
+                        <div *ngIf="allWallets.length > 0 ; else showLoading" class="templates__new" style="top: 30px;">
+                           
+                            <div class="templates__new__my" 
+                                 *ngFor="let wallet of allWallets"
+                                 >
+                                 <div class="row m-0 w-100" 
+                                      (click)="onWalletSelect(wallet)">
+                                    <div class="col-3 templates__new__img py-2">
+                                        <div class="templates__new__img__container">
+                                            <img src="assets/img/card.png" alt="">
+                                        </div>
+                                    </div>
+            
+                                    <div class="col templates__new__my__info">
+                                        <div class="templates__new__my__info__name h-100">
+                                            <p class="h-100 d-flex align-items-center"> {{ wallet.walletTypeName }} </p>
+                                        </div>
+                                    </div>
+    
+                                 </div>  
+                               
+                            </div>
+                        </div>
+                        <ng-template #showLoading>
+                            <div class="w-100 d-flex justify-content-center">
+                                <app-loading-spinner></app-loading-spinner>
+                            </div>
+                        </ng-template>
+                     </div>
+                </div>
+
+
+            </ng-template>
+            
+        </div>
+    </div>
+
+    <div class="col-lg-3 transfer__to"
+         [ngClass]="{'active': selectedBox === 'to', 'col-lg-6': selectedBox === 'to'}">
+        <div class="transfer__to__title">
+            <h4 *ngIf="selectedBox === 'to'">ანგარიშზე?</h4>
+        </div>
+        <div class="transfer__to__img">
+            <div class="transfer__to__img__container">
+                <fa-icon [icon] = 'faUser'></fa-icon>
+            </div>
+        </div>
+        
+        <div class="transfer__to__btn pb-3 pt-0">
+            <div class="" *ngIf="!isNewPaySelected; else showNewPayContent">
+            <div class="" style="position: relative;">
+                <ng-template #showBtn1>
+                    <button class="transparent" (click)="onBoxSelect('to', 'to')"> 
+                        აირჩიე მიმღები
+                        <fa-icon [icon] = 'faChevronDown'></fa-icon>
+                    </button>
+                     
+                </ng-template>
+    
+                <div class="transfer__to__template " *ngIf="isTemplateSelected">
+                    <div class="" *ngFor="let template of selectedTemplate">
+                        <div class="d-flex justify-content-center">
+                            <p> {{ template.name }} </p>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p class="m-0"> {{ template.transferTo }} </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="templates w-100" *ngIf="selectedCategory === 'to'">
+                    <div class="templates__new">
+                        <button class="d-flex py-2 justify-content-center transparent"
+                                (click)="showNewPayment()">
+                                <fa-icon style="font-size: 30px;" 
+                                         [icon] = 'faPlusCircle'></fa-icon>
+                                <span class="ml-3">ახალი მიმღები</span>
+                        </button>
+                       
+                        <div class="templates__new__my" 
+                             *ngFor="let item of allTemplates"
+                             >
+                             <div class="row m-0 w-100" 
+                                  (click)="onTemplateSelect(item)">
+                                <div class="col-3 templates__new__my__img">
+                                    <fa-icon [icon] = 'faUser'></fa-icon>
+                                </div>
+        
+                                <div class="col templates__new__my__info">
+                                    <div class="templates__new__my__info__name">
+                                        <p> {{ item.name }} </p>
+                                    </div>
+                                    <div class="templates__new__my__info__phone">
+                                        <p> {{ item.transferTo }} </p>
+                                    </div>
+                                </div>
+
+                             </div>  
+                           
+                        </div>
+                    </div>
+                 </div>
+            </div>
+            <ng-container *ngIf="selectedTemplate.length > 0">
+                <button *ngIf="selectedBox === 'amount' || selectedBox === 'from'; else showBtn1" 
+                        (click)="onBoxSelect('to', 'to')"
+                         class="btn--dark py-1">
+                    შეცვლა
+                </button>
+            </ng-container>
+            
+           
+            </div>
+
+            <ng-template #showNewPayContent>
+                <app-p2p-add-new-template (result) = 'getResult($event)'></app-p2p-add-new-template>
+            </ng-template>
+            
+           
+
+        </div>
+    </div>
+
+    <div class="col-lg-3 transfer__amount pb-4"
+         [ngClass]="{'active': selectedBox === 'amount', 'col-lg-6': selectedBox === 'amount'}">
+        <div class="transfer__amount__title">
+            <h4 *ngIf="selectedBox === 'amount'">შეიყვანე თანხა</h4>
+        </div>
+        <div class="transfer__amount__img">
+            <div class="transfer__to__img__container">
+               <fa-icon [icon] = 'faCoins'></fa-icon>
+            </div>
+        </div>
+        <div class="transfer__amount__btn">
+           
+            <div class="w-100 d-flex justify-content-center" *ngIf="selectedBox === 'amount'">
+                <input class="pl-3" 
+                       type="text" 
+                       [ngClass]="{'err': isAmountErr}"
+                       placeholder="0.00" 
+                       [(ngModel)]="amount"> 
+            </div>
+
+            <div class=" pt-4 transfer__amount__btn d-flex justify-content-center" *ngIf="selectedBox === 'amount'">
+                <button class="btn btn--green py-1" (click)="openModal(otpModal,selectedTemplate[0])">გადარიცხვა</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #otpModal>
+    <app-modal-header [title] = "'დაადასტურე'"></app-modal-header>
+    <app-p2p-otp-confirm-modal [userData] = 'finalUserData' ></app-p2p-otp-confirm-modal>
+</ng-template>
+
+

@@ -41,14 +41,6 @@ export class TransferToBankComponent implements OnInit {
 
     this.isSubmitted = true; 
     
-    let dateObj = new Date();
-    let month = dateObj.getUTCMonth() + 1; //months from 1-12
-    let day = dateObj.getUTCDate();
-    let year = dateObj.getUTCFullYear();
-
-    const dateNow = year + "-" + month + "-" + day;
-
-
     const bankInfo = {
 
         "dob": '2020-06-17T13:54:50.489Z',

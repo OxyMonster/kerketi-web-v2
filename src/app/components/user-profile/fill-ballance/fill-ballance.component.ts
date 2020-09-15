@@ -7,9 +7,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FillBallanceComponent implements OnInit {
 
-  constructor() { }
+ 
+  selectedCategory: {} = {
+    'name': 'name',
+    'img': 'img'
+  };
+  isSelected: boolean = false; 
+
+  constructor(
+  
+  ) { }
 
   ngOnInit(): void {
+  }
+
+
+  onCategorySelect(type: string) {
+
+    this.isSelected = true; 
+
+    switch (type) {
+      case 'crystal' :
+          console.log(type); 
+          this.selectedCategory['name'] = 'კრისტალის ფილიალებში გადაღდება'; 
+          this.selectedCategory['img'] = 'assets/img/crystal.png'; 
+                 
+        break;
+      case 'intel-express' :
+        this.selectedCategory['name'] = 'ინტელ-ექსპრესის ფილიალებში გადაღდება'; 
+        this.selectedCategory['img'] = 'assets/img/intel_express.png';          
+        break;
+      case 'liberty' :
+        this.selectedCategory['name'] = 'Liberty ბანკის ბანკომატიდან განაღდება ელექტრონული პირადობის მოწმობით'; 
+        this.selectedCategory['img'] = 'assets/img/liberty_logo.png';        
+        break;
+  
+    }
   }
 
 }

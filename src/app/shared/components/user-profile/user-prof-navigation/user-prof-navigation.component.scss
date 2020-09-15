@@ -38,9 +38,23 @@
         padding: 0;
         display: flex;
         align-items: center; 
-   
+        
+        .submenu {
+            border: none !important;
+             button {  
+                font-weight: bolder;
+                font-size: 12px;
+                font-family: 'BPG Mrgvlovani' !important;
 
-        a {
+                 &:hover {
+                 
+                     border-color: $primary !important;
+                     transition: .4s;  
+                 }
+             }
+        }
+
+        a, button {
             // font-family: 'BPG WEB 002 Caps' !important;
             font-family: 'BPG WEB 001 Caps' !important;
             height: 100%;
@@ -52,12 +66,14 @@
             font-family: 'BPG Mrgvlovani';
             font-size: 14px; 
             font-weight: bolder;
+            border: none;
+            background-color: transparent !important;
+            outline: none;
+            box-shadow: none !important;
 
             &:hover {
-                 color: $primary ;
+                 color: $primary;
                  transition: .3s;
-                //  border-bottom: 4px solid $primary;
-
             }
         
         }

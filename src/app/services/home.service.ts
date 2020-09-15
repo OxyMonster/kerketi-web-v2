@@ -9,6 +9,8 @@ export class HomeService {
   proxyURL:string = 'api/users/'; 
   getUserInfoURL: string = 'users/get-user-info'; 
 
+  userData: any[] = []; 
+
   public filteredDate: any; 
   
   constructor(
@@ -31,5 +33,11 @@ export class HomeService {
 
     }
   }; 
+
+  setUserData(data: any) {
+    this.userData = data; 
+    console.log(this.userData);
+    
+  }
 
 }

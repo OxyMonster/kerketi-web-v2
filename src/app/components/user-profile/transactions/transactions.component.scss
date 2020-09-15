@@ -1,30 +1,39 @@
 @import 'src/assets/variables'; 
 
-table {
+.transactions {
+    background-color: white;
+    border-radius: 10px;
 
-    th {
-        border-bottom: 1px solid $light-grey;
-        border: 1px solid $light-grey;
-        padding-bottom: 15px;
-        padding-top: 15px;
-        text-align: center;
-        font-size: 14px;
-        color: $primary;
-    };
+    &__title {
+        background-color: #F4F4F4;
+        border-top-right-radius: 10px;
+        border-top-left-radius: 10px;
+        padding: 15px;
+        
+        h4 {
+            font-size: 16px;
+            display: inline;
+         
+        }
+    }
+}
+
+
+table {
+    tr {
+        font-size: 12px;
+        border-top: 1px solid $light-grey;
+    }; 
 
     td {
-        text-align: center;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        font-size: 14px;
-        color: $light-blue;
-        // border-bottom: 1px solid $light-grey;
-        border: 1px solid $light-grey;
-
-    };
+        padding-top: 15px;
+        padding-bottom: 15px;
+        
+    }
 
     .green {
         color: $green;
     };
-
 }
+
+ 

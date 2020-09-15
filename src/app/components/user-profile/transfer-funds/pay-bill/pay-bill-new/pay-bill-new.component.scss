@@ -1,0 +1,76 @@
+@import 'src/assets/variables'; 
+
+.billers {
+  
+    &__back {
+        p {
+            font-size: 14px;
+            color: $dark-blue;
+
+            &:hover {
+                transition: .4s;
+                color: $primary;
+                cursor: pointer;
+            }
+        }
+           
+        
+    }; 
+    &__box {
+
+        background: #F4F4F8;
+        padding: 40px 30px;
+        -webkit-transition: .3s;
+        transition: .3s;
+        align-items: center;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 0 8px #f3f3f7;
+        position: relative;
+        display: flex;
+        align-items: start;
+
+        cursor: pointer;
+        border-bottom: 2px solid $primary;
+        border-radius: 10px;
+
+        &:hover {
+            background: #e2e2e4;
+            transition: .4s;
+        } 
+
+        &__name { 
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            padding-left: 20px;
+            
+            p {
+                font-size: 14px;
+                color: $dark-blue;
+                text-align: left;
+                margin: 0;
+            }
+        }; 
+
+        &__img {
+            display: flex;
+            justify-content: center;
+            font-size: 65px;
+            color: $dark-blue;
+        };
+
+        &__name {
+            margin-top: 15px;
+        }
+
+        &__button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    };
+
+  
+}

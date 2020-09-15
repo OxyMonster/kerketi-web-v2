@@ -1,0 +1,52 @@
+<ng-container *ngIf="!isPayed;" class="p-4">
+    <div class="mt-4 d-flex pb-2"
+        style="border-bottom: 1px solid #E6EAEE;"
+        *ngFor="let template of selectedTemplate"> 
+        <div class="bill__main__templates__img col-3">
+            <div class="bill__main__templates__img__container"
+                 style="width: 100px;"
+             >
+                <img [src]="'data:image/jpeg;base64,'+ template.logo">
+            </div>
+        </div>
+
+        <div class="bill__main__templates__name col-3 mt-3">
+            <p> {{ template.name }} </p>
+        </div>
+
+        <div class="bill__main__templates__name col-3 mt-3">
+            <span> {{ 'აბონენტის ნომერი: ' + template['parameters'][2]['value'] }} </span>
+        </div>
+
+        <div class="w-100 mt-3 bill__main__templates__dept col-3 ">
+            <div class="w-100">
+                <span>თანხა: </span>
+            </div>
+            <p> {{ template['amount'] + ' GEL' }} </p>
+        </div>
+
+       
+    </div>
+
+    <div class="amount d-flex justify-content-end pr-4 pt-3 pb-3">
+        <div class="amount__text">
+            <p>ჯამური თანხა: </p>
+        </div>
+        <div class="amount__text pl-3">
+            <p> {{ selectedTemplate[0]['amount'] + ' GEL' }} </p>
+        </div>
+    </div>
+
+    <div class="button d-flex justify-content-end pr-4 pb-3 mt-4">
+        <button class="btn--dark" 
+                (click)="payBill()">დადასტურება</button>
+    </div>
+</ng-container>
+
+<div *ngIf="isPayed">
+    <app-transaction-processing></app-transaction-processing>
+</div>
+
+<div *ngIf="isPayErr">
+    <app-transaction-fail></app-transaction-fail>
+</div>

@@ -1,0 +1,14 @@
+@import 'src/assets/variables'; 
+
+.amount {
+    &__text {
+        p {
+            font-size: 14px;
+            color: $dark-blue;
+            font-weight: bolder;
+            margin: 0;
+        }; 
+    }
+
+
+}

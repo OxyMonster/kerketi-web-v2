@@ -1,0 +1,55 @@
+<div class="row otp m-0 p-3" *ngIf="!isPayed; else showPayed">
+    <div class="otp__line py-2 col-12 ">
+        <p>ანგარიშიდან:</p>
+        <span> {{ transferData['fromWallet'] }} </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>ანგარიშზე:</p>
+        <span> {{ transferData['iban'] }} </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>თანხა:</p>
+        <span> {{ transferData['amount'] }} </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>საკომისიო:</p>
+        <span> 1 ლარი </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>შეტყობინება მიმღებისთვის:</p>
+        <span> {{ transferData['description'] }} </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>SMS კოდი:</p>
+        <div class="">
+            <input type="text" [(ngModel)]="otpCode">
+        </div>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <div class="">
+            <span>თუ სმს კოდს არ მიიღებთ ერთი წუთის განმავლობაში,მოითხოვეთ
+                <a> ახალი კოდი</a>
+             </span>
+        </div>
+    </div>  
+
+    <div class="otp__btn">
+        <ng-container *ngIf="!isLoading; else showLoading">
+            <button (click)="onSubmit()">დადასტურება</button>
+        </ng-container>
+
+        <ng-template #showLoading>
+            <app-loading-spinner></app-loading-spinner>
+        </ng-template>
+    </div>
+    
+
+</div>
+
+<ng-template #showPayed>
+    <app-transaction-processing *ngIf="isSuccess; else showFail"></app-transaction-processing>
+    <ng-template #showFail>
+        <app-transaction-fail></app-transaction-fail>
+    </ng-template>
+    
+</ng-template>

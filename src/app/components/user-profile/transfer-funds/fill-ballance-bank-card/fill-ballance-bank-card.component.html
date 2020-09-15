@@ -1,0 +1,62 @@
+<div class="row fill-ballance">
+
+    <div class="fill-ballance__iban p-3 pl-4 pb-5"
+         [ngClass]="{'active': !isActive, 'col-lg-7': !isActive, 'col-lg-5': isActive}">
+        <div class="fill-ballance__iban__title">
+            <h4 *ngIf="!isActive">დანიშნულება:</h4>
+        </div>
+        <div class="fill-ballance__iban__img mt-4">
+            <fa-icon [icon] = 'faEnvelopeOpenText'></fa-icon>
+        </div> 
+        <div *ngIf="isActive" class="fill-ballance__iban__iban d-flex justify-content-center">
+            <p > {{ description }} </p>
+        </div>
+        <div *ngIf="isActive" class="fill-ballance__iban__change d-flex justify-content-center">
+            <button (click)="toggle()" class="btn--dark">შეცვლა</button>
+        </div>
+        <div class="fill-ballance__iban__input mt-3">
+            <input *ngIf="!isActive" 
+                    type="text" 
+                    placeholder="შეიყვანეთ დანიშნულება (არასავალდებულო)" 
+                    [(ngModel)]="description"/>
+        </div>
+        <div class="fill-ballance__iban__button mt-5 col-12 d-flex justify-content-center">
+            <button (click)="onDescriptionSelect()"  
+                    *ngIf="!isActive" 
+                    class="btn btn--green">გაგრძელება</button>
+        </div>
+    </div> 
+  
+
+    <div class="fill-ballance__amount p-3 pl-4"
+         [ngClass]="{'active': isActive, 'col-lg-7': isActive, 'col-lg-5': !isActive}">
+        <div class="fill-ballance__amount__title">
+            <h4 *ngIf="isActive">შეიყვანე თანხა</h4>
+        </div>
+        <div class="fill-ballance__amount__img mt-4">
+            <fa-icon [icon] = 'faCoins'></fa-icon>
+        </div>
+        <div *ngIf="!isActive" class="fill-ballance__amount__amount d-flex justify-content-center col-12">
+            <p> 0.0 GEL </p>
+        </div>
+        <div *ngIf="!isActive" class="fill-ballance__amount__change d-flex justify-content-center">
+            <button (click)="toggle()" class="btn--dark">შეცვლა</button>
+        </div>
+        <div class="fill-ballance__amount__input mt-2">
+            <input *ngIf="isActive" 
+                   [(ngModel)]="selectedAmount" 
+                   type="text" 
+                   placeholder="0.0" />
+        </div>  
+        <div class="fill-ballance__amount__button mt-5 d-flex justify-content-center">
+            <button  *ngIf="isActive" 
+                      class="btn btn--green"
+                      (click)="onSubmit()"
+                      >
+                     გაგრძელება
+            </button>
+        </div>
+        
+    </div>
+
+</div>

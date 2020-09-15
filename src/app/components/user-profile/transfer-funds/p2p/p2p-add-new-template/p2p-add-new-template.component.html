@@ -1,0 +1,68 @@
+<div class="new-pay container">
+    <div class="new-pay__text">
+        <p>გადარიცხვა მობილურის ნომრით</p>
+    </div>
+    <div class="" *ngIf="!isDefault; else finalStep">
+        <div class="w-100 py-3" style="text-align: left;">
+            <div class="w-100">
+                <p for="new" style="font-size: 12px;">მობილურის ნომერი:</p>
+            </div>
+            <input [ngClass]="{'err': !isNumberValid}" 
+                    class="pl-2" 
+                    id="new" 
+                    type="text"
+                    [(ngModel)]="phoneNumber">
+        </div>   
+        <div class="new-pay__text">
+            <p>მობილურის ნომერი უნდა იყოს შემდეგი ფორმატით: <br> 5XX XXXXXX</p>
+        </div>
+        <div class="new-pay__btn py-3">
+            <div class="" *ngIf="!isLoading; else showLoading">
+                <button (click)="nextStep(phoneNumber)">გაგძელება</button>
+            </div>
+
+            <ng-template #showLoading>
+                <div class="w-100 d-flex justify-content-center">
+                    <app-loading-spinner></app-loading-spinner>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+
+    <ng-template #finalStep>
+        <div class="template py-4">
+            <div class="template__phone">
+                <p>მობილურის ნომერი:</p>
+                <div class="template__phone__number">
+                    <p class="pl-2"> {{ phoneNumber }} </p>
+                </div>
+            </div>
+            <div class="template__name mt-3">
+                <p>მიმღების სახელი:</p>
+                <div class="template__name__name">
+                    <input class="pl-2" type="" [placeholder]="selectedUserFullname">
+                </div>
+            </div> 
+            <div class="template__save d-flex justify-content-between align-items-center py-3">
+                <div class="col-2">
+                    <input type="checkbox" id="template" name="template" value="Bike">
+                </div>
+                <div class="col" style="text-align: left;">
+                    <label for="template"> შაბლონებში დამატება</label><br>
+                </div>
+            </div>
+
+            <div class="template__btn" *ngIf="!isLoading; else showLoading">
+                <button (click)="onComplete()">გაგძელება</button>
+            </div>
+            <ng-template #showLoading>
+                <div class="w-100 d-flex justify-content-center">
+                    <app-loading-spinner></app-loading-spinner>
+                </div>
+            </ng-template>
+
+        </div>
+    </ng-template>
+    
+</div>

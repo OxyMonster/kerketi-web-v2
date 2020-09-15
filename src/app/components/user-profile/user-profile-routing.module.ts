@@ -7,40 +7,40 @@ import { FundCashingComponent } from './fund-cashing/fund-cashing.component';
 import { TransferFundsComponent } from './transfer-funds/transfer-funds.component';
 import { AuthGuard } from "src/app/shared/guard/auth.component";
 import { UserProfileComponent } from './user-profile.component';
-import { PaymentsComponent } from './payments/payments.component';
-import { FillBallanceCardComponent } from './fill-ballance/fill-ballance-card/fill-ballance-card.component';
-import { FillBallanceCategoriesComponent } from './fill-ballance/fill-ballance-categories/fill-ballance-categories.component';
-import { PaymentsBillersComponent } from './payments/payments-billers/payments-billers.component';
-import { PaymentBillersChildComponent } from './payments/payments-billers/payment-billers-main/payment-billers-child/payment-billers-child.component';
-import { PaymentBillersMainComponent } from './payments/payments-billers/payment-billers-main/payment-billers-main.component';
-import { PaymentsMainComponent } from './payments/payments-main/payments-main.component';
 import { TransactionsComponent } from './transactions/transactions.component';
- 
+import { PayBillComponent } from './transfer-funds/pay-bill/pay-bill.component';
+import { PayBillNewComponent } from './transfer-funds/pay-bill/pay-bill-new/pay-bill-new.component';
+import { PayBillNewChildComponent } from './transfer-funds/pay-bill/pay-bill-new/pay-bill-new-child/pay-bill-new-child.component';
+import { PayBillTemplatesComponent } from './transfer-funds/pay-bill/pay-bill-templates/pay-bill-templates.component';
+import { FillBallanceBankCardComponent } from './transfer-funds/fill-ballance-bank-card/fill-ballance-bank-card.component';
+import { TransferToBankComponent } from './transfer-funds/transfer-to-bank/transfer-to-bank.component';
+import { P2pComponent } from "./transfer-funds/p2p/p2p.component";
+import { FillMobileBallanceComponent } from './transfer-funds/fill-mobile-ballance/fill-mobile-ballance.component';
 
 const routes: Routes = [
   { path: '', canActivate: [ AuthGuard ], component: UserProfileComponent, children: [
 
     { path: '', redirectTo: 'home', pathMatch:'full' }, 
     { path: 'home', component: HomeComponent }, 
-    { path: 'fill-ballance', component: FillBallanceComponent, children: [
-      { path: '', redirectTo: 'categories', pathMatch: 'full' },
-      { path: 'categories', component: FillBallanceCategoriesComponent },
-      { path: 'card', component: FillBallanceCardComponent }
-    ]},
+
+    { path: 'fill-ballance', component: FillBallanceComponent },
+ 
     { path: 'fund-cashing', component: FundCashingComponent,  }, 
-    { path: 'transfer-funds', component: TransferFundsComponent, children: [
 
+    { path: 'transfer', component: TransferFundsComponent, children: [
+      { path: 'p2p', component: P2pComponent },  
+      { path: 'bank-transfer', component: TransferToBankComponent },  
+      { path: 'pay-templates', component: PayBillTemplatesComponent },
+      { path: 'fill-mobile', component: FillMobileBallanceComponent }, 
+      { path: 'pay-bill', component: PayBillComponent, children: [
+        { path: '', redirectTo: 'pay', pathMatch: 'full' },
+        { path: 'pay', component: PayBillTemplatesComponent },
+        { path: 'new', component: PayBillNewComponent },
+        { path: ':id', component: PayBillNewChildComponent }
+      ],
+    }, 
+      { path: 'to-account-bank-card', component: FillBallanceBankCardComponent }
     ]},
-    { path: 'payments', component: PaymentsComponent, children: [
-      { path: '', redirectTo: 'main', pathMatch: 'full' }, 
-      { path: 'main', component: PaymentsMainComponent },
-      { path: 'billers', component: PaymentsBillersComponent, children: [
-        { path: '', redirectTo: 'main', pathMatch: 'full' },
-        { path: 'main', component: PaymentBillersMainComponent },
-        { path: ':id', component: PaymentBillersChildComponent }
-      ]}
-
-    ]}, 
 
     { path: 'transactions', component: TransactionsComponent }
 

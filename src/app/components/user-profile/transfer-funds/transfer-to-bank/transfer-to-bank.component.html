@@ -1,0 +1,74 @@
+<div class="row fill-ballance">
+
+    <div class="row m-0 fill-ballance__iban pt-3 pl-4"
+         [ngClass]="{'active': !isActive, 'col-lg-7': !isActive, 'col-lg-5': isActive}">
+        <div class="fill-ballance__iban__title col-12">
+            <h4 *ngIf="!isActive">შეიყვანეთ საბანკო ანგარიში</h4>
+        </div>
+        <div class="fill-ballance__iban__img mt-3 col-12">
+            <fa-icon [icon] = 'faPiggyBank'></fa-icon>
+        </div> 
+        <div *ngIf="isActive" class="fill-ballance__iban__iban d-flex justify-content-center col-12">
+            <p> {{ iban }} </p>
+        </div> 
+        <div class="fill-ballance__iban__change col-12 d-flex justify-content-center">
+            <button *ngIf="isActive" class="btn--dark py-1" (click)="toggle()">შეცვლა</button>
+        </div>
+        <div class="fill-ballance__iban__input col-12">
+            <input *ngIf="!isActive" 
+                    type="text" 
+                    placeholder="ანგარიშის ნომერი" 
+                    [(ngModel)]="iban"/>
+        </div>
+        <div class="fill-ballance__iban__button mt-4 pb-3 col-12 d-flex justify-content-center col-12">
+            <button (click)="onibanSelect()"  
+                    *ngIf="!isActive" 
+                    class="btn btn--green">გაგრძელება</button>
+        </div>
+    </div> 
+  
+
+    <div class="row m-0 fill-ballance__amount pt-3 pl-4 pb-4"
+         [ngClass]="{'active': isActive, 'col-lg-7': isActive, 'col-lg-5': !isActive}">
+        <div class="fill-ballance__amount__title col-12">
+            <h4 *ngIf="isActive">შეიყვანე თანხა</h4>
+        </div>
+        <div class="fill-ballance__amount__img mt-3 col-12">
+            <fa-icon [icon] = 'faCoins'></fa-icon>
+        </div>
+
+        <div *ngIf="!isActive" class="fill-ballance__amount__change col-12 d-flex justify-content-center">
+            <button *ngIf="selectedAmount" class="btn--dark py-1" (click)="toggle()">შეცვლა</button>
+        </div>
+        <div class="fill-ballance__amount__input col-12">
+            <input *ngIf="isActive" 
+                   [(ngModel)]="selectedAmount" 
+                   type="text" 
+                   placeholder="0.0" />
+        </div>  
+        <div class="fill-ballance__amount__button mt-4 d-flex justify-content-center col-12">
+            <button  *ngIf="isActive;" 
+                      class="btn btn--green"
+                      (click)="openModal(otpModal)"
+                      >
+                     გაგრძელება
+            </button>
+            
+        </div>
+        
+    </div>
+
+</div>
+
+<ng-template #showLoading>
+    <div class="w-100 d-flex justify-content-center">
+        <app-loading-spinner></app-loading-spinner>
+    </div>
+</ng-template>
+
+  
+
+<ng-template #otpModal>
+    <app-modal-header [title] = "'დაადასტურე'"></app-modal-header>
+    <app-transfer-bank-otp-modal [transferData] = 'transferModelShchema'></app-transfer-bank-otp-modal>
+</ng-template>

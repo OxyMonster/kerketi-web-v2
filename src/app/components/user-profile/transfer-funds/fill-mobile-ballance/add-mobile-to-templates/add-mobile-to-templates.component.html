@@ -1,0 +1,114 @@
+<div class="new-pay container">
+
+    <div *ngIf="!isFinalProviderSelected; else showSelected" class="new-pay__providers mt-3">
+       
+        <div class="new-pay__providers__text">
+            <p class="m-0">აირჩიე პროვაიდერი </p>
+        </div>
+
+        <div class="new-pay__providers__providers" 
+             *ngIf="!isProviderSelected; else showSelectedProviders">
+            <div class="pay__providers__providers__item" 
+                *ngFor="let item of mobileProvidersList"
+                (click)="selectMobileProvider(item, false)">
+                <div class="pay__providers__providers__item__logo">
+                    <div class="pay__providers__providers__item__logo__container">
+                        <img src="" alt="">
+                    </div>
+                </div>  
+                <div class="pay__providers__providers__item__title">
+                    <p> {{ item.title }} </p>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #showSelectedProviders>
+            <div class="new-pay__providers__providers">
+                <div class="pay__providers__providers__item" 
+                     *ngFor="let item of selectedProvidersList"
+                     (click)="selectMobileProvider(item, true)"
+                    >
+                <div class="pay__providers__providers__item__logo">
+                    <div class="pay__providers__providers__item__logo__container">
+                        <img src="" alt="">
+                    </div>
+                </div>  
+                <div class="pay__providers__providers__item__title">
+                    <p> {{ item.title }} </p>
+                </div>
+            </div>
+            </div>
+        </ng-template>
+        
+
+    </div>
+    
+    <ng-template #showSelected>
+        <div class="">
+            <p> {{ finalSelectedProvider['title'] }} </p>
+        </div>
+        <ng-container>
+            <div class="" *ngIf="!isDefault; else finalStep">
+                <div class="w-100 py-3" style="text-align: left;">
+                    <div class="w-100">
+                        <p for="new" style="font-size: 12px;">მობილურის ნომერი:</p>
+                    </div>
+                    <input [ngClass]="{'err': !isNumberValid}" 
+                            class="pl-2" 
+                            id="new" 
+                            type="text"   
+                            [(ngModel)]="phoneNumber">
+                </div>   
+                <div class="new-pay__text">
+                    <p>მობილურის ნომერი უნდა იყოს შემდეგი ფორმატით: <br> 5XX XXXXXX</p>
+                </div>
+                <div class="new-pay__btn py-3">
+                    <div class="" *ngIf="!isLoading; else showLoading">
+                        <button (click)="nextStep()">გაგძელება</button>
+                    </div>
+        
+                    <ng-template #showLoading>
+                        <div class="w-100 d-flex justify-content-center">
+                            <app-loading-spinner></app-loading-spinner>
+                        </div>
+                    </ng-template>
+        
+                </div>
+            </div>
+        </ng-container>
+    </ng-template>
+
+   
+    
+
+    <ng-template #finalStep>
+        <div class="template py-4">
+            <div class="template__phone">
+                <p>მობილურის ნომერი:</p>
+                <div class="template__phone__number">
+                    <p class="pl-2"> {{ phoneNumber }} </p>
+                </div>
+            </div>
+        
+            <div class="template__save d-flex justify-content-between align-items-center py-3">
+                <div class="col-2">
+                    <input type="checkbox" id="template" name="template" value="Bike">
+                </div>
+                <div class="col" style="text-align: left;">
+                    <label for="template"> შაბლონებში დამატება</label><br>
+                </div>
+            </div>
+
+            <div class="template__btn" *ngIf="!isLoading; else showLoading">
+                <button (click)="onComplete()">გაგძელება</button>
+            </div>
+            <ng-template #showLoading>
+                <div class="w-100 d-flex justify-content-center">
+                    <app-loading-spinner></app-loading-spinner>
+                </div>
+            </ng-template>
+
+        </div>
+    </ng-template>
+    
+</div>

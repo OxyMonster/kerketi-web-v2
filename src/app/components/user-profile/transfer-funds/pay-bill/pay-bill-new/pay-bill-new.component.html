@@ -1,0 +1,48 @@
+<div class="row billers box p-5" >
+
+    <ng-container *ngIf="billersCategoryList.length > 0; else showLoading">
+        <div class="col-12 billers__back row m-0 mb-4">
+            <div class="col-3">
+                <p (click)="routeBack('one')">
+                    <fa-icon class="pr-2" [icon] = 'faChevronLeft'></fa-icon>
+                    უკან დაბრუნება 
+                </p> 
+            </div>
+        </div>
+        <div class=" col-lg-4 mb-5 " *ngFor="let item of billersCategoryList">
+            <div class="billers__box p-4" (click) = 'routeToCategory(item.name)'>
+                <div class="billers__box__img">
+                    <div class="billers__box__img__container pl-2">
+                    <fa-icon *ngIf="item.name === 'b_utilities'" [icon]="faHome"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_telecoms'" [icon]="faPlug"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_finance'" [icon]="faWallet"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_entertainment'" [icon]="faGamepad"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_transportation'" [icon]="faGlobeAmericas"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_auto'" [icon]="faCar"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_education'" [icon]="faGraduationCap"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_donations'" [icon]="faDonate"></fa-icon>
+                    <fa-icon *ngIf="item.name === 'b_other'" [icon]="faPuzzlePiece"></fa-icon> 
+                    <!-- <img src="{{'assets/img/biller-illustrations/' + item.name + '.svg'}}" alt=""> -->
+                    </div>
+                     
+                </div>    
+                <div class="billers__box__name mt-4">
+                    <p> {{ item.title }} </p>
+                </div>
+                <div class="billers__box__amount">
+                    <!-- <span>- {{ item.logoIcon }} </span> -->
+                </div>  
+                
+            </div>
+            
+        </div>
+
+    </ng-container>
+
+    <ng-template #showLoading>
+        <div class="billers__loading col-12 d-flex justify-content-center align-items-center">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </ng-template>
+
+</div>

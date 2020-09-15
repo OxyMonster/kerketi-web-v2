@@ -1,0 +1,34 @@
+<div class="row otp m-0 p-3" *ngIf="!isPayed; else showPayed">
+    <div class="otp__line py-2 col-12 ">
+        <p>ანგარიშიდან:</p>
+        <span> {{ selectedAbonent['parameters'][2]['value']}} </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>მობილურის ნომერი:</p>
+        <span> {{ selectedAbonent['parameters'][1]['value'] }} </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>თანხა:</p>  
+        <span> {{ '₾ ' + selectedAbonent['parameters'][0]['value']  }} </span>
+    </div>
+    <div class="otp__line py-2 col-12">
+        <p>საკომისიო:</p>
+        <span> 1 ლარი </span>
+    </div>
+   
+    <div class="otp__btn">
+        <ng-container *ngIf="!isLoading; else showLoading">
+            <button (click)="onSubmit(selectedAbonent)">დადასტურება</button>
+        </ng-container>
+
+        <ng-template #showLoading>
+            <app-loading-spinner></app-loading-spinner>
+        </ng-template>
+    </div>
+    
+
+</div>
+
+<ng-template #showPayed>
+    <app-transaction-processing></app-transaction-processing>
+</ng-template>

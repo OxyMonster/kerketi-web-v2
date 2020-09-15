@@ -14,12 +14,12 @@ import { TransactionFailComponent } from './components/transaction-fail/transact
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TransferBankPayFormComponent } from 'src/app/shared/components/user-profile/modals/transfer-bank-pay-form/transfer-bank-pay-form.component';
 import { TransferToBankComponent } from 'src/app/shared/components/user-profile/modals/transfer-to-bank/transfer-to-bank.component';
-
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IconsFontawsBillersComponent } from './components/icons-fontaws-billers/icons-fontaws-billers.component';
 import { PaymentsBillersModalComponent } from './components/user-profile/modals/payments-billers-modal/payments-billers-modal.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserInfoBallanceLogoutComponent } from './components/user-profile/user-prof-header/user-info-ballance-logout/user-info-ballance-logout.component';
+import { FormRedirectService } from "../shared/services/form-redirect.service";
 
 const COMPONENTS = [
   PageNotFoundComponent, 
@@ -50,12 +50,14 @@ const COMPONENTS = [
     TranslateModule
   ], 
   providers: [
-    EnvironmentUrlService
+    EnvironmentUrlService,
+    FormRedirectService
   ], 
   exports: [
     COMPONENTS,
     FontAwesomeModule,
-    TranslateModule
+    TranslateModule,
+    NgbModule,
   ]
 })
 export class SharedModule { }

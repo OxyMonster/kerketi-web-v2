@@ -1,23 +1,21 @@
-<ng-container *ngIf="allTransactionsHistory.length > 0; else showLoading">
+<ng-container *ngIf="lastTransactions.length > 0; else showLoading">
     <div class="row transactions m-0">
         <div class="transactions__title col-12">
-            <h4>ბოლო ტრაზაქციები</h4>
+            <h4 (click)="routeToTransactions()">ბოლო ტრაზაქციები</h4>
         </div>
     
         <div class="row m-0 w-100">
             <table style="width:100%"
-                    *ngIf="allTransactionsHistory.length > 0" >
-                <tr>
-                  <!-- <th>მიმღები</th>   
-                  <th>ტიპი</th>
-                  <th>თანხა</th>
-                  <th>სტატუსი</th> -->
-                </tr>
-                    <tr *ngFor="let item of allTransactionsHistory">
-                        <td class="pl-3"> {{ item.receiver }} </td>
+                    *ngIf="lastTransactions.length > 0" >
+            
+                    <tr *ngFor="let item of lastTransactions">
+                        <td class="pl-3"> {{ item.timestamp | date }} </td>
+                        <td> {{ item.receiver }} </td>
                         <td> {{ item.type }} </td>
                         <td> {{ '₾ ' + item.amount }} </td>
-                        <td [ngClass]="{'green': item.status === 'დასრულებული'}"> 
+                        <td [ngClass]="{'green': item.status === 'დასრულებული'}"    
+                            class="pl-3"
+                           > 
                             {{ item.status }} 
                         </td>
                     </tr>

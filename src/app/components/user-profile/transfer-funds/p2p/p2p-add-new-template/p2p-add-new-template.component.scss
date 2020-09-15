@@ -1,0 +1,126 @@
+@import 'src/assets/variables'; 
+
+
+.new-pay {
+
+    &__text {
+        p, span, label {
+            font-size: 12px !important;
+            margin: 0;
+            text-align: left;
+            width: 100%;
+        };
+    };
+
+
+    input {
+        background-color: $light-grey;
+        border-color: $light-grey;
+        border-radius: 5px;
+        height: 40px;
+        width: 100%;
+    };
+
+
+    &__btn {
+        display: flex;
+        justify-content: flex-end;
+        button {
+            background-color: $dark-blue;
+            border-color: $dark-blue;
+            color: white;
+            width: auto;
+            border-radius: 5px;
+            padding: 7px 20px 7px 20px;
+            outline: none;
+
+           
+            &:hover {
+                background-color: #071e3dd6;
+                transition: .4s;
+            }
+        }
+    }
+};
+
+
+
+.template {
+
+    &__phone {
+        p {
+            text-align: left;
+            font-size: 12px;
+        }
+
+        &__number {
+            background-color: $light-grey;
+            border-color: $light-grey;
+            border-radius: 5px;
+            height: 40px;
+            width: 100%;
+            color: $dark-blue;
+             p {
+                 display: flex;
+                 align-items: center;
+                 height: 100%;
+                 justify-content: flex-start; 
+                 font-size: 16px;
+                 color: #757575;  
+                 margin: 0;
+                 padding-bottom: 5px;
+
+             }
+        }  
+    
+    }; 
+
+    &__name {
+        p {
+            text-align: left;
+            font-size: 12px;
+            margin: 0;
+            padding-bottom: 5px;
+
+        }
+    };
+
+
+    &__save {
+
+        label {
+            font-size: 12px;
+            cursor: pointer;
+
+            &:hover {
+                transition: .4s;
+            }
+        }
+    };
+
+
+    &__btn {
+        display: flex;
+        justify-content: flex-end;
+        
+        button {
+            background-color: $dark-blue;
+            border-color: $dark-blue;
+            color: white;
+            width: auto;
+            border-radius: 5px;
+            padding: 7px 20px 7px 20px;
+            outline: none;
+
+           
+            &:hover {
+                background-color: #071e3dd6;
+                transition: .4s;
+            }
+        }
+    }
+
+}
+.err {
+    border: 3px solid red !important;
+}

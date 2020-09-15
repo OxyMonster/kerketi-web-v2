@@ -40,8 +40,9 @@ export class UserInfoBallanceLogoutComponent implements OnInit {
 
           if (data['isSuccess']) {
 
-            this.userData = [data['data']]; 
-            console.log(this.userData);
+            this.userData = [data['data']];
+            this._homeService.setUserData(this.userData);  
+            console.log(this._homeService.userData);
             
             
           } else {

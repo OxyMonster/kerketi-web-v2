@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UtileService } from 'src/app/shared/services/utile.service';
 import { TransactionsService } from 'src/app/services/transactions.service';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-last-transactions',
@@ -11,15 +13,21 @@ export class LastTransactionsComponent implements OnInit {
 
   
   allTransactionsHistory: any[] = [];
+  lastTransactions: any[] = []; 
 
   constructor(
     private _utileService: UtileService,
-    private _transactionsService: TransactionsService
+    private _transactionsService: TransactionsService,
+    private _router: Router
 
   ) { }
 
   ngOnInit(): void {
     this.getTransactionsHistory(); 
+  }
+
+  routeToTransactions() {
+    this._router.navigate(['/user-profile/transactions']);
   }
 
 
@@ -43,7 +51,16 @@ export class LastTransactionsComponent implements OnInit {
                   
                   if (data['isSuccess']) {
                     this.allTransactionsHistory = data['data']['transaction']; 
-                    console.log(this.allTransactionsHistory);
+                    
+                    let i: number; 
+                    for ( i = 0; i <= 10; i++) { 
+
+                          this.lastTransactions.push(this.allTransactionsHistory[i]); 
+                          
+                      }  
+
+                    console.log(this.lastTransactions);
+
   
                   } else {
 

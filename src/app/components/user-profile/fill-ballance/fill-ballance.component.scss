@@ -1,0 +1,190 @@
+@import 'src/assets/variables';
+// .box {
+
+//     &__content {
+//         padding: 20px;
+//         width: 100%;
+//         height: 100%;
+
+//         &__img {
+//             display: flex;
+//             justify-content: center;
+//             padding-top: 30px;
+//             padding-bottom: 30px;
+//             &__container {
+//                 width: 157px;
+//                 height: 120px;
+//                 img {
+//                     width: 100%;
+//                     height: 100%;
+//                     object-fit: fill;
+//                 }
+//             }
+//         };
+
+//         &__description {
+//         height: 80px;
+//         width: 100%;
+//             p {
+//                 text-align: center;
+//                 font-size: 14px;
+//                 color: $light-blue;
+//             }
+//         }; 
+
+
+//         &__button {
+//             // margin-top: 15px;
+//         }
+//     };
+
+   
+// }
+
+
+@import 'src/assets/variables'; 
+
+.bill {
+
+    background-color: white;
+    border-radius: 10px;
+
+    &__main {
+        border-right: 1px solid $light-grey;
+
+        &__title {
+            h4 {
+                font-size: 20px;
+                color: $dark-blue;
+            }
+        };
+
+
+        &__new {
+            color: $light-blue;
+            p {
+                color: $light-blue;
+                cursor: pointer;
+                
+            }
+        }
+    
+        &__text {
+            height: 90px;
+            p {
+                font-size: 14px;
+                color: #777;  
+
+            }     
+        };
+
+
+        &__templates {
+
+            border-bottom: 1px solid $light-grey;
+            align-items: center;
+            padding-bottom: 15px;
+            &__img {
+
+                &__container {
+                    width: 70px;
+                    height: 40px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+            };
+
+            &__name {
+                p {
+                    margin: 0;
+                    font-size: 14px;
+                    color: $dark-blue;
+                }
+
+                span {
+                    font-size: 12px;
+                    color: $light-blue;
+                }
+            };
+
+            &__dept {
+                span {
+                    font-size: 14px;
+                    color: $dark-blue;
+                }
+                p {
+                    margin: 0;
+                    font-size: 14px;
+                    color: #8dc63f;
+                }
+            };
+
+ 
+            &__btn {
+                display: flex;
+                justify-content: flex-end;
+                color: $dark-grey;
+                
+                button {
+                    margin: 0;
+                    font-size: 12px;
+                };
+                .transparent {
+                    border: none;
+                    outline: none;
+                    background-color: transparent !important;
+                    color: $dark-grey;
+                    &::after {
+                        display: none !important;
+                    };
+                }
+            };
+
+            &__input {
+                input {
+                    background-color: $light-grey;
+                    border-color: $light-grey;
+                    border-radius: 5px;
+                    height: 40px;
+                }
+            }
+        }
+    };
+
+    &__right  {
+
+        border-right: 1px solid $light-grey;
+        // background-image: url(../../../../../../assets/img/cart.png) !important;
+        // background-repeat: no-repeat !important;
+        // background-position: center 250px !important;
+        // overflow: visible !important;
+        &__title {
+            h4 {
+                font-size: 20px;
+                color: $dark-blue;
+            }
+        };
+    
+        &__text {
+            height: 90px;
+            p {
+                font-size: 14px;
+                color: #777;  
+
+            }     
+        };
+    }  
+
+
+    &__right {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        background: aliceblue;
+
+    }
+   
+}

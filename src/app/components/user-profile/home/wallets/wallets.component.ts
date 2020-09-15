@@ -12,6 +12,7 @@ export class WalletsComponent implements OnInit {
  
   userData: any[] = []; 
   walletsList: any[] = []; 
+  availableBallance: number = 0; 
 
   constructor(
     private _homeService: HomeService,
@@ -39,12 +40,19 @@ export class WalletsComponent implements OnInit {
           if (data['isSuccess']) {
 
             this.userData = [data['data']]; 
+
             this.userData.map( item => {
             this.walletsList = item.wallets; 
-            console.log(this.walletsList);
+            
+            this.walletsList.map(wallet => {
+              console.log(wallet['balanceCurrent']);
+              this.availableBallance += wallet['balanceCurrent']; 
+              
+            })
+            
             
               
-;             })
+            })
 
           } else {
             this._utileService.logOut(); 

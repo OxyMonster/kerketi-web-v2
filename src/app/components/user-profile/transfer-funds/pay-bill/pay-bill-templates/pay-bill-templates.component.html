@@ -1,0 +1,141 @@
+<div class="bill row">
+    <div class="bill__main col-7 p-4">
+        <div class="bill__main__title mb-5">
+            <h4>აირჩიე გადასახდელები, რომლის დაფარვაც გსურს</h4>
+        </div>
+
+        <div class="bill__main__new d-flex justify-content-end mb-5 col-12">
+          
+            <p (click)="changeRoute()"> 
+                 <fa-icon style="cursor: pointer;" 
+                            class="pr-2" 
+                            [icon] = 'faPlus'></fa-icon>
+                ახალი გადახდა
+            </p>  
+        </div>
+
+        <div *ngIf="templatesData.length === 0" class="bill__main__text ">
+            <p>თქვენ არ გაქვთ დარეგისტრირებული გადახდები. ღილაკი "დაამატეთ გადახდა" დაგეხმარებათ ახალი გადახდის დამატებაში.</p>
+        </div>
+
+        <div *ngIf="templatesData.length === 0" class="bill__main__btn">
+            <button class="btn--dark" (click)="changeRoute()">დაამატეთ გადახდა</button>
+        </div>  
+
+        <div class="bill__main__templates row m-0 mt-3" *ngFor="let item of templatesData; let i = index">
+
+            <div class="bill__main__templates__img col-lg-2">
+                <div class="bill__main__templates__img__container">
+                    <img [src]="'data:image/jpeg;base64,'+ item.logo">
+                </div>
+            </div>
+
+            <div class="bill__main__templates__name col-lg-5">
+                <p> {{ item.name }} </p>
+                <div class="mt-2">
+                    <span> {{ 'აბონენტის ნომერი: ' + item['parameters'][2]['value'] }} </span>
+                </div>
+            </div>
+
+            <div *ngIf="item.deptData; else showLoading" class="bill__main__templates__dept col-lg-2">
+                <p> {{ (item.deptData[0]['value'] === '0' ? '0.00' : item.deptData[0]['value'])  + ' GEL' }} </p>
+            </div>
+
+            <ng-template #showLoading>
+                <div class="col-lg-2">
+                    <app-loading-spinner></app-loading-spinner>
+                </div>
+            </ng-template>
+            
+
+            <div class="bill__main__templates__btn col-lg-3">
+                <button *ngIf="!item.isActive; else showInput" 
+                        class="btn--dark" 
+                        (click)="selectTemplate(i, item)"
+                        >
+                        არჩევა
+                </button>
+
+                <ng-template #showInput>
+                    <button class="btn--red" 
+                            (click)="removeSelection(i)"
+                    >  
+                    წაშლა
+                    </button>
+                </ng-template>
+                <div class="pl-2  d-flex align-items-center">
+                    <div ngbDropdown container="body">
+                        <button class="transparent" 
+                                ngbDropdownToggle>  
+                                <fa-icon [icon] = 'faEllipsisV'
+                                         style="cursor: pointer;"
+                                         >
+                                </fa-icon> 
+                        </button>
+                        <div ngbDropdownMenu>
+                          <p ngbDropdownItem 
+                             class="m-0 w-100 h-100" 
+                             style="cursor: pointer; font-size: 12px; background-color: white;"
+                            (click)="deleteTemplates(item, i)"
+                             >წაშლა</p>
+                        </div>
+                      </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="bill__right col p-4">
+        <div class="bill__right__title">
+            <h4>გადახდის კალათა</h4>  
+        </div>
+        <div *ngIf="selectedTemplate.length === 0" class="bill__right__text mt-4">
+            <p>არცერთი გადახდა არ არის არჩეული."არჩევა" ღილაკზე დაჭერით შეგიძლია გადაიხადო გადასახადი".</p>
+        </div>
+        <ng-container *ngIf="selectedTemplate.length > 0">
+            <div class="mt-5"*ngFor="let template of selectedTemplate"> 
+                <div class="bill__main__templates__img w-100">
+                    <div class="bill__main__templates__img__container"
+                    style="width: 100px;">
+                        <img [src]="'data:image/jpeg;base64,'+ template.logo">
+                    </div>
+                </div>
+    
+                <div class="bill__main__templates__name w-100 mt-3">
+                    <p> {{ template.name }} </p>
+                    <div class="mt-2">
+                        <span> {{ 'აბონენტის ნომერი: ' + template['parameters'][2]['value'] }} </span>
+                    </div>
+                </div>
+    
+                <div *ngIf="template.deptData; else showLoading" 
+                     class="w-100 mt-3 bill__main__templates__dept ">
+                    <p> {{ (template.deptData[0]['value'] === '0' ? '0.00' : template.deptData[0]['value'])  + ' GEL' }} </p>
+                </div>
+
+                <div class="bill__main__templates__input mt-3">
+                    <input type="text" 
+                           class="pl-3"
+                           placeholder="0.0 GEL"
+                           [(ngModel)]="amount" />
+                </div>
+            </div>
+        </ng-container>
+        
+       
+        <div *ngIf="selectedTemplate.length > 0" class="bill__right__btn d-flex justify-content-end" >
+            <button class="btn--dark"
+                    (click)="openModal(payBillConfirmModal)">გადახდა</button>
+        </div> 
+    </div> 
+
+    <ng-template #payBillConfirmModal>
+        <app-modal-header [title] = '"დადასტურება"'></app-modal-header>
+        <app-pay-bill-confirm-modal [selectedTemplate] = 'selectedTemplate'></app-pay-bill-confirm-modal>
+    </ng-template>
+
+  <router-outlet></router-outlet>
+
+
+</div>

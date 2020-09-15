@@ -13,11 +13,11 @@
         h4 {
             font-size: 16px;
             cursor: pointer;
-            height: 100%;
+            display: inline;
             &:hover {
-                // color: $light-blue;
                 color: $primary;
-                transition: .4s;
+                transition: .3s;
+                
             }
         }
     }
@@ -26,13 +26,14 @@
 
 table {
     tr {
-        font-size: 14px;
+        font-size: 12px;
         border-top: 1px solid $light-grey;
     }; 
 
     td {
         padding-top: 15px;
         padding-bottom: 15px;
+        
     }
 
     .green {

@@ -13,28 +13,50 @@
                     <fa-icon [icon] = 'faHome'></fa-icon>
                 </a> 
             </div>
-            <div class="nav__item col-2">
-                <a [routerLink]="['/user-profile/payments']" 
-                    routerLinkActive="router-link-active" >
-                    {{ "navigation.Payments" | translate }}
-                </a>  
-                <fa-icon class="pl-2" 
-                         [icon] = 'faSortDown'
-                         style="cursor: pointer;"></fa-icon>
-                
-            </div>
         
             <div class="nav__item col-2">
-                <a [routerLink]="['/user-profile/transfer-funds']" 
-                    routerLinkActive="router-link-active" >
-                    {{ "navigation.Transfer_funds" | translate }}
-                </a>   
-                <fa-icon class="pl-2" 
-                         [icon] = 'faSortDown'
-                         style="cursor: pointer;"></fa-icon>
+                <div ngbDropdown class="d-inline-block">
+                    <button class="btn btn-outline-primary" 
+                            id="dropdownBasic1" 
+                            ngbDropdownToggle
+                            >
+                            {{ "navigation.Transfer_funds" | translate }}
+                    </button>  
+                    <div class="submenu" 
+                         ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button [routerLink]="['/user-profile/transfer/to-account-bank-card']" 
+                              ngbDropdownItem
+                              routerLinkActive="router-link-active" 
+                              >
+                              საკუთარ ანგარიშზე საბანკო ბარათით
+                      </button>
+                      <br> 
+                      <button [routerLink]="['/user-profile/transfer/p2p']" 
+                               ngbDropdownItem
+                               >
+                               სხვასთან მობილურის ნომრით
+                      </button>
+                      <button [routerLink]="['/user-profile/transfer/bank-transfer']" 
+                              ngbDropdownItem
+                              >
+                              საბანკო ანგარიშზე გადარიცხვა
+                     </button>
+                      <br>
+                     <button [routerLink]="['/user-profile/transfer/fill-mobile']" 
+                              ngbDropdownItem
+                              >
+                              მობილურის შევსება
+                     </button>
+                      <button [routerLink]="['/user-profile/transfer/pay-bill']" 
+                              ngbDropdownItem
+                              >
+                              კომუნალური გადახდები
+                     </button>
+                    </div>
+                </div>
 
             </div>
-            <div class="nav__item col-3">
+            <div class="nav__item col-2">
                 <a [routerLink]="['/user-profile/fill-ballance']"   
                     routerLinkActive="router-link-active" >
                     {{ "navigation.Fill_ballance" | translate }}
@@ -50,7 +72,7 @@
             <div class="nav__item col-2">
                 <a [routerLink]="['/user-profile/transactions']"   
                     routerLinkActive="router-link-active" >
-                    <!-- {{ "navigation.Fund_cashing" | translate }} -->
+                 
                     ტრანზაქციები
                 </a> 
             </div>
@@ -58,6 +80,7 @@
           
     </div>
 </div>
+
 
 <div class="burger">
     <app-burger></app-burger>

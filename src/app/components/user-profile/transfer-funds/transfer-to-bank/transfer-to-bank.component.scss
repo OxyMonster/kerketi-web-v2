@@ -1,0 +1,170 @@
+@import 'src/assets/variables'; 
+
+.fill-ballance {
+  
+    &__iban {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        background-color: white;
+     
+        border-right: 1px solid $light-grey;
+        &__title {
+           
+            height: 35px;
+
+            h4 {
+                font-size: 16px !important;
+                color: $light-blue;
+                margin: 0;
+    
+            }
+        }; 
+    
+        &__img {
+            text-align:center;
+            font-size: 65px;
+        };
+
+        &__change {
+            margin-top: 20px;
+            button {
+                font-size: 14px;
+                height: 35px;
+            }
+        }; 
+
+        &__iban {
+            font-size: 14px;
+            color: $light-blue;
+            height: 20px;
+
+        }
+
+        &__input {
+            text-align: center;
+            input {
+                background-color: $light-grey;
+                border-color: $light-grey;
+                border-radius: 5px;
+                height: 40px;
+                font-size: 12px;
+                width: 370px;
+                padding-left: 12px;
+               
+                
+            }
+        };
+
+      
+    
+        &__btn {
+            text-align: center;
+            padding-top: 15px;
+            
+            button {
+                background-color: transparent;
+                border: none;
+                color: #777;
+                outline: none;
+                font-size: 14px;
+                width: 100%;
+                border: 1px solid white;
+                border-radius: 6px;
+                padding: 7px;
+                width: 100%;
+                border: 1px solid white;
+                border-radius: 6px;
+                padding: 7px;
+            }
+        }
+    };
+
+
+    &__amount {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        background-color: white;
+        border-right: 1px solid $light-grey;
+        &__title {
+
+            height: 35px;
+            h4 {
+                font-size: 16px !important;
+                color: $dark-blue;
+                margin: 0;
+    
+            }
+        }; 
+    
+        &__img {
+            text-align:center;
+            font-size: 65px;
+        };
+
+        &__amount {
+            p {
+                color: #8dc63f;
+                font-weight: bold;   
+                margin: 0;
+            }
+        }
+
+        &__input {
+            text-align: center;
+            input {
+                background-color: $light-grey;
+                border-color: $light-grey;
+                border-radius: 5px;
+                height: 40px;
+                text-align: center;
+              
+            }
+        }
+
+        &__change {
+            margin-top: 20px;
+            button {
+                font-size: 14px;
+                height: 35px;
+            }
+        }
+    
+        &__btn {
+            text-align: center;
+            padding-top: 15px;
+            
+            button {
+                background-color: transparent;
+                border: none;
+                color: #777;
+                outline: none;
+                font-size: 14px;
+                width: 100%;
+                border: 1px solid white;
+                border-radius: 6px;
+                padding: 7px;
+                width: 100%;
+                border: 1px solid white;
+                border-radius: 6px;
+                padding: 7px;
+            }
+        }
+    }
+}
+
+
+.active {
+
+    background-color: $light-blue;
+    color: white !important;
+    transition: .40s;  
+
+        h4 {
+            font-size: 14px;
+            color: $light-grey !important;
+
+        }
+    
+
+
+}

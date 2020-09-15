@@ -1,0 +1,99 @@
+<div class="row drafts pb-4" >
+
+    <ng-container *ngIf="!isPayed;">
+        <ng-container *ngIf="billerData.length > 0; else showLoading">
+            <ng-container *ngIf="!isBillerSelected; else showSelected">
+                <div class="drafts__box col-lg-4 mt-5" *ngFor="let item of billerData">
+                    <div class="drafts__box__content"  
+                         (click) = 'selectBiller(item)'>
+                        <div class="drafts__box__content__img d-flex justify-content-center">
+                            <div class="drafts__box__content__img__content">
+                                <img [src]="'https://hierarchy-lable-logos.s3.eu-central-1.amazonaws.com/'+ item.name + '.png' "  alt>
+                            </div>
+                        </div>
+                        <div class="drafts__box__content__name mt-3" style="text-align: center;">
+                            <p> {{ item.title }} </p>
+                        </div>
+                        <div class="drafts__box__content__amount">
+                        
+                        </div>  
+
+                    </div>
+                </div>
+            </ng-container>
+    
+            <ng-template #showSelected>
+                 <div class="row m-0 col-12">
+                     <div class="drafts__box col-lg-6 mt-5" *ngFor="let item of selectedBiller">
+                        <div class="d-flex align-items-center">
+                            <div class="drafts__box__img">
+                                 
+                                <div class="drafts__box__img__content" style="width: 7rem; height: 5rem;">
+                                     <img [src]="'https://hierarchy-lable-logos.s3.eu-central-1.amazonaws.com/'+ item.name + '.png' " 
+                                     style="object-fit: contain;"
+                                     alt="no_img">
+                                 </div>
+                             </div>
+                             <div class="drafts__box__name mt-3" style="text-align: left;">
+                                 <p> {{ item.title }} </p>
+                             </div>
+                        </div> 
+                         <div class="drafts__box__amount mt-5">
+                             <div class="">
+                                 <label for="abonentCode"> ანგარიშის ნომერი </label>
+                             </div>
+                             <div class="d-flex mt-2">
+                                <input type="text" 
+                                id="abonentCode"
+                                placeholder="შეიყვანეთ იდენდიფიკატორი" 
+                                [(ngModel)]="abonentCode"
+                                (keyup.enter) = 'getDept(item)'>
+                                    <button class="btn--dark ml-4" (click) = 'getDept(item)'> 
+                                            <fa-icon [icon] = 'faSearch'></fa-icon>
+                                        </button>
+                                    </div>
+                        
+                                  
+                         </div>  
+                     </div>
+                     
+                     <div class="col-lg-6" 
+                        style="border-left: 1px solid #E6EAEE;">
+                        <div class="d-flex justify-content-center" *ngIf="isLoading">
+                            <app-loading-spinner></app-loading-spinner>
+                        </div>
+                        <div *ngIf="isErr" class="err mt-5">
+                            <div class="d-flex justify-content-center"
+                                style="font-size: 35px;">
+                                <fa-icon [icon] = 'faTimes'></fa-icon>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>სამწუხაროდ მსგავსი ანგარიში ვერ მოიძებნა </p>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="isBillerDeptAcitve" class="mt-4">
+                            <div class="drafts__box__details col-12 mt-4" *ngFor="let biller of billerDebtData">
+                                <p> {{ biller.texts +  ': ' + biller.value }} </p>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn--dark"
+                                        (click)="addToTemplates()">გაგრძელება</button>
+                            </div>
+                        </ng-container>
+                     </div>
+                </div>
+            </ng-template>
+    
+        </ng-container>  
+    
+        <ng-template #showLoading>
+            <div class="drafts__loading col-12 d-flex justify-content-center align-items-center">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+        </ng-template>
+
+    </ng-container>
+
+    
+
+</div>

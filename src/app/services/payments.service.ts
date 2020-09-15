@@ -58,7 +58,7 @@ export class PaymentsService {
 
       return this.http.post(this.envURL.urlAddress + 'transactions/' +  billPaymentUrl, billerInfo); 
 
-    } else  {
+    } else  {   
 
       return this.http.post(this.proxyURL + billPaymentUrl, billerInfo); 
 
