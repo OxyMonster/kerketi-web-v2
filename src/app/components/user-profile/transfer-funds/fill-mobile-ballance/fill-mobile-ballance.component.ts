@@ -63,6 +63,19 @@ export class FillMobileBallanceComponent implements OnInit {
     
 
   }; 
+
+  onTemplateSelect(template, isNew: boolean) {
+    console.log(isNew);
+    
+    isNew ? this.isNewTemplate = true : this.isNewTemplate = false;
+    this.selectedTemplate = [template];
+    this.selectedBox = 'amount';
+    this.selectedCategory = 'amount';
+    this.isTemplateSelected = true; 
+    
+    
+}; 
+
    
   onWalletSelect(wallet) {
     this.isWalletSelected = true; 
@@ -77,16 +90,7 @@ export class FillMobileBallanceComponent implements OnInit {
     this.isNewPaySelected = false; 
   }; 
 
-  onTemplateSelect(template, isNew?: boolean) {
-      this.selectedTemplate = [template];
-      this.selectedBox = 'amount';
-      this.selectedCategory = 'amount';
-      this.isTemplateSelected = true; 
 
-      isNew ? this.isNewTemplate = true : this.isNewTemplate = false;  
-      
-  }; 
-  
     showNewPayment() {
       this.isNewPaySelected = true; 
     }; 
@@ -180,7 +184,7 @@ export class FillMobileBallanceComponent implements OnInit {
             },
             { 
               "key": "abonentCode",
-              "value":  this.selectedTemplate[0]['parameters'][2]['value']
+              "value":  this.isNewTemplate ? this.selectedTemplate[0]['abonentCode'] : this.selectedTemplate[0]['parameters'][2]['value']
             },
             { 
               "key": "currency",
