@@ -20,8 +20,6 @@ export class FillMobileBallanceComponent implements OnInit {
   faChevronDown = faChevronDown; 
   faPlusCircle = faPlus; 
   faTrashAlt = faTrashAlt;
-// * *   * *  * * * * 
-
   selectedBox: string = 'from';
   selectedCategory: string = 'from'; 
   
@@ -58,38 +56,18 @@ export class FillMobileBallanceComponent implements OnInit {
 
 
   getResult(event: any) {
-    console.log('***************************');
-    
     this.isNewPaySelected = false;
     this.onTemplateSelect(event, true); 
     console.log(event);
     
+
   }; 
-
-  onTemplateSelect(template, isNew: boolean) {
-    console.log(isNew);
-    
-    isNew ? this.isNewTemplate = true : this.isNewTemplate = false;
-    this.selectedTemplate = [template];
-    this.selectedBox = 'amount';
-    this.selectedCategory = 'amount';
-    this.isTemplateSelected = true; 
-    
-    
-}; 
-
    
   onWalletSelect(wallet) {
-    if ( this.selectedTemplate.length === 0 ) {
-      this.isWalletSelected = true; 
-      this.selectedWallet = [wallet]; 
-      this.selectedBox = 'to'; 
-      this.selectedCategory = 'to'; 
-    } else {
-      this.selectedBox = 'amount';
-      this.selectedCategory = 'amount';
-      this.isTemplateSelected = true; 
-    }
+    this.isWalletSelected = true; 
+    this.selectedWallet = [wallet]; 
+    this.selectedBox = 'to'; 
+    this.selectedCategory = 'to'; 
   }; 
 
   onBoxSelect(boxType: string, categoryType ?: string) {
@@ -98,9 +76,20 @@ export class FillMobileBallanceComponent implements OnInit {
     this.isNewPaySelected = false; 
   }; 
 
-
+  onTemplateSelect(template, isNew?: boolean) {
+      this.selectedTemplate = [template];
+      this.selectedBox = 'amount';
+      this.selectedCategory = 'amount';
+      this.isTemplateSelected = true; 
+      console.log(template);
+      
+      isNew ? this.isNewTemplate = true : this.isNewTemplate = false;  
+      
+  }; 
+  
     showNewPayment() {
       this.isNewPaySelected = true; 
+
     }; 
 
 
@@ -192,7 +181,7 @@ export class FillMobileBallanceComponent implements OnInit {
             },
             { 
               "key": "abonentCode",
-              "value":  this.isNewTemplate ? this.selectedTemplate[0]['abonentCode'] : this.selectedTemplate[0]['parameters'][2]['value']
+              "value":  this.selectedTemplate[0]['parameters'][2]['value']
             },
             { 
               "key": "currency",
@@ -202,6 +191,7 @@ export class FillMobileBallanceComponent implements OnInit {
           "serviceId": this.selectedTemplate[0]['serviceId'],
           "sessionId": this._utileService.getSessionId()
         }; 
+
         console.log(this.fillMobileSchema);
         
       this._modalService.open(modalContent, { size: 'md' }); 

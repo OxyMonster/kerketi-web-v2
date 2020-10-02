@@ -1,7 +1,7 @@
 <div class="row transfer justify-content-center">
     
     <div class="col-lg-3 transfer__from"
-        [ngClass]="{'active': selectedBox === 'from','col-lg-6': selectedBox === 'from'}">
+         [ngClass]="{'active': selectedBox === 'from','col-lg-6': selectedBox === 'from'}">
         <div class="transfer__from__title">
             <h4 *ngIf="selectedBox === 'from'">რომელი ანგარიშიდან გსურთ გადარიცხვა?</h4>
         </div>
@@ -15,7 +15,8 @@
             <div *ngIf="isWalletSelected" 
                  class="d-flex justify-content-center align-items-center">
                 <div style="height: 70px;"   
-                    class="d-flex align-items-center" *ngFor="let wallet of selectedWallet">
+                     class="d-flex align-items-center" 
+                     *ngFor="let wallet of selectedWallet">
                     <div class="">
                         <p  style="font-size: 14px;"> {{ wallet.walletTypeName }} </p>
                     </div>
@@ -63,7 +64,7 @@
                         </div>
                         <ng-template #showLoading>
                             <div class="w-100 d-flex justify-content-center">
-                                <img src="assets/img/load.gif" alt="">
+                                <app-loading-spinner></app-loading-spinner>
                             </div>
                         </ng-template>
                      </div>
@@ -106,8 +107,7 @@
                             <p *ngIf="!isNewTemplate"> {{ template['name'] }} </p>
                         </div> 
                         <div class="d-flex justify-content-center">
-                            <p class="m-0" 
-                              *ngIf="isNewTemplate"> 
+                            <p class="m-0" *ngIf="isNewTemplate"> 
                                 {{ template['abonentCode'] }} 
                             </p>  
                             <p *ngIf="!isNewTemplate"> 
@@ -130,30 +130,30 @@
                              *ngFor="let item of allTemplates; let i = index"
                              > 
                              <div class="row m-0 w-100">
-                                  <div class="col-9 d-flex d-flex align-items-center" 
-                                       (click)="onTemplateSelect(item, false)">
+                                  <div (click)="onTemplateSelect(item, false)"
+                                        class="col-9 d-flex">
                                       <div class="col-3 templates__new__my__img">
                                          <div class="templates__new__my__img__container"
                                               style="width: 50px; height: 50px;">
                                              <img [src]="'data:image/jpeg;base64,'+item.logo" 
                                                   class="w-100 h-100"
                                                   alt="">
-                                         </div>  
+                                         </div>
                                       </div>
 
                                       <div class="col-7 templates__new__my__info">
                                           <div class="templates__new__my__info__name">
-                                              <p> {{ item.name }} </p>
+                                              <p> {{ item.parameters[2]['value'] }} </p>
                                           </div>
                                           <div class="templates__new__my__info__phone">
                                               <p> {{ item.transferTo }} </p>
                                           </div>
                                       </div>
-                                    </div>
+                                  </div>
                                   
         
 
-                                <div class="col templates__new__my__delete d-flex align-items-center justify-content-center">
+                                <div class="col templates__new__my__delete">
                                     <fa-icon style="cursor: pointer; z-index: 4;" 
                                              [icon] = 'faTrashAlt'
                                              (click)="deleteTemplate(item, i)"></fa-icon>
@@ -217,10 +217,7 @@
 
 <ng-template #otpModal>
     <app-modal-header [title] = "'დაადასტურე'"></app-modal-header>
-    <app-fill-mobile-confirm-modal [selectedAbonent] = 'fillMobileSchema' 
-                                   [isFavourite] = 'selectedTemplate[0]["isFavourite"]'>
-
-    </app-fill-mobile-confirm-modal>
+    <app-fill-mobile-confirm-modal [selectedAbonent] = 'fillMobileSchema' ></app-fill-mobile-confirm-modal>
 </ng-template>   
 
 

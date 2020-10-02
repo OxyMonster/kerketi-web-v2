@@ -6,11 +6,12 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './authorize.component.html',
   styleUrls: ['./authorize.component.scss']
 })
+
 export class AuthorizeComponent implements OnInit {
 
   constructor(
     private _translateService: TranslateService
-  ) { 
+    ) { 
 
     this._translateService.addLangs(['en','geo'])
     this._translateService.setDefaultLang('geo');
@@ -19,6 +20,7 @@ export class AuthorizeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
 }
