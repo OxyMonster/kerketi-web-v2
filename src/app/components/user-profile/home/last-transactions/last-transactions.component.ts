@@ -64,8 +64,8 @@ export class LastTransactionsComponent implements OnInit {
   
                   } else {
 
-                    location.reload(); 
-                    console.log("Error");
+                    // location.reload(); 
+                    // console.log("Error");  
                     
                   }
                   

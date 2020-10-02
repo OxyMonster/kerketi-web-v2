@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
+import { TransferFundsService } from 'src/app/services/transfer-funds.service';
+import { EnvironmentUrlService } from './environment-url.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtileService {
 
-  private sessionStatus= new Subject<String>();
-
-
   constructor(
-    private router: Router
+    private router: Router,
+    private http: HttpClient,
+    private envURL: EnvironmentUrlService,
+    private _trasnferFundsService: TransferFundsService
   ) { }
 
   getMsidn() {
@@ -27,12 +29,31 @@ export class UtileService {
   }
 
   isLoggedIn() {
-    return !!localStorage.getItem('sessionId'); 
+    return !!localStorage.getItem('sessionId')
   }; 
 
-  isSessionExpired() {
-    return localStorage.getItem('sessionAlive')
-    
+  isSessionIDValid() {
+    const parameters = {
+      "amount": 0,
+      "currency": "GEL",
+      "description": "login",
+      "domainId": 0,
+      "languageId": 1,
+      "msisdn": this.getMsidn(),
+      "sessionId": this.getSessionId() 
+    }; 
+ 
+    return this._trasnferFundsService
+               .getPayParamenters(parameters)
+               .subscribe(data => {
+                console.log(data);
+                
+                return data['isSuccess']; 
+
+               }, err => {
+                 
+                 return err['isSuccess'];
+               })
   }; 
 
   logOut() {
@@ -41,14 +62,19 @@ export class UtileService {
 
   }; 
 
+  refreshSession(parameters: any) {
 
-  setSessionStatus(data: string) {
-    localStorage.setItem('sessionAlive', data);
-    this.sessionStatus.next(data);
-  }; 
+    const url = '/users/refresh-session'
 
-  watchssionStatus(): Observable<any> {
-    return this.sessionStatus.asObservable();
-  }; 
+      if (! isDevMode() ) {
+
+        return this.http.post(this.envURL.urlAddress + url, parameters); 
+
+      } else {
+
+        return this.http.post('api/' + url, parameters); 
+
+      }; 
+  };
 
 }

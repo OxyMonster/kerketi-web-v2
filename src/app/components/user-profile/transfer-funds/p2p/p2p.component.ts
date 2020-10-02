@@ -90,10 +90,19 @@ export class P2pComponent implements OnInit {
   }; 
 
   onWalletSelect(wallet) {
-    this.isWalletSelected = true; 
-    this.selectedWallet = [wallet]; 
-    this.selectedBox = 'to'; 
-    this.selectedCategory = 'to'; 
+
+    if ( this.selectedTemplate.length === 0 ) {
+    
+      this.isWalletSelected = true; 
+      this.selectedWallet = [wallet]; 
+      this.selectedBox = 'to'; 
+      this.selectedCategory = 'to'; 
+
+    } else {
+      this.isTemplateSelected = true; 
+      this.selectedBox = 'amount';
+      this.selectedCategory = 'amount';
+    }
   }
 
 
@@ -168,6 +177,7 @@ export class P2pComponent implements OnInit {
           "sessionId": this._utileService.getSessionId(),
           "transferTo": userData['transferTo']
         }; 
+
       this._modalService.open(modalContent, { size: 'md' }); 
 
     } else {

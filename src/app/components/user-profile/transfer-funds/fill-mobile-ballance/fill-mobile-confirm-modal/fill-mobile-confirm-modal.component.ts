@@ -12,15 +12,20 @@ export class FillMobileConfirmModalComponent implements OnInit {
 
  
   @Input() selectedAbonent: any; 
+  @Input() isFavourite: boolean = false; 
+
   isLoading: boolean = false; 
   isPayed: boolean = false; 
 
   constructor(
-    private _paymentsService: PaymentsService
+    private _paymentsService: PaymentsService,
+    private _utileService: UtileService
   ) { }
 
   ngOnInit(): void {
-      this.selectedAbonent
+      
+      console.log(this.selectedAbonent);
+      
   }
 
   onSubmit() {
@@ -31,6 +36,39 @@ export class FillMobileConfirmModalComponent implements OnInit {
                .subscribe( data => {
                  console.log(data);
                  this.isLoading = false;
+
+                 if ( this.isFavourite ) {
+
+                  const schema = {
+                    "template":
+                    
+                    {"name":this.selectedAbonent['parameters'][1]['value'],
+                     "parameters":
+                      [
+                        {"key":"amount","value": this.selectedAbonent['parameters'][0]['value'] },
+                        {"key":"currency","value":"GEL" },
+                        {"key":"abonentCode","value":this.selectedAbonent['msisdn'] },
+                        {"key":"currency","value":"GEL"}
+                      ],
+                        "serviceId":this.selectedAbonent['serviceId'] 
+                      },
+                        "languageId":this._utileService.getUserLanguage(),
+                        "sessionId":this._utileService.getSessionId(),
+                        "type":1,
+                        "msisdn":this._utileService.getMsidn()
+                      }; 
+
+                      console.log(schema);
+                      
+
+                   return this._paymentsService
+                              .addTemplates(schema)
+                              .subscribe( template => {
+                                console.log(template);
+                                
+                              }, err => console.log(err) )
+                 }
+                 
                  data['isSuccess'] ? this.isPayed = true : this.isPayed = false;
 
                }, err => {

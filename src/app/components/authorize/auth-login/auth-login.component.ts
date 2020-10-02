@@ -3,12 +3,16 @@ import { AuthorizeService } from 'src/app/services/authorize.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UtileService } from "src/app/shared/services/utile.service";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { TransferFundsService } from 'src/app/services/transfer-funds.service';
 @Component({
   selector: 'app-auth-login',
   templateUrl: './auth-login.component.html',
   styleUrls: ['./auth-login.component.scss']
 })
 export class AuthLoginComponent implements OnInit {
+
+  faUserCheck = faUserCircle;
 
   userForm: FormGroup;
   isEngLangActive: boolean = false; 
@@ -24,6 +28,8 @@ export class AuthLoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder, 
     private _authService: AuthorizeService,
+    private _utileService: UtileService,
+    private _transferFundsService: TransferFundsService
   ) {
     this.userForm = this.fb.group({
       msisdn: [ '', Validators.required ], 
@@ -87,18 +93,22 @@ export class AuthLoginComponent implements OnInit {
                   } else { 
                     this.isError = false;
                     this.isLoading = false;
-        
+              
                     // * * * Save user info in Local Stroge * * * * 
                     localStorage.setItem('sessionId', data['data']['sessionId']);
                     localStorage.setItem('msisdn', userForm.value.msisdn );
                     this.isEngLangActive ? localStorage.setItem('languageId', '2') : 
                                            localStorage.setItem('languageId', '1'); 
-        
-                    // * * * Navigate to user profile * * * * * 
-                    this.router.navigate(['/user-profile/home']); 
+                    
+                    if ( this._utileService.isSessionIDValid() ) {
+
+                      this.router.navigate(['/user-profile/home']); 
+                    } else {
+                      
+                      this.router.navigate(['/main/login']);
+                    }; 
                   }
                   console.log(data);
-                  
                   
                 }, err => console.log(err)); 
 
@@ -111,6 +121,8 @@ export class AuthLoginComponent implements OnInit {
 
   }; 
 
+ 
+  
 
   getResult(e) {
     
@@ -121,5 +133,8 @@ export class AuthLoginComponent implements OnInit {
 
 
 
+
+
+  
 
 }

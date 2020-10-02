@@ -2,76 +2,100 @@
     <div class="nav col-12 row justify-content-between p-0">
         <div class="nav__logo col-2">
             <div class="nav__logo__container">
-                <img src="assets/img/kerketi.png" alt="">
+                <img src="assets/img/kerketi.png" 
+                     alt=""
+                     [routerLink]="['/user-profile/home']"
+                     (click)="changeRoute()">
             </div>
         </div>
         <div class="col d-flex p-0">
             <div class="nav__item home col-1">
-                <a [routerLink]="['/user-profile/home']" 
+                <a  [routerLink]="['/user-profile/home']" 
                     routerLinkActive="router-link-active" 
-                    style="font-size: 25px;">
+                    style="font-size: 25px;"
+                    (click)="changeRoute()">
                     <fa-icon [icon] = 'faHome'></fa-icon>
                 </a> 
             </div>
         
             <div class="nav__item col-2">
-                <div ngbDropdown class="d-inline-block">
-                    <button class="btn btn-outline-primary" 
-                            id="dropdownBasic1" 
-                            ngbDropdownToggle
+                <div  class="d-inline-block">
+                    <button class="btn btn-outline-primary main-nav"    
+                            style="cursor: auto;"
+                            (mouseenter) = 'isHideSubmenu = false'
+                            [ngClass]="{'router-link-active': isHideSubmenu || isTransferRouteActive}"
                             >
                             {{ "navigation.Transfer_funds" | translate }}
+                            <fa-icon class="pl-2" [icon] = 'faSortDown'></fa-icon>
                     </button>  
                     <div class="submenu" 
-                         ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      <button [routerLink]="['/user-profile/transfer/to-account-bank-card']" 
-                              ngbDropdownItem
-                              routerLinkActive="router-link-active" 
-                              >
-                              საკუთარ ანგარიშზე საბანკო ბარათით
-                      </button>
+                         (mouseenter) = 'isTransferRouteActive = true'
+                         [ngClass]="{'hide': isHideSubmenu}">
+                        <div class="submenu__item">  
+                            <button [routerLink]="['/user-profile/transfer/to-account-bank-card']" 
+                                    routerLinkActive="router-link-active" 
+                                    (click)="hideSubMenu()"
+                                    >
+                                    კერკეტის ანგარიშზე საბანკო ბარათით
+                            </button>
+                        </div>
                       <br> 
-                      <button [routerLink]="['/user-profile/transfer/p2p']" 
-                               ngbDropdownItem
-                               >
-                               სხვასთან მობილურის ნომრით
-                      </button>
-                      <button [routerLink]="['/user-profile/transfer/bank-transfer']" 
-                              ngbDropdownItem
-                              >
-                              საბანკო ანგარიშზე გადარიცხვა
-                     </button>
+                      <div class="submenu__item">
+                          <button [routerLink]="['/user-profile/transfer/p2p']" 
+                                  routerLinkActive="router-link-active"
+                                  (click)="hideSubMenu()"
+                                   >
+                                   სხვასთან მობილურის ნომრით
+                          </button>
+                      </div>
+                      <div class="submenu__item">
+                          <button [routerLink]="['/user-profile/transfer/bank-transfer']" 
+                                  routerLinkActive="router-link-active"  
+                                  (click)="hideSubMenu()"      
+                                 >
+                                  საბანკო ანგარიშზე გადარიცხვა
+                         </button>
+                      </div>
                       <br>
-                     <button [routerLink]="['/user-profile/transfer/fill-mobile']" 
-                              ngbDropdownItem
-                              >
-                              მობილურის შევსება
-                     </button>
-                      <button [routerLink]="['/user-profile/transfer/pay-bill']" 
-                              ngbDropdownItem
-                              >
-                              კომუნალური გადახდები
-                     </button>
+                      <div class="submenu__item">
+                          <button [routerLink]="['/user-profile/transfer/fill-mobile']"
+                                  routerLinkActive="router-link-active" 
+                                  (click)="hideSubMenu()"
+                                   >
+                                   მობილურის შევსება
+                          </button>
+                      </div>
+                      <div class="submenu__item">
+                          <button [routerLink]="['/user-profile/transfer/pay-bill']" 
+                                  routerLinkActive="router-link-active"
+                                  (click)="hideSubMenu()"
+                                  >
+                                  კომუნალური გადახდები
+                         </button>
+                      </div>
                     </div>
                 </div>
 
             </div>
             <div class="nav__item col-2">
                 <a [routerLink]="['/user-profile/fill-ballance']"   
-                    routerLinkActive="router-link-active" >
+                    routerLinkActive="router-link-active" 
+                    (click)="changeRoute()">
                     {{ "navigation.Fill_ballance" | translate }}
                 </a> 
             </div>
             <div class="nav__item col-2">
                 <a [routerLink]="['/user-profile/fund-cashing']"   
-                    routerLinkActive="router-link-active" >
+                    routerLinkActive="router-link-active" 
+                    (click)="changeRoute()">
                     {{ "navigation.Fund_cashing" | translate }}
                     
                 </a> 
             </div>
             <div class="nav__item col-2">
                 <a [routerLink]="['/user-profile/transactions']"   
-                    routerLinkActive="router-link-active" >
+                    routerLinkActive="router-link-active" 
+                    (click)="changeRoute()">
                  
                     ტრანზაქციები
                 </a> 

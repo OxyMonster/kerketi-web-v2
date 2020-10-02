@@ -1,0 +1,72 @@
+<div class="contact p-4">
+    <div class="contact__title">
+        <h4>საკონტაქტო ინფორმაციის ცვლილება</h4>
+    </div>
+
+    <div class="contact__avatar mt-5 row m-0">
+        <div class="contact__avatar__img col-lg-2">
+            <img src="" alt="">
+            <div class="contact__avatar__img__button d-flex justify-content-center">
+                <p>ფოდოს ატვირთვა</p>
+            </div>
+        </div>
+        <div class="contact__upload col-lg-10">
+            <p>აირჩიე ფოტო გალერეიდან</p>
+        </div>
+        <div class="contact__avatar__text mt-4">
+            <p>გაითვალისწინე, შენი პროფილის სურათი ხილვადი იქნება კერკეტის მომხმარებელთათვის</p>
+        </div>
+
+    </div>
+    <ng-container>
+
+    </ng-container>
+    
+    <div class="contact__inputs mt-4" *ngIf="userData; else showLoading">
+        <div class="contact__inputs__item">
+            <div class="">
+                <label for="mobile">მობილურის ნომერი:</label>
+            </div>
+            <input type="phone"
+                    class="deafult-input"
+                    id="mobile"
+                    [placeholder]="userData['phoneNumber']"
+                    >
+        </div>   
+
+        <div *ngIf="userData"
+             class="contact__inputs__item py-4">
+            <div class="">
+                <label for="email">ელ. ფოსტის მისამართი:</label>
+            </div>
+            <input  type="email"
+                    class="deafult-input"
+                    id="email"
+                   >
+        </div>
+ 
+        <div class="contact__inputs__item"
+            [ngClass]="{'mt-5': !userData}" >
+            <div class="">
+                <label for="contact">მისამართი:</label>
+            </div>
+            <input type="address"
+                    id="contact"
+                    class="deafult-input"
+                    [placeholder]="userData['addresses'][0]['region'] + ', ' + userData['addresses'][0]['district']">
+        </div>
+
+        <div class="contact__buttons d-flex justify-content-end">
+            <button class="btn--dark">
+                დადასტურება
+            </button>
+        </div>
+    </div>
+
+    <ng-template #showLoading>
+        <div class="w-100 d-flex justify-content-center">
+            <app-loading-spinner></app-loading-spinner>
+        </div>
+    </ng-template>
+    
+</div>

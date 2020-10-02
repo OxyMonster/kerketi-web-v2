@@ -16,6 +16,9 @@ import { FillBallanceBankCardComponent } from './transfer-funds/fill-ballance-ba
 import { TransferToBankComponent } from './transfer-funds/transfer-to-bank/transfer-to-bank.component';
 import { P2pComponent } from "./transfer-funds/p2p/p2p.component";
 import { FillMobileBallanceComponent } from './transfer-funds/fill-mobile-ballance/fill-mobile-ballance.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { ContactSettingsComponent } from './user-settings/contact-settings/contact-settings.component';
+import { PrivacySettingsComponent } from './user-settings/privacy-settings/privacy-settings.component';
 
 const routes: Routes = [
   { path: '', canActivate: [ AuthGuard ], component: UserProfileComponent, children: [
@@ -42,8 +45,12 @@ const routes: Routes = [
       { path: 'to-account-bank-card', component: FillBallanceBankCardComponent }
     ]},
 
-    { path: 'transactions', component: TransactionsComponent }
-
+    { path: 'transactions', component: TransactionsComponent },
+    { path: 'settings', component: UserSettingsComponent, children:[
+      { path: '', redirectTo: 'contact', pathMatch: 'full' }, 
+      { path: 'contact', component: ContactSettingsComponent },
+      { path: 'privacy', component: PrivacySettingsComponent }   
+    ]}
   ]},   
   
 

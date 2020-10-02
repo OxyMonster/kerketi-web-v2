@@ -20,6 +20,7 @@ import { PaymentsBillersModalComponent } from './components/user-profile/modals/
 import { TranslateModule } from '@ngx-translate/core';
 import { UserInfoBallanceLogoutComponent } from './components/user-profile/user-prof-header/user-info-ballance-logout/user-info-ballance-logout.component';
 import { FormRedirectService } from "../shared/services/form-redirect.service";
+import { SessionModalComponent } from './components/user-profile/modals/session-modal/session-modal.component';
 
 const COMPONENTS = [
   PageNotFoundComponent, 
@@ -34,7 +35,8 @@ const COMPONENTS = [
   TransferToBankComponent,
   IconsFontawsBillersComponent, 
   PaymentsBillersModalComponent,
-  UserInfoBallanceLogoutComponent
+  UserInfoBallanceLogoutComponent,
+  SessionModalComponent
 ] 
 
 

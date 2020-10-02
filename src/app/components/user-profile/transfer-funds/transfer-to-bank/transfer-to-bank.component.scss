@@ -117,7 +117,7 @@
                 border-radius: 5px;
                 height: 40px;
                 text-align: center;
-              
+                border: 2px solid transparent;
             }
         }
 
@@ -164,7 +164,9 @@
             color: $light-grey !important;
 
         }
-    
+};
+ 
 
-
+.err {
+    border: 2px solid $primary !important;
 }

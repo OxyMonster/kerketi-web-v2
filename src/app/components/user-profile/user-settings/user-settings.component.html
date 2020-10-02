@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        
+        <div class="left col-lg-4 h-100">
+            <div class="left__item">
+                <a [routerLink] = "['/user-profile/settings/contact']"
+                   routerLinkActive = 'active'>საკონტაქტო ინფორმაცია</a> 
+            </div>
+            <div class="left__item py-4">
+                <a [routerLink] = "['/user-profile/settings/privacy']" 
+                    routerLinkActive = 'active' >უსაფრთხოების პარამეტრები</a> 
+            </div>   
+        </div>
+    
+        <div class="right col-lg">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

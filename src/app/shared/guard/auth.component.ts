@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
+import {  CanActivate, Router } from '@angular/router';
 import { UtileService } from 'src/app/shared/services/utile.service';
 
 @Injectable({
@@ -8,20 +8,27 @@ import { UtileService } from 'src/app/shared/services/utile.service';
 export class AuthGuard implements CanActivate {
   
   constructor(
-    private utileSrvice: UtileService,
+    private _utileService: UtileService,
     private router: Router
   ) { }
 
-  canActivate(): boolean {
-    if ( this.utileSrvice.isLoggedIn() ) {
-        return true;  
+  canActivate(): boolean {  
+    if ( this._utileService.isLoggedIn() ) {
+        if ( this._utileService.isSessionIDValid() ) {
+          
+          return true;
 
-    } else {
+        } else{
+
+          return false;
+        }  
+ 
+    } else {  
       
       this.router.navigate(['main']); 
       return false;
     
     }
-  }
+  }; 
  
 }

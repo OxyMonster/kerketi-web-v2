@@ -1,9 +1,9 @@
 {
     "authorize": {
         "authorize": "ავტორიზაცია",
-        "mobile": "მობილური",
-        "password": "პაროლი",
-        "login": "შესვლა",
+        "mobile": "მობილური:",
+        "password": "პაროლი:",
+        "login": "შესვლა",  
         "forgot-password": "დაგავიწდა პაროლი ?",
         "news": "სიახლეები",
         "about-us": "ჩვენს შესახებ",

@@ -17,7 +17,8 @@ export class TransferToBankComponent implements OnInit {
   faCoins = faCoins; 
   faPiggyBank = faPiggyBank; 
 
-  isActive: boolean = false; 
+  isActive: boolean = false;
+  isIbanErr: boolean = false; 
   
   clienIp: string; 
   iban: string = ''; 
@@ -45,11 +46,12 @@ export class TransferToBankComponent implements OnInit {
 
 
   onibanSelect() {
-    if ( this.iban.length > 1 ) {
+    if ( this.iban.length === 22 ) {
+        this.isIbanErr = false;
         this.toggle(); 
 
     } else {
-      console.log('wront iban');
+      this.isIbanErr = true;
       
     }; 
   }

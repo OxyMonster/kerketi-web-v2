@@ -20,6 +20,7 @@ export class FillMobileBallanceComponent implements OnInit {
   faChevronDown = faChevronDown; 
   faPlusCircle = faPlus; 
   faTrashAlt = faTrashAlt;
+// * *   * *  * * * * 
 
   selectedBox: string = 'from';
   selectedCategory: string = 'from'; 
@@ -57,11 +58,12 @@ export class FillMobileBallanceComponent implements OnInit {
 
 
   getResult(event: any) {
+    console.log('***************************');
+    
     this.isNewPaySelected = false;
     this.onTemplateSelect(event, true); 
     console.log(event);
     
-
   }; 
 
   onTemplateSelect(template, isNew: boolean) {
@@ -78,10 +80,16 @@ export class FillMobileBallanceComponent implements OnInit {
 
    
   onWalletSelect(wallet) {
-    this.isWalletSelected = true; 
-    this.selectedWallet = [wallet]; 
-    this.selectedBox = 'to'; 
-    this.selectedCategory = 'to'; 
+    if ( this.selectedTemplate.length === 0 ) {
+      this.isWalletSelected = true; 
+      this.selectedWallet = [wallet]; 
+      this.selectedBox = 'to'; 
+      this.selectedCategory = 'to'; 
+    } else {
+      this.selectedBox = 'amount';
+      this.selectedCategory = 'amount';
+      this.isTemplateSelected = true; 
+    }
   }; 
 
   onBoxSelect(boxType: string, categoryType ?: string) {

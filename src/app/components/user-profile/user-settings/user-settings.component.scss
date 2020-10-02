@@ -1,0 +1,38 @@
+@import 'src/assets/variables'; 
+
+.active {
+    border-bottom: 2px solid $primary;
+    
+        color: #333 !important;
+    
+
+}; 
+.row {
+    background-color: aliceblue;
+    border-radius: 10px;
+
+    .left {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        padding: 30px;
+        &__item {
+            font-size: 14px;
+            a {
+                color: #999;
+                text-decoration: none !important;
+                padding-bottom: 5px;
+                white-space: nowrap;
+                &:hover {
+                    color: #333;    
+                }
+            }
+        }
+    };
+
+
+    .right {
+        padding: 30px;
+        background-color: white;
+    }
+
+}

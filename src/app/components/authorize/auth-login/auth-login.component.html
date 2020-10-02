@@ -1,7 +1,7 @@
-<div class="row auth">
-<div class="left-circle col-3"></div>
+<div class="row auth px-0">
 
-    <div class="col-12 auth__box">
+    <div class="col-xl-8 auth__box p-0 mb-4">
+
         <div class="auth__box__container">
             <div class="col-12 auth__box__container__title">
                 <h3>ავტორიზაცია</h3>
@@ -21,6 +21,7 @@
                                name="tel" 
                                id="username"
                                formControlName="msisdn"
+                               placeholder="მომხმარებლის მობილურის ნომერი"
                                [ngClass]="{ invalid: f.msisdn.errors && isSubmitted }">
                     </div>
                 </div>
@@ -37,6 +38,7 @@
                                id="password"
                                class="password"
                                formControlName="pin"
+                               placeholder="პაროლი"
                                [ngClass]="{ invalid: f.pin.errors && isSubmitted }"
                                >
                                
@@ -44,32 +46,75 @@
                 </div>
 
                 <div class="auth__box__container__form__input col-12 mb-2">
-                    <div class="auth__box__container__form__input__container">
+                    <div class="auth__box__container__form__input__container d-flex justify-content-between">
                         <p>
                             {{ 'login.forgot_password' | translate }}
                         </p>
+                        
                     </div>
                 </div>
                 
 
                 <div class="auth__box__container__form__button col-12">
                     <button *ngIf="!isLoading; else showLoading" 
-                            class="btn btn--green" 
-                            type="submit">
-                        {{ 'login.login' | translate }}    
-                    </button>
-                    <ng-template #showLoading>
-                        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                            <span class="sr-only">Loading...</span>
-                          </div>                        
-                    </ng-template>
-                </div>    
+                                class="btn--red" 
+                                type="submit">
+                            {{ 'login.login' | translate }}    
+                        </button>
+                        <ng-template #showLoading>
+                            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                                <span class="sr-only">Loading...</span>
+                              </div>                        
+                        </ng-template>
+                </div>  
+                
+            
 
             </form>  
         </div>
     </div>
 
-<div class="right-circle col-3"></div>
+    <div class="right-banner row m-0 col-xl-4">
+        
+        <div class="right-banner__container">
+            <div class="right-banner__container__register col-12">
+                <div class="right-banner__container__title">
+                    <!-- <h3>რეგისტრაცია</h3> -->
+                </div>
+        
+                <div class="right-banner__container__register__icon d-flex justify-content-center">
+                    <fa-icon [icon] = 'faUserCheck'></fa-icon>
+                </div>
+        
+                <div class="right-banner__container__register__text">
+                    <span>არ ხართ დარეგისტრირებული?</span>
+                </div>
+        
+                <div class="right-banner__container__register__button">
+                    <button class="btn--red">რეგისტრაცია</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-banner__mobile d-flex">
+            <div class="right-banner__mobile__container col-12">
+                <div class="right-banner__mobile__container__title">
+                    <p>ისარგებლეთ კერკეტის განახლებული <span>მობაილ ბანკით</span></p>
+                </div>  
+                <div class="right-banner__mobile__container__text">
+                    <p>გადმოწერეთ <span>IOS</span> და <span>Android</span></p>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="right-banner__mobile__container__img">
+                        <img src="assets/img/app-store.png" alt="">
+                    </div>
+                    <div class="right-banner__mobile__container__img">
+                        <img src="assets/img/google-play.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
  
 
 </div>

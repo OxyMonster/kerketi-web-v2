@@ -22,6 +22,7 @@ export class AddMobileToTemplatesComponent implements OnInit {
   isNumberValid: boolean = false; 
   isDefault: boolean = false; 
   isLoading: boolean = false;
+  isAddedToFavourites: boolean = false;
 
   phoneNumber: string; 
   selectedUserFullname: string;
@@ -30,7 +31,6 @@ export class AddMobileToTemplatesComponent implements OnInit {
   @Output() result: EventEmitter<any> = new EventEmitter<any>(); 
 
   constructor(
-    private _homeService: HomeService,
     private _utileService: UtileService,
     private _paymentService: PaymentsService
   ) { }
@@ -42,7 +42,7 @@ export class AddMobileToTemplatesComponent implements OnInit {
   }
 
 
-  nextStep(mobileNumber: string) {  
+  nextStep() {  
 
     this.isNumberValid = true; 
     this.isDefault = true;   
@@ -56,11 +56,8 @@ export class AddMobileToTemplatesComponent implements OnInit {
       'abonentCode': this.phoneNumber, 
       'serviceId': this.finalSelectedProvider['service']['id'],
       'providerTitle': this.finalSelectedProvider['title'], 
-      'isFavourite': true
+      'isFavourite': this.isAddedToFavourites
   }
-
-    console.log(userData);
-
     
     this.result.emit(userData); 
 

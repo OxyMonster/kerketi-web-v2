@@ -7,6 +7,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TransferFundsModule } from "src/app/components/user-profile/transfer-funds/transfer-funds.module";
 import { FillBallanceModule } from "./fill-ballance/fill-ballance.module";
 import { TransactionsModule } from "./transactions/transactions.module";
+import { UserSettingsModule } from './user-settings/user-settings.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { TransactionsModule } from "./transactions/transactions.module";
   imports: [
     CommonModule,
     HomeModule,   
+    UserSettingsModule,
     TransferFundsModule,  
     FillBallanceModule, 
     TransactionsModule,

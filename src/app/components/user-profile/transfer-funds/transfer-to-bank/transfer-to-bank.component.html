@@ -16,6 +16,7 @@
         </div>
         <div class="fill-ballance__iban__input col-12">
             <input *ngIf="!isActive" 
+                    [ngClass]="{'err': isIbanErr}"
                     type="text" 
                     placeholder="ანგარიშის ნომერი" 
                     [(ngModel)]="iban"/>

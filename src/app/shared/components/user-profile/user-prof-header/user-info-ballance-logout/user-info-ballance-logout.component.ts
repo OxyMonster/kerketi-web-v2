@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UtileService } from 'src/app/shared/services/utile.service';
 import { HomeService } from 'src/app/services/home.service';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class UserInfoBallanceLogoutComponent implements OnInit {
 
   faSignOutAlt = faSignOutAlt; 
   
-  userData: any[] = []; 
+  userData: any= []; 
 
   constructor(
     private _utileService: UtileService,
@@ -41,11 +42,9 @@ export class UserInfoBallanceLogoutComponent implements OnInit {
           if (data['isSuccess']) {
 
             this.userData = [data['data']];
-            this._homeService.setUserData(this.userData);  
-            console.log(this._homeService.userData);
+            this._homeService.userData = this.userData; 
             
-            
-          } else {
+          } else {  
             this._utileService.logOut(); 
           }
           

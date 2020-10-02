@@ -1,7 +1,9 @@
 <ng-container *ngIf="userData.length > 0; else showLoading">
     <div class="row info justify-content-between align-items-center"
          *ngFor="let item of userData">
-            <div class="info__img co-lg-3">
+            <div class="info__img co-lg-3"
+                 style="cursor: pointer;"
+                 [routerLink] = "['/user-profile/settings']">
                 <div class="info__img__circle d-flex justify-content-between">
                     <p class="m-0"> 
                         {{ item['firstName'][0]+ '.' + item['lastName'][0] }} 
@@ -28,7 +30,6 @@
                     <fa-icon (click)="logOut()" 
                             [icon] = 'faSignOutAlt'></fa-icon>
                 </div>
-                <!-- <p (click)="logOut()">გამოსვლა</p> -->
             </div>
     </div>
 </ng-container>
