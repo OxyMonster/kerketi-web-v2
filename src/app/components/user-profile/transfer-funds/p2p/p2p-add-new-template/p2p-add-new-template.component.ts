@@ -13,6 +13,7 @@ export class P2pAddNewTemplateComponent implements OnInit {
   isNumberValid: boolean = false; 
   isDefault: boolean = false; 
   isLoading: boolean = false;
+  isFavourite: boolean = false; 
   phoneNumber: string; 
   selectedUserFullname: string;
   userNotFoundErr: boolean = false; 
@@ -68,8 +69,9 @@ export class P2pAddNewTemplateComponent implements OnInit {
     const userData = {
       'transferTo': this.phoneNumber, 
       'name': this.selectedUserFullname,
-      'isFavourite': true
+      'isFavourite': this.isFavourite
   }
+    console.log(userData);
     
     this.result.emit(userData); 
 

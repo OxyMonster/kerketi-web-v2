@@ -25,6 +25,8 @@ export class FillMobileConfirmModalComponent implements OnInit {
   ngOnInit(): void {
       
       console.log(this.selectedAbonent);
+      console.log(this.isFavourite);
+      
       
   }
 

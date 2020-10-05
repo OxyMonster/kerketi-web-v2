@@ -4,12 +4,12 @@
             <h4>ოფიციალური კურსები</h4>
         </div>
     </div>
-<ng-container *ngIf="currencyRates['rates']; else showLoading">
+<ng-container *ngIf="isSuccess; else showLoading">
     <div class="cur__line row justify-content-between p-2 m-0 w-100 " >
         <div class="cur__line__img col-lg-1">
             <div class="cur__line__img__container">
                 <img src="assets/img/flags/us.png" alt="">
-            </div>
+            </div>  
         </div>
 
         <div class="cur__line__currency col-lg-3 mr-4">

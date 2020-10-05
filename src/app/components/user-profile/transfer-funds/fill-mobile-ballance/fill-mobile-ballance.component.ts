@@ -22,7 +22,8 @@ export class FillMobileBallanceComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   selectedBox: string = 'from';
   selectedCategory: string = 'from'; 
-  
+  //  
+
   allTemplates: any[]= []; 
   allWallets: any[] = []; 
   
@@ -31,6 +32,7 @@ export class FillMobileBallanceComponent implements OnInit {
   isWalletSelected: boolean = false; 
   isAmountErr: boolean = false; 
   isNewTemplate: boolean = false;
+  isFavourite: boolean = false; 
 
   selectedWallet: any[] = []; 
   selectedTemplate: any[] = []; 
@@ -169,7 +171,8 @@ export class FillMobileBallanceComponent implements OnInit {
     console.log(this.selectedTemplate);
     
     if ( this.amount && this.amount > 0 && this.selectedTemplate.length > 0 && this.selectedWallet[0]['walletTypeName']) {
-      
+        console.log(this.selectedTemplate);
+        
         this.fillMobileSchema = {
           "domainId": 0,
           "languageId": this._utileService.getUserLanguage(),
@@ -181,7 +184,7 @@ export class FillMobileBallanceComponent implements OnInit {
             },
             { 
               "key": "abonentCode",
-              "value":  this.selectedTemplate[0]['parameters'][2]['value']
+              "value":  this.selectedTemplate[0]['abonentCode']
             },
             { 
               "key": "currency",
@@ -192,7 +195,7 @@ export class FillMobileBallanceComponent implements OnInit {
           "sessionId": this._utileService.getSessionId()
         }; 
 
-        console.log(this.fillMobileSchema);
+        this.isFavourite = this.selectedTemplate[0]['isFavourite']; 
         
       this._modalService.open(modalContent, { size: 'md' }); 
 

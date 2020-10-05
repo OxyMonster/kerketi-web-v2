@@ -7,17 +7,19 @@
         </div>
 
         <div class="new-pay__providers__providers" 
-             *ngIf="!isProviderSelected; else showSelectedProviders">
-            <div class="pay__providers__providers__item" 
+             *ngIf="!isProviderSelected; else showSelectedProviders"
+             >
+            <div class="new-pay__providers__providers__item py-2" 
                 *ngFor="let item of mobileProvidersList"
-                (click)="selectMobileProvider(item, false)">
-                <div class="pay__providers__providers__item__logo">
-                    <div class="pay__providers__providers__item__logo__container">
+                (click)="selectMobileProvider(item, false)"
+                >
+                <div class="new-pay__providers__providers__item__logo col-4">
+                    <div class="new-pay__providers__providers__item__logo__container">
                         <img [src]="'https://hierarchy-lable-logos.s3.eu-central-1.amazonaws.com/' + item.name + '.png'" 
                               alt="">
                     </div>
                 </div>  
-                <div class="pay__providers__providers__item__title">
+                <div class="new-pay__providers__providers__item__title col-8">
                     <p> {{ item.title }} </p>
                 </div>
             </div>
@@ -25,18 +27,18 @@
 
         <ng-template #showSelectedProviders>
             <div class="new-pay__providers__providers">
-                <div class="pay__providers__providers__item" 
+                <div class="new-pay__providers__providers__item" 
                      *ngFor="let item of selectedProvidersList"  
                      (click)="selectMobileProvider(item, true)"
                     >
-                <div class="pay__providers__providers__item__logo">
-                    <div class="pay__providers__providers__item__logo__container"
+                <div class="new-pay__providers__providers__item__logo col-4">
+                    <div class="new-pay__providers__providers__item__logo__container"
                          >
                         <img [src]="'https://hierarchy-lable-logos.s3.eu-central-1.amazonaws.com/' + item.name + '.png'" 
                             alt=""> 
                     </div>
                 </div>  
-                <div class="pay__providers__providers__item__title">
+                <div class="new-pay__providers__providers__item__title col-8">
                     <p> {{ item.title }} </p>
                 </div>
             </div>
@@ -81,8 +83,6 @@
         </ng-container>
     </ng-template>
 
-   
-    
 
     <ng-template #finalStep>
         <div class="template py-4">

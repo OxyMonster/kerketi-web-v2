@@ -34,7 +34,8 @@ export class P2pComponent implements OnInit {
   selectedTemplate: any[] = []; 
   amount: number;
   
-  finalUserData: any; 
+  finalUserDetails: any = {};
+  newTemplateDetails: {} = {}; 
 
   
   constructor(
@@ -56,7 +57,10 @@ export class P2pComponent implements OnInit {
   getResult(event: any) {
     this.isNewPaySelected = false;
     this.onTemplateSelect(event); 
-
+    this.newTemplateDetails = event; 
+    console.log(event);  
+    
+    
   }; 
    
 
@@ -64,18 +68,6 @@ export class P2pComponent implements OnInit {
     this.selectedBox = boxType; 
     this.selectedCategory = categoryType; 
     this.isNewPaySelected = false;
-    
-    switch (boxType) {
-      case 'from' :
-        console.log('from');
-        break;
-      case 'to':
-        // this.getTemplates(); 
-        break;
-      case 'amount':
-        console.log('amount');
-        break;
-    }
 
   }; 
 
@@ -84,8 +76,6 @@ export class P2pComponent implements OnInit {
     this.selectedTemplate = [template];
     this.selectedBox = 'amount';
     this.selectedCategory = 'amount';
-
-    console.log('hereee');
     
   }; 
 
@@ -163,10 +153,11 @@ export class P2pComponent implements OnInit {
   };
 
   openModal(modalContent: any,userData: any) {
-
     if ( this.amount && this.amount > 0 && this.selectedTemplate.length > 0 && this.selectedWallet[0]['walletTypeName']) {
       
-        this.finalUserData = {
+        this.finalUserDetails = {
+          "name": this.newTemplateDetails['name'],
+          "isFavourite": this.newTemplateDetails['isFavourite'],
           "amount": this.amount, 
           "description": 'p2p გადარიცხვა',
           "fromWallet":  this.selectedWallet[0]['walletTypeName'],

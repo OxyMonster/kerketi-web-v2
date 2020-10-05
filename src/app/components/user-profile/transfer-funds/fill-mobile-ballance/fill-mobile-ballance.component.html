@@ -64,7 +64,7 @@
                         </div>
                         <ng-template #showLoading>
                             <div class="w-100 d-flex justify-content-center">
-                                <app-loading-spinner></app-loading-spinner>
+                                <img src="assets/img/load.gif" alt="">
                             </div>
                         </ng-template>
                      </div>
@@ -217,7 +217,9 @@
 
 <ng-template #otpModal>
     <app-modal-header [title] = "'დაადასტურე'"></app-modal-header>
-    <app-fill-mobile-confirm-modal [selectedAbonent] = 'fillMobileSchema' ></app-fill-mobile-confirm-modal>
+    <app-fill-mobile-confirm-modal [selectedAbonent] = 'fillMobileSchema'
+                                   [isFavourite] = 'isFavourite' >
+    </app-fill-mobile-confirm-modal>
 </ng-template>   
 
 

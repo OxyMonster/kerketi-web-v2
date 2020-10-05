@@ -19,6 +19,8 @@ export class UserProfileComponent implements OnInit {
   timedOut = false;
   lastPing?: Date = null;
   title = 'angular-idle-timeout';
+
+  modalType: string; 
  
   @ViewChild("sessionModal", { static: true }) sessionModal: ElementRef;
 
@@ -42,25 +44,30 @@ export class UserProfileComponent implements OnInit {
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
     idle.onIdleEnd.subscribe(() => { 
+      this.refreshSession(); 
+      this._modalService.dismissAll();
       this.idleState = 'No longer idle.'
       console.log(this.idleState);
       this.reset();
-    });
+    }); 
     
     idle.onTimeout.subscribe(() => {
+      this.modalType = 'expired'; 
+      this._modalService.dismissAll();
       this.idleState = 'Timed out!';
       this.timedOut = true;
-      console.log(this.idleState);
+      console.log(this.idleState); 
       this._utileService.logOut();
     });
     
     idle.onIdleStart.subscribe(() => {
+        this.modalType = 'alert';
         this._modalService.dismissAll();
         this.openModal();
         this.idleState = 'You\'ve gone idle!'
         console.log(this.idleState);
 
-    });
+    }); 
     
     idle.onTimeoutWarning.subscribe((countdown) => {
       this.idleState = 'You will time out in ' + countdown + ' seconds!'
@@ -88,10 +95,36 @@ export class UserProfileComponent implements OnInit {
     this.timedOut = false;
   }; 
 
+
+  refreshSession() { 
+
+    const parameters = {
+      "domainId": 0,
+      "languageId": this._utileService.getUserLanguage(),
+      "msisdn": this._utileService.getMsidn(),
+      "sessionId": this._utileService.getSessionId(),
+      "username": "string"
+    }; 
+
+    return this._utileService
+               .refreshSession(parameters)
+               .subscribe( data => {
+                console.log(data);
+                this._modalService.dismissAll()
+                
+               }, err => {
+                 console.log(err);
+                  this._utileService.logOut();
+               })
+};
+
   openModal() {
 
     this._modalService.open(this.sessionModal, { size: 'md' }); 
-  }
+  };
+
+
+
 
 
 
