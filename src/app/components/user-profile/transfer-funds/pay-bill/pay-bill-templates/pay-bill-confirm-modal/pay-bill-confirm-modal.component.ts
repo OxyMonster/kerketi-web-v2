@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PaymentsService } from 'src/app/services/payments.service';
+import { TransferFundsService } from 'src/app/services/transfer-funds.service';
 import { UtileService } from 'src/app/shared/services/utile.service';
 
 @Component({
@@ -13,25 +14,28 @@ export class PayBillConfirmModalComponent implements OnInit {
 
   isPayed: boolean = false; 
   isPayErr: boolean = false; 
+  otpCode: string;
+
 
   constructor(
     private _paymentService: PaymentsService,
-    private _utileService: UtileService
+    private _utileService: UtileService,
+    private _trasnferFundService: TransferFundsService
 
   ) { }
 
   ngOnInit(): void {
     console.log(this.selectedTemplate);
-    
+    this.getOtpCode(); 
   }
 
 
   payBill() {
 
-
     const billPaySchema = {
       "languageId": this._utileService.getUserLanguage(),
       "msisdn": this._utileService.getMsidn(),
+      "otp": this.otpCode,
       "parameters": [
         {
             "key": "abonentCode",
@@ -45,38 +49,6 @@ export class PayBillConfirmModalComponent implements OnInit {
             "key": "currency",
             "value": "GEL"
         },
-        {
-            "key": "agentPaymentId",
-            "value": "1000000001"
-        },
-        {
-            "key": "businessDayId",
-            "value": "1"
-        },
-        {
-            "key": "paymentChannel",
-            "value": "MFE"
-        },
-        {
-            "key": "paymentPoint",
-            "value": "MFE"
-        },
-        {
-            "key": "srcBankCode",
-            "value": "MFE"
-        },
-        {
-            "key": "srcBankAccountNumber",
-            "value": "MFEAccount"
-        },
-        {
-            "key": "dstBankCode",
-            "value": "UCC"
-        },
-        {
-            "key": "dstBankAccountNumber",
-            "value": "uccAccount"
-        }
     ],
       "serviceId": this.selectedTemplate[0]['serviceId'],
       "sessionId": this._utileService.getSessionId()
@@ -109,6 +81,32 @@ export class PayBillConfirmModalComponent implements OnInit {
             console.log(err);
             
           });
-        }
+  };
+
+  getOtpCode() {
+
+    const schema = {
+      "amount": this.selectedTemplate[0]['amount'],
+      "domainId": 2,
+      "languageId": this._utileService.getUserLanguage(),
+      "msisdn": this._utileService.getMsidn(),
+      "os": "IOS",
+      "sessionId": this._utileService.getSessionId()
+    };
+console.log(schema);
+
+    return this._trasnferFundService
+               .getOtp(schema)
+               .subscribe(data => {
+                 console.log(data);
+                 
+      }, err => {
+          console.log(err);
+          
+               })
+  }; 
+
+
 
 }
+

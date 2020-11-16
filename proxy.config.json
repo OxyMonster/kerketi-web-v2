@@ -1,6 +1,6 @@
 {
     "/api/*": {
-      "target": "http://188.129.255.187:2020/k-web-bridge/",
+      "target": "http://api-dev.kerketi.ge:8191/k-web-bridge/",
       "secure": false,
       "changeOrigin": true,
       "logLevel": "debug",

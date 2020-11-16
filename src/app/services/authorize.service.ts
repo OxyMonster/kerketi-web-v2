@@ -41,4 +41,18 @@ export class AuthorizeService {
     }
   }; 
 
+  otpUnauthenticated(data) {
+    const url = '/users/otp-unauthenticated'; 
+
+    if (!isDevMode()) {
+
+      return this.http.post(this.envURL + url, data); 
+
+    } else {
+      
+      return this.http.post( `api/${url}`, data); 
+    }
+  };
+
+
 }

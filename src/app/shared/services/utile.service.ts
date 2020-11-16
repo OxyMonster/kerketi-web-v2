@@ -57,6 +57,7 @@ export class UtileService {
   }; 
 
   logOut() {
+    
     this.router.navigate(['/main/login']); 
     return localStorage.clear(); 
 

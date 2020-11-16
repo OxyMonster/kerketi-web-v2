@@ -1,0 +1,37 @@
+<form [formGroup] = 'registerCardForm' 
+      (ngSubmit) = 'onSubmit(registerCardForm)'
+      class="register pr-0">
+      <div class="register__back d-flex col-12">
+          <div class=""
+                (click) = 'emitGoBack()'>
+            <fa-icon [icon] = 'faBackward'></fa-icon>
+            <p>უკან დაბრუნება</p>
+          </div>
+
+      </div>
+    <div class="register__item">
+        <div class="">
+            <label for="registeredCardName">ბარათის მფლობელი:</label>
+        </div>
+        <div class="">
+            <input class="" 
+                   formControlName = 'registeredCardName'
+                   id="registeredCardName"
+                   >
+        </div>
+    </div>
+    <!-- <div class="register__item">
+         <div class="">
+            <label for="registeredCardId">ბარათის მონაცემები: </label>
+        </div>
+        <div class="">
+            <input class="" 
+                    id="registeredCardId"
+                    >
+        </div>
+    </div> -->
+
+    <div class="register__button col-12 d-flex justify-content-end mt-5">
+        <button type = 'submit' class="btn btn--green">გაგრძელება</button>
+    </div>
+</form>

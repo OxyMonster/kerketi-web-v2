@@ -105,9 +105,9 @@ export class PaymentsBillersModalComponent implements OnInit {
 
 
   payBill() {
-
-
+    
     const billPaySchema = {
+      
       "languageId": this.utileService.getUserLanguage(),
       "msisdn": this.utileService.getMsidn(),
       "parameters": [
@@ -208,8 +208,9 @@ export class PaymentsBillersModalComponent implements OnInit {
   getUserBalance() {
 
     const userInfo = {
+      domainId: 2,
       languageId: this.utileService.getUserLanguage(),
-      msisdn: this.utileService.getMsidn(),
+      username: this.utileService.getMsidn(),
       sessionId: localStorage.getItem('sessionId')
     }; 
 

@@ -16,23 +16,50 @@ export class FillMobileConfirmModalComponent implements OnInit {
 
   isLoading: boolean = false; 
   isPayed: boolean = false; 
+  otpCode: string; 
 
   constructor(
     private _paymentsService: PaymentsService,
+    private _trasnferFundService: TransferFundsService,
     private _utileService: UtileService
   ) { }
 
   ngOnInit(): void {
-      
       console.log(this.selectedAbonent);
-      console.log(this.isFavourite);
+    this.getOtpCode();
       
       
   }
 
+  getOtpCode() {
+ 
+    const schema = {
+      "amount": this.selectedAbonent['parameters'][0]['value'],
+      "domainId": 2,
+      "languageId": this._utileService.getUserLanguage(),
+      "msisdn": this._utileService.getMsidn(),
+      "os": "IOS",
+      "sessionId": this._utileService.getSessionId()
+
+    }; 
+
+    return this._trasnferFundService
+      .getOtp(schema)
+      .subscribe(data => {
+        console.log(data);
+                          
+      }, err => {
+        console.log(err);
+                    
+      }); 
+    
+    
+  }; 
+
   onSubmit() {
     this.isLoading = true;     
-
+    this.selectedAbonent['otp'] = this.otpCode; 
+    
     return this._paymentsService
                .payBill(this.selectedAbonent)
                .subscribe( data => {
@@ -67,12 +94,14 @@ export class FillMobileConfirmModalComponent implements OnInit {
                               .addTemplates(schema)
                               .subscribe( template => {
                                 console.log(template);
+                                template['isSuccess'] ? this.isPayed = true : this.isPayed = false;
+
                                 
                               }, err => console.log(err) )
                  }
                  
                  data['isSuccess'] ? this.isPayed = true : this.isPayed = false;
-
+      
                }, err => {
                   this.isLoading = false;   
                    console.log(err);

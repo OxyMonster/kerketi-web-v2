@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthorizeService } from 'src/app/services/authorize.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
@@ -12,128 +12,106 @@ import { TransferFundsService } from 'src/app/services/transfer-funds.service';
 })
 export class AuthLoginComponent implements OnInit {
 
+  @ViewChild('usernameLabel') usernameLabel:ElementRef; 
+
   faUserCheck = faUserCircle;
 
   userForm: FormGroup;
   isEngLangActive: boolean = false; 
-  isError: boolean = false; 
+  isOtpActive = false;
+
   isLoading: boolean = false; 
   isSubmitted: boolean = false; 
+  isErr = false;
+  
   errorMessage: string; 
+  
   isSetNewPassword: boolean = false; 
   updatePassError: string; 
 
+  private passwordPattern = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[!-\\/|:-@|\\[-`|{-~])(?=.*\\d)(?=.{8,}).+$"); 
+
 
   constructor(
-    private router: Router,
     private fb: FormBuilder, 
     private _authService: AuthorizeService,
-    private _utileService: UtileService,
-    private _transferFundsService: TransferFundsService
+
   ) {
     this.userForm = this.fb.group({
       msisdn: [ '', Validators.required ], 
-      pin: ['', Validators.required ],
+      pin: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern(this.passwordPattern)
+      ]) ],
       languageId: 1,
     })
 
    }
 
-  ngOnInit(): void {
+   ngAfterViewInit(): void {
+     this.focusOnUsername();
+     
+   }
 
+  ngOnInit(): void {
+    
   }
 
 
   get f() { return this.userForm.controls; }; 
 
+  focusOnUsername() {
+    this.usernameLabel.nativeElement.focus(); 
+  };
 
   toggleLanguage() {
 
     this.isEngLangActive = !this.isEngLangActive; 
-    
-    // return this.isEngLangActive ? this.transalteService.use('en') : this.transalteService.use('geo'); 
-
   
   }; 
 
-
-  onSubmit(userForm: any) {
-
-    this.isError = false;
-    this.isSubmitted = true; 
-      //  * * * Set Language * * * 
-      this.isEngLangActive ? this.userForm.controls['languageId'].setValue(2) : 
-                             this.userForm.controls['languageId'].setValue(1); 
-
-      if ( this.isSubmitted && this.userForm.valid ) {
-        
-            this.isLoading = true; 
-
-              // * * * Authorize * * * 
-            this._authService
-                .userLogin(this.userForm.value)
-                .subscribe( data => {
-        
-                  // * * * Error * * * *  
-                  if ( !data['isSuccess'] ) {
-        
-                    this.isError = true; 
-                    this.isLoading = false;
-                    this.errorMessage = data['errorMessage']
-        
-                  // * * * Set new password * * * 
-                    if ( data['errorCode'] === 'CORE_1015' ) {
-        
-                      this.isSetNewPassword = true; 
-                      this.updatePassError = data['errorMessage']; 
-        
-                    } 
-                  // * * * *  Success * * * *  
-        
-                  } else { 
-                    this.isError = false;
-                    this.isLoading = false;
-              
-                    // * * * Save user info in Local Stroge * * * * 
-                    localStorage.setItem('sessionId', data['data']['sessionId']);
-                    localStorage.setItem('msisdn', userForm.value.msisdn );
-                    this.isEngLangActive ? localStorage.setItem('languageId', '2') : 
-                                           localStorage.setItem('languageId', '1'); 
-                    
-                    if ( this._utileService.isSessionIDValid() ) {
-
-                      this.router.navigate(['/user-profile/home']); 
-                    } else {
-                      
-                      this.router.navigate(['/main/login']);
-                    }; 
-                  }
-                  console.log(data);
-                  
-                }, err => console.log(err)); 
-
-
-      } else { 
-
-        return; 
-      }
+  getOtpCode() {
     
+    this.isErr = false; 
 
-  }; 
+    const schema = {
+  //     "domainId": 2,
+  // "languageId": 1,
+  //     "msisdn": "599123270",
+  
+        "domainId": 2,
+        "languageId": 1,
+        "msisdn": this.userForm.value['msisdn'],
+        "regOtp": true
+    }
 
+    if ( this.userForm.get('pin').errors ) {
+
+      console.log("enter valid password !");
+      this.isErr = true;
+      this.errorMessage = `
+      მინიმალური სიმბოლოების რაოდენობა: 8
+      მინიმალური ციფრების რაოდენობა: 1
+      მინიმალური დიდი ასოს რაოდენობა: 1
+      მინიმალური პატარა ასოს რაოდენობა: 1
+      მინიმალური სხვა სიმბოლოს რაოდენობა: 1`; 
+      
+      
+    } else {
+     
+      this.isOtpActive = true; 
+
+      return this._authService
+                 .otpUnauthenticated(schema)
+                 .subscribe( data => console.log(data), 
+                             err => console.log(err) )
+    }
  
-  
+  };
 
-  getResult(e) {
-    
-    console.log(e);
-    this.isSetNewPassword = e; 
-    
-  }; 
-
-
-
-
+  getOtpStatus(e) {
+    this.isOtpActive = e; 
+  };
 
   
 

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TransactionsComponent } from './transactions.component'; 
 import { TransactionsService } from "../../../services/transactions.service";
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FilterTransactionsComponent } from './filter-transactions/filter-transactions.component';
 
 const COMPONENTS = [
   TransactionsComponent
@@ -10,7 +11,8 @@ const COMPONENTS = [
 
 @NgModule({
   declarations: [
-    COMPONENTS
+    COMPONENTS,
+    FilterTransactionsComponent
   ],
   imports: [
     CommonModule,

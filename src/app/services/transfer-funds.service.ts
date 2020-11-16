@@ -1,6 +1,7 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { EnvironmentUrlService } from 'src/app/shared/services/environment-url.service';
+import { UtileService } from '../shared/services/utile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class TransferFundsService {
 
   constructor(
     private http: HttpClient,
-    private envURL: EnvironmentUrlService
+    private envURL: EnvironmentUrlService,
 
   ) { }
 
@@ -98,12 +99,9 @@ export class TransferFundsService {
   }  
 
  
-  getClientIP() {
-    console.log("hereeee");
-    
+  getClientIP() {    
     return this.http.get("http://api.ipify.org/?format=json")
-           
-              
+      
   };
 
 
@@ -153,6 +151,63 @@ export class TransferFundsService {
     }
 
   }; 
+
+
+  getRegisteredCards( data: any ) {
+
+    if ( !isDevMode() ) {
+      
+      return this.http
+                 .post(this.envURL.urlAddress + '/cards/tbc/registered-cards', data ); 
+
+    } else {
+
+      return this.http
+                 .post(this.proxyURL + '/cards/tbc/registered-cards', data ); 
+
+    }
+
+  }; 
+
+  getTbcConfirmationToken(schema) {
+    
+    const url = '/cards/tbc/get-confirmation-token';
+
+    if ( !isDevMode() ) { 
+      return this.http.post(this.envURL.urlAddress + url, schema ); 
+
+    } else {
+      return this.http.post(this.proxyURL + url, schema ); 
+
+    }
+  }; 
+
+  registerNewCard(schema) {
+    const url = '/cards/tbc/add-registered-card';
+
+    if ( !isDevMode() ) { 
+      return this.http.post(this.envURL.urlAddress + url, schema ); 
+
+    } else {
+      return this.http.post(this.proxyURL + url, schema ); 
+
+    }
+
+  };
+
+  fillBallanceWithRegisteredCard(schema) {
+    const url = '/cards/tbc/pay-by-registered-card'
+
+    if ( !isDevMode() ) { 
+      return this.http.post(this.envURL.urlAddress + url, schema ); 
+
+    } else {
+      return this.http.post(this.proxyURL + url, schema ); 
+
+    }
+  }
+  
+
 
 
 

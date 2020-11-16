@@ -37,7 +37,7 @@ export class UserProfileComponent implements OnInit {
     this._translateService.use('geo');
 
     // sets an idle timeout of 5 seconds, for testing purposes.
-    idle.setIdle(300);
+    idle.setIdle(500);
     // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
     idle.setTimeout(5);
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document

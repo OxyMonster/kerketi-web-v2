@@ -28,8 +28,9 @@ export class UserInfoBallanceLogoutComponent implements OnInit {
 
   getUserInfo() {
     const userInfo = {
+      domainId: 2,
       languageId: this._utileService.getUserLanguage(),
-      msisdn: this._utileService.getMsidn(),
+      username: this._utileService.getMsidn(),
       sessionId: localStorage.getItem('sessionId')
     }; 
 

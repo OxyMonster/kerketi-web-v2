@@ -1,0 +1,82 @@
+<ng-container *ngIf="!isRegisterNewActive; else showRegisterNewCardContent">
+    <div class="box">
+        <div class="box__title">
+            <ng-container *ngIf="!isRegisterNewActive && !isDefaultMenu; else showTitle">
+                <p (click)="showDefaultMenu()">უკან დაბრუნება</p>
+            </ng-container>
+            <ng-template #showTitle>
+                <h4 *ngIf="boxType === 'from'">აირჩიეთ კატეგორია:</h4>
+            </ng-template>
+            
+        </div>
+        <div class="box__img mt-4">
+            <fa-icon [icon] = 'faCreditCard'></fa-icon>
+        </div> 
+    
+        <div class="box__category d-flex justify-content-center">
+            <div class="box__category__title w-100"
+                 [ngClass]="{'p-0': boxType !== 'from'}">
+                <p *ngIf="boxType === 'from'"> აირჩიე გადახდის ტიპი </p>
+                <p *ngIf="boxType !== 'from'"> {{ selectedPayment }} </p>
+            </div>
+    
+            <div class="box__category__box" 
+                 *ngIf="boxType === 'from' && selectedBoxType === 'from'">
+                <ng-container *ngIf="isDefaultMenu; else showTeamplates">
+                    <div class="box__category__box__item d-flex "
+                         (click)="onPayTypeSelect('default')">
+                        <div class="box__category__box__item__img col-3">
+                            <fa-icon [icon] = 'faAngleDoubleRight' ></fa-icon>
+                        </div>
+                        <div class="col">
+                            <p>გადახდა ბარათის დამატების გარეშე</p>
+                        </div>
+                    </div>
+
+                    <div class="box__category__box__item d-flex"
+                         (click)="onPayTypeSelect('new')">
+                        <div class="box__category__box__item__img col-3">
+                            <fa-icon [icon] = 'faPlus' ></fa-icon>
+                        </div>
+                        <div class="col">
+                            <p>ახალი ბარათის დამატება</p>
+                        </div>
+                    </div>
+                 
+                    <div class="box__category__box__item d-flex "
+                        (click)="onPayTypeSelect('template')">
+                    <div class="box__category__box__item__img col-3">
+                        <fa-icon [icon] = 'faCheckDouble' ></fa-icon>
+                    </div> 
+                    <div class="col">
+                        <p>დამატებული ბარათებიდან არჩევა</p>
+                    </div>
+                </div>
+                </ng-container>
+                    
+                <ng-template #showTeamplates>
+                    <div class="box__category__box__saved-cards">
+                        <app-registered-card-templates (selectedTemplate) = 'getSelectedTemplate($event)'
+                        ></app-registered-card-templates>
+                    </div>
+                </ng-template>
+                       
+            </div>
+        </div>
+        <div class="box__button d-flex justify-content-center"
+             *ngIf="selectedBoxType !== 'from'">
+            <button class="btn--dark" 
+                    (click)="onChange()">შეცვლა</button>
+        </div>
+      
+    
+    </div>
+</ng-container>
+
+<ng-template #showRegisterNewCardContent>
+    <div class="box__category__box__new-card"
+        >
+        <app-register-new-card (result) = 'getResultFromRegisterNew($event)'
+                               (goBack) = 'isGoBackFromRegNew($event)'></app-register-new-card>
+    </div>
+</ng-template>

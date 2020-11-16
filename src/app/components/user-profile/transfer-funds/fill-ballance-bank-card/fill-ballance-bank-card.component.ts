@@ -13,12 +13,18 @@ export class FillBallanceBankCardComponent implements OnInit {
 
   faCoins = faCoins; 
   faEnvelopeOpenText = faEnvelopeOpenText; 
+  isLoading: boolean = false;
 
   isActive: boolean = true; 
+  selectedBoxType: string = 'from'; 
   
   clienIp: string; 
-  description: string = 'დანიშნულება (არასავალდებული)'; 
+  description: string = ''; 
   selectedAmount: number;  
+
+  selectedTemplate: any; 
+  confirmToken: string;
+
   
   constructor(
     private _transferFundService: TransferFundsService, 
@@ -32,14 +38,29 @@ export class FillBallanceBankCardComponent implements OnInit {
 
   }
 
-  toggle() {
-    return this.isActive = !this.isActive
+  getResult(event) {
+    this.selectedBoxType = event; 
+
+  };
+
+  getSelectedTemaplte(e) {
+    this.selectedTemplate = e; 
+
+    console.log(this.selectedTemplate);
+    
+  };
+
+  toggle(boxType) {
+    this.selectedBoxType = boxType;
+    console.log(boxType);
+    this.selectedBoxType; 
+     
   }; 
 
 
   onDescriptionSelect() {
-   
-      this.toggle(); 
+    
+      this.selectedBoxType = 'pay';
   }
 
   getClientIP() {
@@ -55,41 +76,93 @@ export class FillBallanceBankCardComponent implements OnInit {
                 
   }; 
 
-  onSubmit() {
+  getTbcConfirmationToken() {
 
-    const paySchema = {
-      "amount": this.selectedAmount,
-      "clientIpAddr": this.clienIp, 
-      "currency": "GEL",
-      "description": 'საკუთარი ანგარიშის შევსება საბანკო ბარათით ',
-      "domainId": 2,
+    const schema = {
+      "domainId": 1,
       "languageId": this.utileService.getUserLanguage(),
       "msisdn": this.utileService.getMsidn(),
-      "rememberCardParams": false,
       "sessionId": this.utileService.getSessionId(),
-      "tbcCommand": "Registration"
+      "username": ""
+    
     }; 
 
-    if ( this.selectedAmount > 0 ) {
+    return  this._transferFundService
+                .getTbcConfirmationToken(schema)
+                .subscribe( data => {
+                  this.confirmToken = data['data']
+                  
+                }, err => console.log(err) )
+  };
+
+  onSubmit() {
+
+    this.isLoading = true;
+
+    if ( this.selectedTemplate === 'გადახდა ბარათის დამატების გარეშე' ) {
+      console.log('Pay without template');
       
+      const paySchema = {
+        "amount": this.selectedAmount,
+        "clientIpAddr": this.clienIp, 
+        "currency": "GEL",
+        "description": 'საკუთარი ანგარიშის შევსება საბანკო ბარათით ',
+        "domainId": 2,
+        "languageId": this.utileService.getUserLanguage(),
+        "msisdn": this.utileService.getMsidn(),
+        "rememberCardParams": false,
+        "sessionId": this.utileService.getSessionId(),
+        "tbcCommand": "Registration"
+      }; 
+        
       return this._transferFundService
-                 .getTbcTransactionID(paySchema)
-                 .subscribe( data => {
+                  .getTbcTransactionID(paySchema)
+                  .subscribe( data => {
   
                   console.log( data );
-                  
+                  this.isLoading = false;
                   //  * * * Post to Eccomerce with transactionID * * * *
-                  this._redirectService.post({'trans_id': data['data']}, this._redirectService.eCommerceURL)
-      
-    }); 
-    } else {
+                  this._redirectService
+                      .post({'trans_id': data['data']}, this._redirectService.eCommerceURL)
+        }, err => {
+          console.log(err);
+          this.isLoading = false;
 
-      if ( this.selectedAmount <= 0 ) {
-         console.log('wrong amount');
+        }); 
+  
+    
+    } else {
+      console.log("Pay with Template");
+      this.getTbcConfirmationToken(); 
+
+      const paySchema = {
+        "amount": this.selectedAmount,
+        "clientIpAddr": this.clienIp,
+        "confirmationToken": this.confirmToken,
+        "currency": "GEL",
+        "description": "",
+        "domainId": 2,
+        "languageId": this.utileService.getUserLanguage(),
+        "msisdn": this.utileService.getMsidn(),
+        "registeredCardId": this.selectedTemplate['cardId'],
+        "registeredCardName": this.selectedTemplate['cardName'],
+        "sessionId": this.utileService.getSessionId(),
+        "tbcCommand": "Registration"
+      
       }; 
 
+      return this._transferFundService
+                 .fillBallanceWithRegisteredCard(paySchema)
+                 .subscribe(data => {
+                   console.log(data);
+                   this.isLoading = false;
+                   
+                 }, err => {
+                   console.log(err);
+                   this.isLoading = false;
+                   
+                 })
     }
-  
   
   }
 

@@ -30,10 +30,11 @@ export class TransferBankOtpModalComponent implements OnInit {
   getOtp() {
 
     const schema  = {
-      "domainId": 0,
+      "amount": this.transferData['amount'],
+      "domainId": 2,
       "languageId": this._utileService.getUserLanguage(),
       "msisdn": this._utileService.getMsidn(),
-      "os": "ANDROID",
+      "os": "IOS",
       "sessionId": this._utileService.getSessionId()
     };  
 

@@ -92,6 +92,8 @@
         left: 4px;
         bottom: 4px;
         background-color: white;
+        background-position: center;
+        background-size: contain;
         -webkit-transition: .4s;
         transition: .4s;
       }
@@ -121,6 +123,15 @@
 
 }; 
 
+.ge {
+  background-image: url('../../../../assets/img/flags/georgia-flag-xs.png');
+  background-repeat: no-repeat;
+};
+
+.us{
+  background-image: url('../../../../assets/img/flags/united-states-of-america-flag-xs.png');
+  background-repeat: no-repeat;
+}
 
 .burger {
   display: none;

@@ -79,8 +79,15 @@
     <div class="col-lg-3 transfer__to"
          [ngClass]="{'active': selectedBox === 'to', 'col-lg-6': selectedBox === 'to'}">
         <div class="transfer__to__title">
-            <h4 *ngIf="selectedBox === 'to'">ანგარიშზე?</h4>
-        </div>
+            <h4 *ngIf="selectedBox === 'to' && !isNewPaySelected">ანგარიშზე?</h4>
+            <div class="d-flex align-items-center" 
+                *ngIf="isNewPaySelected"
+                style="cursor: pointer;"
+                (click)="goBack()">
+                <fa-icon [icon] = 'faChevronLeft'></fa-icon>
+                <h4>უკან დაბრუნება</h4> 
+            </div>
+        </div> 
         <div class="transfer__to__img">
             <div class="transfer__to__img__container">
                 <fa-icon [icon] = 'faUser'></fa-icon>
@@ -119,21 +126,27 @@
                         </button>
                        
                         <div class="templates__new__my" 
-                             *ngFor="let item of allTemplates"
+                             *ngFor="let item of allTemplates; let i = index"
                              >
-                             <div class="row m-0 w-100" 
-                                  (click)="onTemplateSelect(item)">
-                                <div class="col-3 templates__new__my__img">
-                                    <fa-icon [icon] = 'faUser'></fa-icon>
-                                </div>
-        
-                                <div class="col templates__new__my__info">
-                                    <div class="templates__new__my__info__name">
-                                        <p> {{ item.name }} </p>
+                             <div class="row m-0 w-100">
+                                 <div class="col-10 d-flex" (click)="onTemplateSelect(item)">
+                                     <div class="col-3 templates__new__my__img">
+                                         <fa-icon [icon] = 'faUser'></fa-icon>
+                                     </div>
+             
+                                     <div class="col-7 templates__new__my__info">
+                                         <div class="templates__new__my__info__name">
+                                             <p> {{ item.name }} </p>
+                                         </div>
+                                         <div class="templates__new__my__info__phone">
+                                             <p> {{ item.transferTo }} </p>
+                                         </div>
+                                     </div>
                                     </div>
-                                    <div class="templates__new__my__info__phone">
-                                        <p> {{ item.transferTo }} </p>
-                                    </div>
+                                 
+                                <div class="col templates__new__my__delete"
+                                     (click) = 'deleteTemplate(item, i)'>
+                                    <fa-icon [icon] = 'faTrash'></fa-icon>
                                 </div>
 
                              </div>  
@@ -187,6 +200,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 
 

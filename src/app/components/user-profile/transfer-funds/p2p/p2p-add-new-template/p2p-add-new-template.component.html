@@ -18,7 +18,7 @@
         </div>
         <div class="new-pay__btn py-3">
             <div class="" *ngIf="!isLoading; else showLoading">
-                <button (click)="nextStep(phoneNumber)">გაგძელება</button>
+                <button (click)="getUserInfoWithNumber(phoneNumber)">გაგძელება</button>
             </div>
 
             <ng-template #showLoading>

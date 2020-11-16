@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthorizeHeaderComponent implements OnInit {
 
+  isEngActive: boolean = false;
+
   constructor(
     private _router:  Router
   ) { }
@@ -15,10 +17,15 @@ export class AuthorizeHeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   routeToHome() {
 
     this._router.navigate(['/main/login']);
   }; 
+
+  toggleLanguage() {
+    this.isEngActive = !this.isEngActive;
+  }
 
   
 }

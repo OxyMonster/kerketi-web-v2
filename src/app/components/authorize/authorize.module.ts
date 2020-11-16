@@ -11,15 +11,17 @@ import { HowItWorksComponent } from './how-it-works/how-it-works.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { LoginOtpComponent } from './auth-login/login-otp/login-otp.component';
 
 @NgModule({
   declarations: [ 
     AuthorizeComponent, 
     AuthorizeHeaderComponent,
-    AuthLoginComponent,
+    AuthLoginComponent,   
     AboutUsComponent,
     ContactComponent,
     HowItWorksComponent,
+    LoginOtpComponent,
   ],
   imports: [
     CommonModule,   

@@ -79,7 +79,15 @@
     <div class="col-lg-3 transfer__to"
          [ngClass]="{'active': selectedBox === 'to', 'col-lg-6': selectedBox === 'to'}">
         <div class="transfer__to__title">
-            <h4 *ngIf="selectedBox === 'to'">მობილურის ნომერზე?</h4>
+            <h4 *ngIf="selectedBox === 'to' && !isNewPaySelected">მობილურის ნომერზე?</h4>
+            <div *ngIf="isNewPaySelected" 
+                  class="d-flex align-items-center"
+                  style="cursor: pointer;"
+                  (click)="isNewPaySelected = false"
+                  >
+                <fa-icon [icon] = 'faChevronLeft'></fa-icon>
+                <h4>უკან დაბრუნება</h4>
+            </div>
         </div>
         <div class="transfer__to__img">
             <div class="transfer__to__img__container">
@@ -100,19 +108,17 @@
     
                 <div class="transfer__to__template " *ngIf="isTemplateSelected">
                     <div class="" *ngFor="let template of selectedTemplate">
-                        <div class="d-flex justify-content-center">
-                            <p *ngIf="isNewTemplate"> 
-                                {{ template['providerTitle'] }} 
-                            </p>
-                            <p *ngIf="!isNewTemplate"> {{ template['name'] }} </p>
+                        
+                        <div *ngIf="!isNewTemplate"  
+                             >
+                            <p> {{ template['serviceName'] }} </p>
+                            <p> {{ template['name'] }} </p>
                         </div> 
-                        <div class="d-flex justify-content-center">
-                            <p class="m-0" *ngIf="isNewTemplate"> 
-                                {{ template['abonentCode'] }} 
-                            </p>  
-                            <p *ngIf="!isNewTemplate"> 
-                                {{ template['parameters'][2]['value'] }} 
-                            </p>
+
+                        <div *ngIf="isNewTemplate" 
+                             >
+                            <p> {{ template['providerTitle'] }}</p>
+                            <p class="m-0"> {{ template['abonentCode'] }} </p>  
                         </div>
                     </div>  
                 </div>
@@ -143,15 +149,13 @@
 
                                       <div class="col-7 templates__new__my__info">
                                           <div class="templates__new__my__info__name">
-                                              <p> {{ item.parameters[2]['value'] }} </p>
+                                              <p> {{ item['name'] }} </p>
                                           </div>
                                           <div class="templates__new__my__info__phone">
-                                              <p> {{ item.transferTo }} </p>
+                                              <p> {{ item.serviceName }} </p>
                                           </div>
                                       </div>
                                   </div>
-                                  
-        
 
                                 <div class="col templates__new__my__delete">
                                     <fa-icon style="cursor: pointer; z-index: 4;" 

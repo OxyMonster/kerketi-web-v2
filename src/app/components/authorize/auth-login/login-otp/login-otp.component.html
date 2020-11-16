@@ -1,0 +1,50 @@
+<div class="otp px-5">
+    <div class="otp__back d-flex align-items-center">
+        <div class="">
+             <fa-icon [icon] =  'faChevronLeft'></fa-icon>
+        </div>
+        <div class="">
+            <p class="pl-3" (click)="goBack()">უკან დაბრუნება</p>
+        </div> 
+         
+    </div>
+  
+    <div class="otp__otp mt-5">
+        <label for="otpCode"
+                #otpLabel
+                >გთხოვთ შეიყვანოთ თქვენს მობილურის ნომერეზე გამოგზავნილი ერთჯერადი პაროლი:</label>
+        <input type="text" 
+               id="otpCode"
+               placeholder=""
+               [(ngModel)]="otpCode"
+               >
+    </div>
+    <div class="otp__new mt-3">
+        <p (click)="getOtpCode()">ახალი კოდის მიღება</p>
+    </div>
+
+    <div class="otp__button d-flex justify-content-center col-12 mt-5 px-0">
+    
+        <button *ngIf="!isLoading; else showLoading" 
+                class="btn--red" 
+                type="submit"
+                (click)="onSubmit()"
+                >
+            {{ 'login.login' | translate }}    
+        </button>
+
+        <ng-template #showLoading>
+            
+            <ng-container *ngIf="!isErr; else showErr;">
+                  <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                     <span class="sr-only">Loading...</span>
+                  </div> 
+            </ng-container>
+            
+            <ng-template #showErr>
+                <p> {{ errMessage }} </p>
+            </ng-template>
+                                  
+        </ng-template>
+    </div> 
+</div>

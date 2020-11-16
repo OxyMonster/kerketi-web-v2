@@ -1,0 +1,93 @@
+@import 'src/assets/variables'; 
+
+.otp {
+    
+    &__back {
+            font-size: 15px;
+            cursor: pointer;
+            color: $primary;
+            align-items: center;
+            // position: absolute;
+            top: 30px;
+        
+        p {
+            font-size: 12px;
+            cursor: pointer;
+            color: $primary;
+            margin: 0;
+        }
+    };
+    &__new {
+        margin-top: 70px;
+        p {
+            color: #758192;
+            font-size: 12px;
+            cursor: pointer;
+            border-bottom: 1px solid #758192;
+            display: inline;
+            padding-bottom: 5px;
+
+            &:hover {
+                transition: .3s;
+                color: $dark-blue;
+                border-bottom: 1px solid $dark-blue;
+
+            }
+        }
+    }; 
+
+    &__label {
+        label {
+            color: $dark-blue;
+            font-size: 14px;
+            text-align: left;
+            cursor: pointer;
+            width: 100px;
+            padding-bottom: 5px;
+        }; 
+    }
+
+    &__otp {
+        label {
+            color: $dark-blue;
+            font-size: 11px;
+            text-align: left;
+            cursor: pointer;
+            // width: 100px;
+            padding-bottom: 5px;
+        }; 
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px 16px;
+            line-height: 1.5;
+            color: #5d6163;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #d9d9e6;
+            outline-color: #1a69ae;
+            border-radius: 4px;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            outline: 0;
+            font-size: 12px;
+
+            &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                font-size: 13px;
+              }
+              &::-moz-placeholder { /* Firefox 19+ */
+                font-size: 13px;
+              }
+              &:-ms-input-placeholder { /* IE 10+ */
+                font-size: 13px;  
+              }
+              &:-moz-placeholder { /* Firefox 18- */
+                font-size: 13px;
+              }
+
+            &:focus {
+                box-shadow: none;
+                border-color: #a5a5b1;
+            }
+        }
+    }
+}

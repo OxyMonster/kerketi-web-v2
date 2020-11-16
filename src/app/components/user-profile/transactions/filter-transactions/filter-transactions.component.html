@@ -1,0 +1,12 @@
+<div class="col">
+    <div ngbDropdown class="d-inline-block">
+      <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle> {{ selectedDate }} </button>
+      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem (click)="changeDate('ბოლო კვირა')"> ბოლო კვირა </button>
+        <button ngbDropdownItem (click)="changeDate('ბოლო თვე')"> ბოლო თვე </button>
+        <button ngbDropdownItem (click)="changeDate('ბოლო 3 თვე')"> ბოლო 3 თვე </button>
+        <button ngbDropdownItem (click)="changeDate('ბოლო 6 თვე')"> ბოლო 6 თვე </button>
+        <button ngbDropdownItem (click)="changeDate('ბოლო 12 თვე')"> ბოლო 12 თვე </button>
+      </div> 
+    </div>
+  </div>

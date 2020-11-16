@@ -1,0 +1,37 @@
+@import 'src/assets/variables';
+
+.filter {
+    position: relative;
+    border: 2px solid #dedfe0;
+    border-radius: 5px;
+    padding: 8px 11px 8px 11px;
+    min-width: 170px;
+
+
+    &__selected {
+            cursor: pointer;
+        p {
+            font-size: 14px;
+            margin: 0;
+        }
+    };
+
+    &__box {
+        display: none;
+        background-color: white;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        border: 2px solid $primary;
+
+        p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+    }
+};
+
+.active {
+    display: block !important; 
+}

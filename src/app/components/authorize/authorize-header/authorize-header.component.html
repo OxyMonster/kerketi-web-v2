@@ -25,15 +25,18 @@
                         {{ 'login_header.contact' | translate }}
                     </a> 
                 </div>
-                <div class="header__nav__item col-1 p-0 d-flex justify-content-end">
-                    <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
+                <div class="header__nav__item col-1 p-0 d-flex justify-content-end align-items-center">
+                    <label class="switch" >
+                        <input type="checkbox" checked >
+                        <span  [ngClass]="{'ge': isEngActive, 'us': !isEngActive}" 
+                                (click) = 'toggleLanguage()'
+                                class="slider round"></span>
                     </label>
                 </div>
         </div>
+        
         <div class="burger">
-           <app-burger></app-burger>
+           <!-- <app-burger></app-burger> -->
         </div>
     </div>
 </div>

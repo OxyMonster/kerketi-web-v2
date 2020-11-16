@@ -7,24 +7,21 @@ import { Subject } from 'rxjs';
 })
 export class HomeService {
 
-  proxyURL:string = 'api/users/'; 
-  getUserInfoURL: string = 'users/get-user-info'; 
+  public userData: Subject<any>; 
+  private getUserInfoURL: string = 'users/get-user-info'; 
 
-  userData: Subject<any>; 
-
-  public filteredDate: any; 
-  
   constructor(
     private http: HttpClient,  
     private envURL: EnvironmentUrlService
 
   ) { 
-
+    
   }
 
   getUserInfo(userInfo: any) {
     
     if ( !isDevMode() ) {
+
 
       return this.http.post(this.envURL.urlAddress + this.getUserInfoURL, userInfo ); 
 

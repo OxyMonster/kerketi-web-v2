@@ -33,10 +33,10 @@ export class ContactSettingsComponent implements OnInit {
       console.log(this.userData);
     } else {
       const schema = {
-        "domainId": 0,
-        "languageId": this._utileService.getUserLanguage(),
-        "msisdn": this._utileService.getMsidn(),
-        "sessionId": this._utileService.getSessionId()
+        domainId: 2,
+        languageId: this._utileService.getUserLanguage(),
+        username: this._utileService.getMsidn(),
+        sessionId: localStorage.getItem('sessionId')
       }; 
 
       return this._homeService

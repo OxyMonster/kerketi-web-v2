@@ -14,6 +14,8 @@ export class P2pOtpConfirmModalComponent implements OnInit {
 
   otpCode: number; 
   isLoading: boolean = false; 
+  isSuccess: boolean = false;
+
 
   constructor(
     private _utileService: UtileService,
@@ -30,10 +32,12 @@ export class P2pOtpConfirmModalComponent implements OnInit {
   
   getOtp() {
     const userInfo = {
+      "amount": this.userData['amount'],
+      "domainId": 2,
       "languageId": this._utileService.getUserLanguage(),
       "msisdn": this._utileService.getMsidn(),
-      "os": "ANDROID",
-      "sessionId": this._utileService.getSessionId()
+      "os": "IOS",
+      "sessionId": this._utileService.getSessionId() 
     }
     this._transferFundService
         .getOtp(userInfo)
@@ -71,7 +75,8 @@ export class P2pOtpConfirmModalComponent implements OnInit {
                  .transferPersonToPerson(transferSchema)
                  .subscribe( data => {
                    console.log(data);
-  
+                   this.isSuccess = true;
+                  
                    this.isLoading = false;
                   //  add to templates
                    if ( this.userData['isFavourite'] ) {
@@ -96,7 +101,7 @@ export class P2pOtpConfirmModalComponent implements OnInit {
                                 .addTemplates(templateSchema)
                                 .subscribe( template => {
                                   console.log(template);
-                                  
+                                  this.isSuccess = true;
                                 }, err => console.log(err) )
   
                    }

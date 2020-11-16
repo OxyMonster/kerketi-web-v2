@@ -1,7 +1,13 @@
 <ng-container *ngIf="allTransactionsHistory.length > 0; else showLoading">
     <div class="row transactions m-0">
-        <div class="transactions__title col-12">
-            <h4>ტრაზაქციები</h4>
+        <div class="transactions__title col-12 row m-0">
+            <div class="col-4">
+                <h4>ტრაზაქციები</h4>
+            </div>
+
+            <div class="col d-flex justify-content-end">
+                <app-filter-transactions></app-filter-transactions>
+            </div>
         </div>
     
         <div class="row m-0 w-100">

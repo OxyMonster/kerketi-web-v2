@@ -20,7 +20,10 @@ import { P2pAddNewTemplateComponent } from './p2p/p2p-add-new-template/p2p-add-n
 import { TransferBankOtpModalComponent } from './transfer-to-bank/transfer-bank-otp-modal/transfer-bank-otp-modal.component';
 import { AddMobileToTemplatesComponent } from './fill-mobile-ballance/add-mobile-to-templates/add-mobile-to-templates.component';
 import { FillMobileConfirmModalComponent } from './fill-mobile-ballance/fill-mobile-confirm-modal/fill-mobile-confirm-modal.component';
-
+import { RegisteredCardTemplatesComponent } from './fill-ballance-bank-card/bank-card-from/registered-card-templates/registered-card-templates.component';
+import { RegisterNewCardComponent } from './fill-ballance-bank-card/bank-card-from/register-new-card/register-new-card.component';
+import { BankCardFromComponent } from './fill-ballance-bank-card/bank-card-from/bank-card-from.component';
+  
 const COMPONENTS = [
   TransferFundsComponent, 
   PayBillComponent, 
@@ -42,7 +45,7 @@ const COMPONENTS = [
 
 
 @NgModule({
-  declarations: [ COMPONENTS  ],
+  declarations: [ COMPONENTS, RegisteredCardTemplatesComponent, RegisterNewCardComponent, BankCardFromComponent  ],
   imports: [
     CommonModule,  
     ReactiveFormsModule,

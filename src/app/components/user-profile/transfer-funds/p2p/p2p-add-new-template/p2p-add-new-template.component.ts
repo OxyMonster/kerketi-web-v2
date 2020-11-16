@@ -29,13 +29,13 @@ export class P2pAddNewTemplateComponent implements OnInit {
   }
 
 
-  nextStep(mobileNumber: string) {  
+  getUserInfoWithNumber(mobileNumber: string) {  
 
     const getUserInfoSchema = {
-        "domainId": 0,
-        "languageId": 1,
-        "msisdn": this.phoneNumber,
-        "sessionId": this._utileService.getSessionId()
+      domainId: 2,
+      languageId: this._utileService.getUserLanguage(),
+      username: this.phoneNumber,
+      sessionId: localStorage.getItem('sessionId')
     }
 
     if ( mobileNumber.length === 9  ) {

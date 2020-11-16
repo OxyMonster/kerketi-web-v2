@@ -1,86 +1,109 @@
 <div class="row auth px-0">
 
-    <div class="col-xl-8 auth__box p-0 mb-4">
-
+    <div class="col-xl-8 auth__box">
+        
         <div class="auth__box__container">
             <div class="col-12 auth__box__container__title">
                 <h3>ავტორიზაცია</h3>
             </div>      
-            <form [formGroup]="userForm" 
-                  (ngSubmit)="onSubmit(userForm)" 
-                  class="auth__box__container__form">
-    
-                <div class="auth__box__container__form__input col-12">
-                    <div class="auth__box__container__form__input__container">
-                        <div class="">
-                            <label for="username">
-                                {{ 'login.username' | translate }}
-                            </label>
-                        </div>
-                        <input type="text" 
-                               name="tel" 
-                               id="username"
-                               formControlName="msisdn"
-                               placeholder="მომხმარებლის მობილურის ნომერი"
-                               [ngClass]="{ invalid: f.msisdn.errors && isSubmitted }">
-                    </div>
-                </div>
-    
-                <div class="auth__box__container__form__input col-12">
-                    <div class="auth__box__container__form__input__container">
-                        <div class="">
-                            <label for="password">
-                                {{ 'login.password' | translate }}
-                            </label>
-                        </div>
-                        <input type="password" 
-                               name="password" 
-                               id="password"
-                               class="password"
-                               formControlName="pin"
-                               placeholder="პაროლი"
-                               [ngClass]="{ invalid: f.pin.errors && isSubmitted }"
-                               >
-                               
-                    </div>
-                </div>
+            <form [formGroup]="userForm"
+                  (submit) = 'getOtpCode()'  
+                  class="auth__box__container__form"
+                  >
 
-                <div class="auth__box__container__form__input col-12 mb-2">
-                    <div class="auth__box__container__form__input__container d-flex justify-content-between">
-                        <p>
-                            {{ 'login.forgot_password' | translate }}
-                        </p>
+                  <!-- * * * * * *  Phone and pass * * * * *   -->
+                <ng-container *ngIf="!isOtpActive; else showOtp">
+                    <div class="auth__box__container__form__input col-12">
+                        <div class="auth__box__container__form__input__container">
+                            <div class="">
+                                <label for="username"
+                                        #usernameLabel
+                                        id="usernameLabel"
+                                        >
+                                    {{ 'login.username' | translate }}
+                                </label>
+                            </div>
+                            <input type="text" 
+                                   name="tel" 
+                                   id="username"
+                                   formControlName="msisdn"
+                                   placeholder="მომხმარებლის მობილურის ნომერი"
+                                   [ngClass]="{ invalid: f.msisdn.errors && isSubmitted }">
+                        </div>
+                    </div>
+        
+                    <div class="auth__box__container__form__input col-12">
+                        <div class="auth__box__container__form__input__container">
+                            <div class="">
+                                <label for="password">
+                                    {{ 'login.password' | translate }}
+                                </label>
+                            </div>
+                            <input type="password" 
+                                   name="password" 
+                                   id="password"
+                                   class="password"
+                                   formControlName="pin"
+                                   placeholder="პაროლი"
+                                   [ngClass]="{ invalid: f.pin.errors && isSubmitted }"
+                                   >
+                                   
+                        </div>
+                    </div>
+     
+                    <div class="auth__box__container__form__input col-12 mb-2">
+                        <div class="auth__box__container__form__input__container d-flex justify-content-between">
+                            <p>
+                                {{ 'login.forgot_password' | translate }}
+                            </p>
+                            
+                        </div>
+                    </div>
+
+                    <div *ngIf="isErr" class="auth__box__container__form__err mb-2">
+                        <ul>
+                            <li>პაროლი უნდა შეიცავდეს !</li>
+                            <li>მინიმალური სიმბოლოების რაოდენობა: 8</li>
+                            <li>მინიმალური ციფრების რაოდენობა: 1</li>
+                            <li>მინიმალური დიდი ასოს რაოდენობა: 1</li>
+                            <li>მინიმალური პატარა ასოს რაოდენობა: 1</li>
+                            <li>მინიმალური სხვა სიმბოლოს რაოდენობა: 1</li>
+                        </ul>
+                    </div>
+
+                    <div class="auth__box__container__form__button col-12">
                         
-                    </div>
-                </div>
+                        <button class="btn--red" 
+                                type="submit"
+                                >
+                                შესვლა
+                        </button>
+
+                    </div> 
+                </ng-container>
+                
+                <ng-template #showOtp>
+                    <app-login-otp (isOtpActive) = 'getOtpStatus($event)'
+                                   [userData] = 'userForm'
+                                   >
+
+                    </app-login-otp> 
+                </ng-template>
+                
                 
 
-                <div class="auth__box__container__form__button col-12">
-                    <button *ngIf="!isLoading; else showLoading" 
-                                class="btn--red" 
-                                type="submit">
-                            {{ 'login.login' | translate }}    
-                        </button>
-                        <ng-template #showLoading>
-                            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                                <span class="sr-only">Loading...</span>
-                              </div>                        
-                        </ng-template>
-                </div>  
-                
-            
 
             </form>  
         </div>
+
+     
+        
     </div>
 
     <div class="right-banner row m-0 col-xl-4">
         
-        <div class="right-banner__container">
+        <div class="right-banner__container mb-4">
             <div class="right-banner__container__register col-12">
-                <div class="right-banner__container__title">
-                    <!-- <h3>რეგისტრაცია</h3> -->
-                </div>
         
                 <div class="right-banner__container__register__icon d-flex justify-content-center">
                     <fa-icon [icon] = 'faUserCheck'></fa-icon>
@@ -96,7 +119,7 @@
             </div>
         </div>
 
-        <div class="right-banner__mobile d-flex">
+        <div class="right-banner__mobile d-flex w-100">
             <div class="right-banner__mobile__container col-12">
                 <div class="right-banner__mobile__container__title">
                     <p>ისარგებლეთ კერკეტის განახლებული <span>მობაილ ბანკით</span></p>
@@ -104,7 +127,7 @@
                 <div class="right-banner__mobile__container__text">
                     <p>გადმოწერეთ <span>IOS</span> და <span>Android</span></p>
                 </div>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between pb-4">
                     <div class="right-banner__mobile__container__img">
                         <img src="assets/img/app-store.png" alt="">
                     </div>

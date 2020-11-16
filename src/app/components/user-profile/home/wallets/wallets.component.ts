@@ -26,9 +26,10 @@ export class WalletsComponent implements OnInit {
 
   getUserInfo() {
     const userInfo = {
-      languageId: this._utileService.getUserLanguage(),
-      msisdn: this._utileService.getMsidn(),
-      sessionId: localStorage.getItem('sessionId')
+        "domainId": 2,
+        "languageId": this._utileService.getUserLanguage(),
+        "sessionId": this._utileService.getSessionId(),
+        "username": this._utileService.getMsidn()
     }; 
 
     console.log(userInfo);

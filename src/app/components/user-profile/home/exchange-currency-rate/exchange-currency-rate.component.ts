@@ -13,7 +13,8 @@ export class ExchangeCurrencyRateComponent implements OnInit {
 
   constructor(
     private _homeService: HomeService
-  ) { }
+  ) { 
+  }
 
   ngOnInit(): void {
     this.getCurrencyRates(); 
@@ -31,14 +32,21 @@ export class ExchangeCurrencyRateComponent implements OnInit {
                   this.currencyRates['usd'] = data['rates'][0];
                   this.currencyRates['eur'] = data['rates'][1];
                   this.currencyRates['gbp'] = data['rates'][4];
+                  this.unSubscribeCurrency();
                 } else {
+                  this.unSubscribeCurrency();
                   console.log("not rates ;((");
                   this.isSuccess = false;
                 }
                  
                }, err => {
                  console.log(err);
+                 this.unSubscribeCurrency();
                });  
+  };
+
+  unSubscribeCurrency() {
+    return this.getCurrencyRates().unsubscribe(); 
   }
 
 }

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { faCoins, faPiggyBank } from "@fortawesome/free-solid-svg-icons";
 import { TransferFundsService } from 'src/app/services/transfer-funds.service';
 import { UtileService } from 'src/app/shared/services/utile.service';
-import { FormRedirectService } from 'src/app/shared/services/form-redirect.service';
 import { HomeService } from 'src/app/services/home.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
  

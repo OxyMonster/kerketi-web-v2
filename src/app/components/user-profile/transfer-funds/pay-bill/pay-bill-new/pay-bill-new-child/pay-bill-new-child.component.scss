@@ -1,8 +1,12 @@
 @import 'src/assets/variables'; 
 
 .billers {
+    background-color: $white;
+    border-radius: 10px;   
+    box-shadow: 0px 3px 6px#CCCCCC;
+    background-color: #fcfcfcbf;
 
-    &__back {
+    &__back { 
         p {
             font-size: 14px;
             color: $dark-blue;

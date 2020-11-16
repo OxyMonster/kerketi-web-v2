@@ -1,0 +1,69 @@
+@import 'src/assets/variables'; 
+
+.box {
+    &__title {
+        height: 35px;
+        h4 {
+            font-size: 16px;
+        }
+    }
+    &__img {
+        text-align: center;
+        font-size: 55px;
+    };
+
+    &__category {
+        position: relative;
+        &__title {
+            border: 1px solid white;
+            border-radius: 6px;
+            padding: 7px;
+            cursor: pointer;
+            p {
+                font-size: 14px;
+                margin: 0;
+                user-select: none;
+                text-align: center;
+            };
+        }
+
+        &__box {
+            transition: 0.5s;
+            background-color: white;
+            align-items: center;
+            position: absolute;
+            width: 100%;
+            top: 34px;
+            &__item {
+                padding: 10px;
+                padding-left: 15px;
+                cursor: pointer;
+                align-items: center;
+
+                &__img {
+                    font-size: 20px;
+                    color: $light-blue;
+
+                }
+                &:hover {
+                    background-color: $light-grey;
+                    transition: .4s;
+                }
+
+                p {
+                    color: $dark-blue;
+                    font-size: 14px;
+                }
+            }
+        }
+    };
+
+    &__button {
+        margin-top: 20px;
+        button {
+            font-size: 14px;
+            height: 35px;
+        }
+    };
+}
+

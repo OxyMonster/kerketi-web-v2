@@ -1,10 +1,17 @@
 @import 'src/assets/variables'; 
 
 .fill-ballance {
-  
-    &__iban {
+    
+    &__from {
         border-top-left-radius: 10px;
         border-bottom-left-radius: 10px;
+        background-color: white;
+        border-right: 1px solid $light-grey;
+    }
+
+
+
+    &__iban {
         background-color: white;
      
         border-right: 1px solid $light-grey;

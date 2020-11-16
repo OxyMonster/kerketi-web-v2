@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UtileService } from 'src/app/shared/services/utile.service';
 import { PaymentsService } from 'src/app/services/payments.service';
-import { faWallet, faMobile, faCoins, faChevronDown, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faWallet, faMobile, faCoins, faChevronDown, faPlus, faTrashAlt, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { HomeService } from 'src/app/services/home.service';
  
 @Component({
@@ -20,6 +20,8 @@ export class FillMobileBallanceComponent implements OnInit {
   faChevronDown = faChevronDown; 
   faPlusCircle = faPlus; 
   faTrashAlt = faTrashAlt;
+  faChevronLeft = faChevronLeft; 
+
   selectedBox: string = 'from';
   selectedCategory: string = 'from'; 
   //  
@@ -97,8 +99,9 @@ export class FillMobileBallanceComponent implements OnInit {
 
   getWallets() {
     const userInfoSchema = {
+      domainId: 2,
       languageId: this._utileService.getUserLanguage(),
-      msisdn: this._utileService.getMsidn(),
+      username: this._utileService.getMsidn(),
       sessionId: localStorage.getItem('sessionId')
     }; 
 
@@ -174,7 +177,7 @@ export class FillMobileBallanceComponent implements OnInit {
         console.log(this.selectedTemplate);
         
         this.fillMobileSchema = {
-          "domainId": 0,
+          "domainId": 2,
           "languageId": this._utileService.getUserLanguage(),
           "msisdn": this._utileService.getMsidn(),
           "parameters": [
@@ -184,7 +187,7 @@ export class FillMobileBallanceComponent implements OnInit {
             },
             { 
               "key": "abonentCode",
-              "value":  this.selectedTemplate[0]['abonentCode']
+              "value":  this.selectedTemplate[0]['parameters'] ? this.selectedTemplate[0]['parameters'][2]['value'] : this.selectedTemplate[0]['abonentCode']
             },
             { 
               "key": "currency",
@@ -196,8 +199,7 @@ export class FillMobileBallanceComponent implements OnInit {
         }; 
 
         this.isFavourite = this.selectedTemplate[0]['isFavourite']; 
-        
-      this._modalService.open(modalContent, { size: 'md' }); 
+        this._modalService.open(modalContent, { size: 'md' }); 
 
     } else {
 

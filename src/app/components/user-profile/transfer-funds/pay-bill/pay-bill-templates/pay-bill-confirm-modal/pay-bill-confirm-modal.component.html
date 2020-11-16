@@ -28,6 +28,21 @@
        
     </div>
 
+    <div class="otp__line py-2 col-12">
+        <p>SMS კოდი:</p>
+        <div class="">
+            <input type="text" [(ngModel)]="otpCode">
+        </div>
+    </div>
+    
+    <div class="otp__line py-2 col-12">
+        <div class="">
+            <span>თუ სმს კოდს არ მიიღებთ ერთი წუთის განმავლობაში,მოითხოვეთ
+                <a> ახალი კოდი</a>
+             </span>
+        </div>
+    </div> 
+
     <div class="amount d-flex justify-content-end pr-4 pt-3 pb-3">
         <div class="amount__text">
             <p>ჯამური თანხა: </p>
@@ -36,6 +51,8 @@
             <p> {{ selectedTemplate[0]['amount'] + ' GEL' }} </p>
         </div>
     </div>
+  
+     
 
     <div class="button d-flex justify-content-end pr-4 pb-3 mt-4">
         <button class="btn--dark" 

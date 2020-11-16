@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UtileService } from 'src/app/shared/services/utile.service';
 import { PaymentsService } from 'src/app/services/payments.service';
-import { faWallet, faUserCircle, faCoins, faChevronDown, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faWallet, faUserCircle, faCoins, faChevronDown, faPlus, faChevronLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { HomeService } from 'src/app/services/home.service';
+
 
 @Component({
   selector: 'app-p2p',
@@ -18,6 +19,8 @@ export class P2pComponent implements OnInit {
   faCoins = faCoins; 
   faChevronDown = faChevronDown; 
   faPlusCircle = faPlus; 
+  faChevronLeft = faChevronLeft;
+  faTrash = faTrash;
 
   selectedBox: string = 'from';
   selectedCategory: string = 'from'; 
@@ -25,9 +28,9 @@ export class P2pComponent implements OnInit {
   allTemplates: any[]= []; 
   allWallets: any[] = []; 
   
-  isNewPaySelected: boolean = false; 
-  isTemplateSelected: boolean = false; 
   isWalletSelected: boolean = false; 
+  isTemplateSelected: boolean = false; 
+  isNewPaySelected: boolean = false; 
   isAmountErr: boolean = false; 
 
   selectedWallet: any[] = []; 
@@ -51,8 +54,32 @@ export class P2pComponent implements OnInit {
     this.getTemplates(); 
     console.log(this.selectedTemplate);
     
-  }
+  };
 
+  goBack() {
+    this.isNewPaySelected = false;
+  };
+
+  deleteTemplate(template, index: number) {
+    console.log(template);
+    
+    const schema = {
+      "domainId": 2,
+      "languageId": this._utileService.getUserLanguage(),
+      "msisdn": this._utileService.getMsidn(),
+      "sessionId": this._utileService.getSessionId(),
+      "templateId": template['id']
+    }; 
+
+    return this._paymentService
+      .deleteTemplates(schema)
+      .subscribe(data => {
+        this.allTemplates.splice(index, 1); 
+      }, err => {
+          console.log("error in delete templates", err);
+          
+      })
+  }; 
 
   getResult(event: any) {
     this.isNewPaySelected = false;
@@ -103,8 +130,9 @@ export class P2pComponent implements OnInit {
 
   getWallets() {
     const userInfoSchema = {
+      domainId: 2,
       languageId: this._utileService.getUserLanguage(),
-      msisdn: this._utileService.getMsidn(),
+      username: this._utileService.getMsidn(),
       sessionId: localStorage.getItem('sessionId')
     }; 
 
