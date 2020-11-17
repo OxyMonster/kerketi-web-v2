@@ -1,7 +1,7 @@
 @import 'src/assets/variables'; 
 
 .billers {
-      background-color: $white;
+    background-color: $white;
     border-radius: 10px;   
     box-shadow: 0px 3px 6px#CCCCCC;
     background-color: #fcfcfcbf;
@@ -30,7 +30,7 @@
         box-shadow: 0 0 8px #f3f3f7;
         position: relative;
         display: flex;
-        align-items: start;
+        align-items: flex-start;
 
         cursor: pointer;
         border-bottom: 2px solid $primary;
