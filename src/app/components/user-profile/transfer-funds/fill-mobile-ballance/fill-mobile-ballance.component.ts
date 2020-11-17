@@ -51,7 +51,6 @@ export class FillMobileBallanceComponent implements OnInit {
 
     this.getWallets(); 
     this.getTemplates(); 
-    console.log(this.selectedTemplate);
     
   }
 
@@ -59,9 +58,7 @@ export class FillMobileBallanceComponent implements OnInit {
   getResult(event: any) {
     this.isNewPaySelected = false;
     this.onTemplateSelect(event, true); 
-    console.log(event);
     
-
   }; 
    
   onWalletSelect(wallet) {
@@ -82,7 +79,7 @@ export class FillMobileBallanceComponent implements OnInit {
       this.selectedBox = 'amount';
       this.selectedCategory = 'amount';
       this.isTemplateSelected = true; 
-      console.log(template);
+      console.log(this.selectedTemplate);
       
       isNew ? this.isNewTemplate = true : this.isNewTemplate = false;  
       
@@ -105,7 +102,7 @@ export class FillMobileBallanceComponent implements OnInit {
     return  this._homeService
                 .getUserInfo(userInfoSchema)
                 .subscribe( data => {
-                  
+                  console.log(data);
                   this.allWallets = data['data']['wallets']
                   console.log(this.allWallets);
                   
@@ -148,7 +145,7 @@ export class FillMobileBallanceComponent implements OnInit {
 
   deleteTemplate(template: any, index: number) {
     const schema = {
-      "domainId": 0,
+      "domainId": 2,
       "languageId": this._utileService.getUserLanguage(),
       "msisdn": this._utileService.getMsidn(),
       "sessionId": this._utileService.getSessionId(),
@@ -168,7 +165,6 @@ export class FillMobileBallanceComponent implements OnInit {
   }
 
   openModal(modalContent: any) {
-    console.log(this.selectedTemplate);
     
     if ( this.amount && this.amount > 0 && this.selectedTemplate.length > 0 && this.selectedWallet[0]['walletTypeName']) {
       
@@ -183,7 +179,7 @@ export class FillMobileBallanceComponent implements OnInit {
             },
             { 
               "key": "abonentCode",
-              "value":  this.selectedTemplate[0]['parameters'][2]['value']
+              "value":  this.selectedTemplate[0]['name']
             },
             { 
               "key": "currency",
