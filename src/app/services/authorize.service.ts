@@ -42,11 +42,11 @@ export class AuthorizeService {
   }; 
 
   otpUnauthenticated(data) {
-    const url = '/users/otp-unauthenticated'; 
+    const url = 'users/otp-unauthenticated'; 
 
     if (!isDevMode()) {
 
-      return this.http.post(this.envURL + url, data); 
+      return this.http.post(this.envURL.urlAddress + url, data); 
 
     } else {
       
