@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UtileService } from 'src/app/shared/services/utile.service';
 import { PaymentsService } from 'src/app/services/payments.service';
-import { faWallet, faMobile, faCoins, faChevronDown, faPlus, faTrashAlt, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+import { faWallet, faMobile, faCoins, faChevronDown, faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { HomeService } from 'src/app/services/home.service';
+import { jitOnlyGuardedExpression } from '@angular/compiler/src/render3/util';
  
 @Component({
   selector: 'app-fill-mobile-ballance',
@@ -20,12 +21,9 @@ export class FillMobileBallanceComponent implements OnInit {
   faChevronDown = faChevronDown; 
   faPlusCircle = faPlus; 
   faTrashAlt = faTrashAlt;
-  faChevronLeft = faChevronLeft; 
-
   selectedBox: string = 'from';
   selectedCategory: string = 'from'; 
-  //  
-
+  
   allTemplates: any[]= []; 
   allWallets: any[] = []; 
   
@@ -34,7 +32,6 @@ export class FillMobileBallanceComponent implements OnInit {
   isWalletSelected: boolean = false; 
   isAmountErr: boolean = false; 
   isNewTemplate: boolean = false;
-  isFavourite: boolean = false; 
 
   selectedWallet: any[] = []; 
   selectedTemplate: any[] = []; 
@@ -93,15 +90,14 @@ export class FillMobileBallanceComponent implements OnInit {
   
     showNewPayment() {
       this.isNewPaySelected = true; 
-
+    
     }; 
 
 
   getWallets() {
     const userInfoSchema = {
-      domainId: 2,
       languageId: this._utileService.getUserLanguage(),
-      username: this._utileService.getMsidn(),
+      msisdn: this._utileService.getMsidn(),
       sessionId: localStorage.getItem('sessionId')
     }; 
 
@@ -117,12 +113,12 @@ export class FillMobileBallanceComponent implements OnInit {
                   console.log(err);
                   
                 } )
-  }
+  };
 
   
 
   getTemplates() {
-
+    
     const getTempatesData = {
       "languageId": this._utileService.getUserLanguage(),
       "msisdn": this._utileService.getMsidn(),
@@ -174,10 +170,9 @@ export class FillMobileBallanceComponent implements OnInit {
     console.log(this.selectedTemplate);
     
     if ( this.amount && this.amount > 0 && this.selectedTemplate.length > 0 && this.selectedWallet[0]['walletTypeName']) {
-        console.log(this.selectedTemplate);
-        
+      
         this.fillMobileSchema = {
-          "domainId": 2,
+          "domainId": 0,
           "languageId": this._utileService.getUserLanguage(),
           "msisdn": this._utileService.getMsidn(),
           "parameters": [
@@ -187,7 +182,7 @@ export class FillMobileBallanceComponent implements OnInit {
             },
             { 
               "key": "abonentCode",
-              "value":  this.selectedTemplate[0]['parameters'] ? this.selectedTemplate[0]['parameters'][2]['value'] : this.selectedTemplate[0]['abonentCode']
+              "value":  this.selectedTemplate[0]['parameters'][2]['value']
             },
             { 
               "key": "currency",
@@ -198,8 +193,9 @@ export class FillMobileBallanceComponent implements OnInit {
           "sessionId": this._utileService.getSessionId()
         }; 
 
-        this.isFavourite = this.selectedTemplate[0]['isFavourite']; 
-        this._modalService.open(modalContent, { size: 'md' }); 
+        console.log(this.fillMobileSchema);
+        
+      this._modalService.open(modalContent, { size: 'md' }); 
 
     } else {
 

@@ -1,7 +1,7 @@
 <div class="row transfer justify-content-center">
     
     <div class="col-lg-3 transfer__from"
-         [ngClass]="{'active': selectedBox === 'from','col-lg-6': selectedBox === 'from'}">
+            [ngClass]="{'active': selectedBox === 'from','col-lg-6': selectedBox === 'from'}">
         <div class="transfer__from__title">
             <h4 *ngIf="selectedBox === 'from'">რომელი ანგარიშიდან გსურთ გადარიცხვა?</h4>
         </div>
@@ -79,15 +79,7 @@
     <div class="col-lg-3 transfer__to"
          [ngClass]="{'active': selectedBox === 'to', 'col-lg-6': selectedBox === 'to'}">
         <div class="transfer__to__title">
-            <h4 *ngIf="selectedBox === 'to' && !isNewPaySelected">მობილურის ნომერზე?</h4>
-            <div *ngIf="isNewPaySelected" 
-                  class="d-flex align-items-center"
-                  style="cursor: pointer;"
-                  (click)="isNewPaySelected = false"
-                  >
-                <fa-icon [icon] = 'faChevronLeft'></fa-icon>
-                <h4>უკან დაბრუნება</h4>
-            </div>
+            <h4 *ngIf="selectedBox === 'to'">მობილურის ნომერზე?</h4>
         </div>
         <div class="transfer__to__img">
             <div class="transfer__to__img__container">
@@ -108,17 +100,19 @@
     
                 <div class="transfer__to__template " *ngIf="isTemplateSelected">
                     <div class="" *ngFor="let template of selectedTemplate">
-                        
-                        <div *ngIf="!isNewTemplate"  
-                             >
-                            <p> {{ template['serviceName'] }} </p>
-                            <p> {{ template['name'] }} </p>
+                        <div class="d-flex justify-content-center">
+                            <p *ngIf="isNewTemplate"> 
+                                {{ template['providerTitle'] }} 
+                            </p>
+                            <p *ngIf="!isNewTemplate"> {{ template['name'] }} </p>
                         </div> 
-
-                        <div *ngIf="isNewTemplate" 
-                             >
-                            <p> {{ template['providerTitle'] }}</p>
-                            <p class="m-0"> {{ template['abonentCode'] }} </p>  
+                        <div class="d-flex justify-content-center">
+                            <p class="m-0" *ngIf="isNewTemplate"> 
+                                {{ template['abonentCode'] }} 
+                            </p>  
+                            <p *ngIf="!isNewTemplate"> 
+                                {{ template['parameters'][2]['value'] }} 
+                            </p>
                         </div>
                     </div>  
                 </div>
@@ -149,13 +143,15 @@
 
                                       <div class="col-7 templates__new__my__info">
                                           <div class="templates__new__my__info__name">
-                                              <p> {{ item['name'] }} </p>
+                                              <p> {{ item.parameters[2]['value'] }} </p>
                                           </div>
                                           <div class="templates__new__my__info__phone">
-                                              <p> {{ item.serviceName }} </p>
+                                              <p> {{ item.transferTo }} </p>
                                           </div>
                                       </div>
                                   </div>
+                                  
+        
 
                                 <div class="col templates__new__my__delete">
                                     <fa-icon style="cursor: pointer; z-index: 4;" 
@@ -221,9 +217,7 @@
 
 <ng-template #otpModal>
     <app-modal-header [title] = "'დაადასტურე'"></app-modal-header>
-    <app-fill-mobile-confirm-modal [selectedAbonent] = 'fillMobileSchema'
-                                   [isFavourite] = 'isFavourite' >
-    </app-fill-mobile-confirm-modal>
+    <app-fill-mobile-confirm-modal [selectedAbonent] = 'fillMobileSchema' ></app-fill-mobile-confirm-modal>
 </ng-template>   
 
 
