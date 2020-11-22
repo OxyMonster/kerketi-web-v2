@@ -1,10 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthorizeService } from 'src/app/services/authorize.service';
-import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { UtileService } from "src/app/shared/services/utile.service";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { TransferFundsService } from 'src/app/services/transfer-funds.service';
+
 @Component({
   selector: 'app-auth-login',
   templateUrl: './auth-login.component.html',
@@ -75,10 +73,6 @@ export class AuthLoginComponent implements OnInit {
     this.isErr = false; 
 
     const schema = {
-  //     "domainId": 2,
-  // "languageId": 1,
-  //     "msisdn": "599123270",
-  
         "domainId": 2,
         "languageId": 1,
         "msisdn": this.userForm.value['msisdn'],
