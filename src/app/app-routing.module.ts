@@ -16,13 +16,14 @@ const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' }, 
    
   //  & & & Lazy Load * * * *
-  { path: 'main', loadChildren: './components/authorize/authorize.module#AuthorizeModule' }, 
+  { path: 'main', loadChildren: './components/auth-register/auth-register.module#AuthRegisterModule' }, 
   { path: 'user-profile', loadChildren: './components/user-profile/user-profile.module#UserProfileModule' }, 
   { path: 'card', loadChildren: './compoenents/bank-status/bank-status.module#BankStatusModule' },
 
   //  * * * 404 * ** 
   { path: '**', component: PageNotFoundComponent }
 ];
+
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
