@@ -1,1 +1,28 @@
-<p>register works!</p>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script>
+    const secretKey = 'aa087d78-1285-45d0-b05e-1ab8891be67b'
+    window.addEventListener("message", receiveMessage, false);
+    function receiveMessage(event) {
+        // Here is your data
+        console.log(event.data)
+        let data = JSON.parse(event.data)
+        let hash = CryptoJS.HmacSHA256(JSON.stringify(data.jsonData),
+            secretKey).toString()
+        console.log(hash)
+        console.log(hash === data.hash)
+    }
+</script>
+
+    <iframe style="
+    position: absolute; 
+    width: 100%; 
+    height: 80vh; 
+    top: 40px; 
+    left: 0;
+    border: 1px solid;
+    border-radius: 20px;" 
+            src="https://web-id.pulsar.ai/?clientId=eOBmuHGfg4" 
+            allow="camera">
+    </iframe>
+
